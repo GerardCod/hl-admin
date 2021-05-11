@@ -2,6 +2,7 @@
   --light-gradient-color: #29C9FF;
   --dark-gradient-color: #003F54;
   --input-background-color: #99B8C3;
+  --link-font-color: #707070;
 }
 
 .full-size {
@@ -31,7 +32,7 @@
   width: 40%;
   height: 90vh;
   background-color: white;
-  padding: 1rem;
+  padding: 1rem 2rem;
   align-items: center;
 }
 
@@ -64,4 +65,9 @@
   background-color: var(--dark-gradient-color);
   color: white;
   border-radius: 8px;
+}
+
+.forgotPassword {
+  color: var(--link-font-color);
+  align-self: flex-end;
 }
