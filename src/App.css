@@ -1,6 +1,7 @@
 :root {
   --light-gradient-color: #29C9FF;
   --dark-gradient-color: #003F54;
+  --input-background-color: #99B8C3;
 }
 
 .full-size {
@@ -32,4 +33,35 @@
   background-color: white;
   padding: 1rem;
   align-items: center;
+}
+
+.Textfield {
+  display: inherit;
+  flex-direction: column;
+}
+
+.Textfield__Label {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.Textfield__Input {
+  width: 25vw;
+  padding: 1rem;
+  font-size: 18px;
+  background-color: var(--input-background-color);
+  border-radius: 8px;
+  border: none;
+}
+
+.Textfield__Input:focus {
+  outline: 0;
+}
+
+.SubmitButton {
+  width: 25vw;
+  padding: 1rem;
+  background-color: var(--dark-gradient-color);
+  color: white;
+  border-radius: 8px;
 }
