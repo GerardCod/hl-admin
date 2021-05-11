@@ -21,3 +21,15 @@
   justify-content: center;
   align-items: center;
 }
+
+.flex--column {
+  flex-direction:column;
+}
+
+.Form {
+  width: 40%;
+  height: 90vh;
+  background-color: white;
+  padding: 1rem;
+  align-items: center;
+}
