@@ -1,38 +1,67 @@
-.App {
-  text-align: center;
+:root {
+  --light-gradient-color: #29C9FF;
+  --dark-gradient-color: #003F54;
+  --input-background-color: #99B8C3;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.full-size {
+  width: 100%;
+  height: 100vh;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.gradient-blue {
+  background: linear-gradient(to right, var(--light-gradient-color), var(--dark-gradient-color));
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.flex {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-wrap: wrap;
+}
+
+.flex--center {
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+}
+
+.flex--column {
+  flex-direction:column;
+}
+
+.Form {
+  width: 40%;
+  height: 90vh;
+  background-color: white;
+  padding: 1rem;
+  align-items: center;
+}
+
+.Textfield {
+  display: inherit;
+  flex-direction: column;
+}
+
+.Textfield__Label {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.Textfield__Input {
+  width: 25vw;
+  padding: 1rem;
+  font-size: 18px;
+  background-color: var(--input-background-color);
+  border-radius: 8px;
+  border: none;
+}
+
+.Textfield__Input:focus {
+  outline: 0;
+}
+
+.SubmitButton {
+  width: 25vw;
+  padding: 1rem;
+  background-color: var(--dark-gradient-color);
   color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  border-radius: 8px;
 }
