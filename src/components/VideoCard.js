@@ -8,9 +8,9 @@ const VideoCard = () => {
       <div className="VideoCard__Thumbnail flex flex--center">
         <FontAwesomeIcon icon={faPlay} />
       </div>
-      <footer className="flex">
-        <h4>Big buck bunny</h4>
-        <FontAwesomeIcon icon={faEllipsisV} />
+      <footer className="flex VideoCard__Footer">
+        <span className="VideoCard__Title">Big buck bunny</span>
+        <FontAwesomeIcon icon={faEllipsisV} className="VideoCard__Menu" />
       </footer>
     </article>
   );

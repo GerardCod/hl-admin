@@ -182,11 +182,13 @@
 }
 
 .VideoCard {
-  width: 20vmax;
-  height: 20vmax;
+  flex: 0 0 auto;
+  width: 16rem;
+  height: 14rem;
   border: 1px solid var(--border-color);
-  border-radius: 1rem;
+  border-radius: 6px;
   overflow: hidden;
+  margin-right: 1rem;
 }
 
 .VideoCard__Thumbnail {
@@ -196,6 +198,31 @@
 }
 
 .VideoCard__Thumbnail > * {
-  font-size: 2rem;
+  font-size: 3rem;
   color: var(--icon-play-color);
+}
+
+.VideoCard__Footer {
+  padding: 0.5rem;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--title-color);
+}
+
+.VideoCard__Title {
+  font-size: 1rem;
+  font-weight: bold; 
+}
+
+.VideoCard__Menu {
+  cursor: pointer;
+}
+
+.PlayList {
+  width: 100%;
+  height: auto;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  margin-bottom: 2rem;
+  overflow-x: scroll;
 }
