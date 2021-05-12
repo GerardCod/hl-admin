@@ -1,7 +1,7 @@
 :root {
   --light-gradient-color: #29C9FF;
   --dark-gradient-color: #003F54;
-  --input-background-color: #99B8C3;
+  --input-background-color: #C8CFCC;
   --link-font-color: #707070;
 }
 
@@ -67,7 +67,19 @@
   border-radius: 8px;
 }
 
+.SubmitButton:hover, .SubmitButton:focus {
+  background-color: var(--light-gradient-color);
+}
+
 .forgotPassword {
   color: var(--link-font-color);
   align-self: flex-end;
+}
+
+.Back {
+  align-self: flex-start;
+}
+
+.Back > span {
+  margin-left: 0.5rem;
 }
