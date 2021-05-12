@@ -89,6 +89,7 @@
   width: 100%;
   height: 100%;
   background-color: var(--sidenav-background-color);
+  align-items: center;
 }
 
 .AdminLayout {
@@ -106,7 +107,7 @@
 }
 
 .AdminLayout__Content {
-  grid-column-start: 5;
+  grid-column-start: 6;
   grid-column-end: 15;
   overflow-y: scroll;
 }
@@ -117,6 +118,50 @@
   }
 
   .AdminLayout__Content {
-    grid-column-start: 4;
+    grid-column-start: 5;
   }
+}
+
+.AvatarWrapper {
+  margin-top: 10vh;
+}
+
+.Avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1.5rem;
+}
+
+.Avatar__Description {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.Text--white {
+  color: white;
+}
+
+.Sidenav__Section {
+  align-self: flex-start;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.Sidenav__SectionTitle {
+  font-family: "Montserrat";
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.Sidenav__SectionItem {
+  padding-left: 1.25rem;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.Sidenav__SectionItem > span {
+  margin-left: 10px;
 }
