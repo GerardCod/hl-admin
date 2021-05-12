@@ -1,10 +1,18 @@
 import React from 'react';
+import ReactPlayer from 'react-player';
 import Admin from '../containers/Admin';
 
 const VideosPage = () => {
   return (
     <Admin>
-      <h1>Hola mundo</h1>
+      <div className="flex">
+        <h2 className="Title">Último vídeo subido</h2>
+      </div>
+      <ReactPlayer
+        url="https://youtu.be/aqz-KE-bpKQ"
+        controls
+        light 
+      />
     </Admin>
   );
 }

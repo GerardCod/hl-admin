@@ -4,6 +4,7 @@
   --input-background-color: #C8CFCC;
   --link-font-color: #707070;
   --sidenav-background-color: #007EA8;
+  --title-color: #838383;
 }
 
 .full-size {
@@ -110,6 +111,7 @@
   grid-column-start: 6;
   grid-column-end: 15;
   overflow-y: scroll;
+  padding-top: 2rem;
 }
 
 @media screen and (min-width: 1440px) {
@@ -164,4 +166,10 @@
 
 .Sidenav__SectionItem > span {
   margin-left: 10px;
+}
+
+.Title {
+  font-size: 18px;
+  color: var(--title-color);
+  font-weight: bold;
 }
