@@ -13,6 +13,9 @@ const VideosPage = () => {
         controls
         light 
       />
+      <section>
+        <h2 className="Title">Otro vídeos subidos</h2>
+      </section>
     </Admin>
   );
 }

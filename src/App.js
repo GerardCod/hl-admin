@@ -3,6 +3,7 @@ import './App.css';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import LoginPage from './pages/LoginPage';
 import VideosPage from './pages/VideosPage';
+import React from 'react';
 
 function App() {
   return (

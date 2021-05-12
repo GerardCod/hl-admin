@@ -5,6 +5,13 @@
   --link-font-color: #707070;
   --sidenav-background-color: #007EA8;
   --title-color: #838383;
+  --border-color: #575757;
+  --thumbnail-color: #6F58C9;
+  --icon-play-color: #EDEAF8;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 .full-size {
@@ -172,4 +179,23 @@
   font-size: 18px;
   color: var(--title-color);
   font-weight: bold;
+}
+
+.VideoCard {
+  width: 20vmax;
+  height: 20vmax;
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.VideoCard__Thumbnail {
+  width: 100%;
+  height: 80%;
+  background-color: var(--thumbnail-color);
+}
+
+.VideoCard__Thumbnail > * {
+  font-size: 2rem;
+  color: var(--icon-play-color);
 }
