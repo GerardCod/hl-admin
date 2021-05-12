@@ -4,7 +4,9 @@ import React from 'react';
 const Admin = ({children}) => {
   return (
     <div className="AdminLayout">
-      <SidenavAdmin className="AdminLayout__Sidenav" />
+      <aside className="AdminLayout__Sidenav">
+        <SidenavAdmin />
+      </aside>
       <main className="AdminLayout__Content">
         { children }
       </main>
