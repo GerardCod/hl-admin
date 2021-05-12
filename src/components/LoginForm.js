@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import lady from '../lady.svg';
 
 const LoginForm = () => {
   const [data, setData] = useState({})
+  const [redirect, setRedirect] = useState(false);
 
   const handleChange = e => {
     setData({
@@ -14,10 +15,14 @@ const LoginForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    setRedirect(true);
   }
 
   return (
     <form className="Form flex flex--column" onSubmit={handleSubmit}>
+      {
+        redirect && <Redirect to="/videos" />
+      }
       <object data={lady} width="175" height="275" aria-label="lady"></object>
       <p className="Textfield">
         <label className="Textfield__Label" htmlFor="email">Correo electrónico</label>
