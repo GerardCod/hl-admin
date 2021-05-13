@@ -1,11 +1,10 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
-import { Link, Route, Switch, useRouteMatch } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import ReactPlayer from 'react-player';
 import VideoCard from '../components/VideoCard';
 import Admin from '../containers/Admin';
-import UploadVideoPage from './UploadVideoPage';
 
 const VideosPage = () => {
 
