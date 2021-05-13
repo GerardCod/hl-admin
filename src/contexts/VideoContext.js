@@ -9,7 +9,7 @@ export const VideoContext = createContext();
 
 const VideoProvider = ({children}) => {
   const [state, dispatch] = useReducer(VideosReducer, initialState);
-  const listener = useRef();
+  const listenerRef = useRef();
 
   const uploadVideo = useCallback(async (video, file) => {
     dispatch({type: LOADING});
@@ -26,13 +26,13 @@ const VideoProvider = ({children}) => {
   }, []);
 
   const fetchVideos = useCallback(() => {
-    listener.current = firestore.collection('videos').onSnapshot(snapshot => {
+    listenerRef.current = firestore.collection('videos').onSnapshot(snapshot => {
       const videos = snapshot.docs.map(collectIdAndData);
       dispatch({type: FETCH_VIDEOS_SUCCESS, payload: videos});
     });
   }, []);
 
-  const propsChildren = { state, uploadVideo, fetchVideos };
+  const propsChildren = { state, uploadVideo, fetchVideos, listenerRef };
 
   return (
     <VideoContext.Provider value={propsChildren}>
