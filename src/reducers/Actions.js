@@ -1,0 +1,4 @@
+export const LOADING = 'LOADING';
+export const ERROR = 'ERROR';
+export const RESPONSE_SUCCESS = 'RESPONSE_SUCCESS';
+export const FETCH_VIDEOS_SUCCESS = 'FETCH_VIDEOS_SUCCESS';
