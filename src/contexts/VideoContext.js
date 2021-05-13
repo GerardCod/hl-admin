@@ -1,5 +1,5 @@
 import React, {createContext, useCallback, useReducer} from 'react';
-import { ERROR, LOADING } from '../reducers/Actions';
+import { ERROR, LOADING, RESPONSE_SUCCESS } from '../reducers/Actions';
 import VideosReducer, {initialState} from '../reducers/VideosReducer';
 import { firestore, storage } from '../services/Firebase';
 
@@ -12,12 +12,13 @@ const VideoProvider = ({children}) => {
     dispatch({type: LOADING});
     try {
       const response = await storage.ref().child('videos').child(`video-${Date.now()}`).put(file);
-      const url = response.ref.getDownloadURL();
+      const url = await response.ref.getDownloadURL();
       video.url = url;
       await firestore.collection('videos').add(video);
+      dispatch({type: RESPONSE_SUCCESS})
     } catch(e) {
       dispatch({type: ERROR, payload: e.message})
-      console.log(e.message);
+      return e;
     }
   }, []);
 

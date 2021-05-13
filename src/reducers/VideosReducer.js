@@ -1,4 +1,4 @@
-import { ERROR, LOADING, RESPONSE_SUCCESS } from "./Actions";
+import { ERROR, FETCH_VIDEOS_SUCCESS, LOADING, RESPONSE_SUCCESS } from "./Actions";
 
 export const initialState = {
   loading: false,
@@ -9,12 +9,17 @@ export const initialState = {
 const VideosReducer = (state, action) => {
   switch (action.type) {
     case LOADING:
-      return {loading: true, ...state};
-    case RESPONSE_SUCCESS:
+      return {...state, loading: true};
+    case FETCH_VIDEOS_SUCCESS:
       return {
         loading: false,
         videos: action.payload,
         error: null,
+      }
+    case RESPONSE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
       }
     case ERROR:
       return {
