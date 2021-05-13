@@ -1,12 +1,22 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ReactPlayer from 'react-player';
 import VideoCard from '../components/VideoCard';
 import Admin from '../containers/Admin';
+import { VideoContext } from '../contexts/VideoContext';
 
 const VideosPage = () => {
+  const { state, listenerRef, fetchVideos } = useContext(VideoContext);
+  
+  useEffect(() => {
+    fetchVideos();
+    const listener = listenerRef.current;
+    return () => {
+      listener();
+    }
+  }, [fetchVideos, listenerRef]);
 
   return (
     <Admin>
@@ -18,15 +28,13 @@ const VideosPage = () => {
           <span>Subir vídeo</span>
         </Link>
       </header>
-      <ReactPlayer
-        url="https://youtu.be/aqz-KE-bpKQ"
-        controls
-        light
-      />
+      {
+        state.videos && <ReactPlayer url={state.videos[state.videos.length - 1].url} controls light />
+      }
       <h2 className="Title">Otros vídeos subidos</h2>
       <section className="flex PlayList">
         {
-          Array.from([1, 2, 3, 4, 5, 6, 7, 8, 9]).map((e) => <VideoCard key={e} />)
+          state.videos && state.videos.map((video) => <VideoCard key={video.id} video={video}  />)
         }
       </section>
     </Admin>
