@@ -8,6 +8,8 @@
   --border-color: #575757;
   --thumbnail-color: #6F58C9;
   --icon-play-color: #EDEAF8;
+  --success-color: #51CB20;
+  --light-success-color: #E8FAE1;
 }
 
 * {
@@ -181,6 +183,11 @@
   font-weight: bold;
 }
 
+.VideosHeader {
+  justify-content: space-between;
+  align-items: center;
+}
+
 .VideoCard {
   flex: 0 0 auto;
   width: 16rem;
@@ -225,4 +232,68 @@
   flex-direction: row;
   margin-bottom: 2rem;
   overflow-x: scroll;
+}
+
+.Button {
+  padding: .5rem 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.AddVideo {
+  margin-right: 1rem;
+}
+
+.AddVideo > span {
+  margin-left: 1rem;
+}
+
+.Button--Success {
+  background-color: var(--success-color);
+  color: var(--light-success-color);
+}
+
+.Form--Upload {
+  width: 60%;
+  height: auto;
+  padding-top: 0.5rem;
+  padding-bottom: 4rem;
+}
+
+.Input--Full {
+  width: 100%;
+}
+
+.Input--File {
+  height: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+
+.Input--File > input {
+  position: absolute;
+  z-index: 2;
+  opacity: 0;
+  height: 3rem;
+  width: 100%;
+  height: 100%;
+}
+
+.Input__Icon {
+  font-size: 4rem;
+}
+
+.Input__Icon, .Input--File > input {
+  cursor: pointer;
+}
+
+.UploadButton {
+  width: 20vmax;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  padding: 1rem;
 }
