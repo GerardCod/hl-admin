@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { faFileUpload } from '@fortawesome/free-solid-svg-icons';
+import { faFileUpload, faSave } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const UploadVideoForm = () => {
@@ -31,6 +31,10 @@ const UploadVideoForm = () => {
           <FontAwesomeIcon icon={faFileUpload} className="Input__Icon" />
         </div>
       </p>
+      <button type="submit" className="Button AddVideo Button--Success UploadButton">
+        <FontAwesomeIcon icon={faSave} />
+        <span>Guardar cambios</span>
+      </button>
     </form>
   );
 }

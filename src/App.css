@@ -257,6 +257,7 @@
   width: 60%;
   height: auto;
   padding-top: 0.5rem;
+  padding-bottom: 4rem;
 }
 
 .Input--Full {
@@ -287,4 +288,12 @@
 
 .Input__Icon, .Input--File > input {
   cursor: pointer;
+}
+
+.UploadButton {
+  width: 20vmax;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  padding: 1rem;
 }
