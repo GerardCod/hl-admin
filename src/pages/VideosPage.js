@@ -26,7 +26,7 @@ const VideosPage = () => {
       <h2 className="Title">Otros vídeos subidos</h2>
       <section className="flex PlayList">
         {
-          Array.from([1, 2, 3, 4, 5, 6, 7, 8, 9]).map((e) => <VideoCard />)
+          Array.from([1, 2, 3, 4, 5, 6, 7, 8, 9]).map((e) => <VideoCard key={e} />)
         }
       </section>
     </Admin>

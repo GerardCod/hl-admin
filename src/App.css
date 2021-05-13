@@ -10,6 +10,7 @@
   --icon-play-color: #EDEAF8;
   --success-color: #51CB20;
   --light-success-color: #E8FAE1;
+  --dark-success-color: #286510;
 }
 
 * {
@@ -296,4 +297,8 @@
   font-weight: bold;
   border: none;
   padding: 1rem;
+}
+
+.UploadButton:disabled {
+  background-color: var(--dark-success-color);
 }
