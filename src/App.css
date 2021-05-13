@@ -8,6 +8,8 @@
   --border-color: #575757;
   --thumbnail-color: #6F58C9;
   --icon-play-color: #EDEAF8;
+  --success-color: #51CB20;
+  --light-success-color: #E8FAE1;
 }
 
 * {
@@ -181,6 +183,11 @@
   font-weight: bold;
 }
 
+.VideosHeader {
+  justify-content: space-between;
+  align-items: center;
+}
+
 .VideoCard {
   flex: 0 0 auto;
   width: 16rem;
@@ -225,4 +232,23 @@
   flex-direction: row;
   margin-bottom: 2rem;
   overflow-x: scroll;
+}
+
+.Button {
+  padding: .5rem 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.AddVideo {
+  margin-right: 1rem;
+}
+
+.AddVideo > span {
+  margin-left: 1rem;
+}
+
+.Button--Success {
+  background-color: var(--success-color);
+  color: var(--light-success-color);
 }
