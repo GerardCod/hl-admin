@@ -1,3 +1,7 @@
+import firebase from 'firebase/app';
+import 'firebase/storage';
+import 'firebase/firestore';
+
 const firebaseConfig = {
   apiKey: "AIzaSyDyybelhhZqlNeVNQBdTB-ijRHLawaXVio",
   authDomain: "homegrown-learning.firebaseapp.com",
@@ -9,3 +13,8 @@ const firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+
+export const firestore = firebase.firestore();
+export const storage = firebase.storage();
+
+export default firebase;
