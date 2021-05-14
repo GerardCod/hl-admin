@@ -11,6 +11,7 @@
   --success-color: #51CB20;
   --light-success-color: #E8FAE1;
   --dark-success-color: #286510;
+  --menu-item-hover-color: #f5f5f5;
 }
 
 * {
@@ -219,6 +220,7 @@ button {
   justify-content: space-between;
   align-items: center;
   color: var(--title-color);
+  position: relative;
 }
 
 .VideoCard__Title {
@@ -321,5 +323,66 @@ button {
 @keyframes rotation {
   100% {
     transform: rotate(360deg);
+  }
+}
+
+.VideoCardMenu {
+  width: 15vw;
+  height: auto;
+  transform: scale(0);
+  background-color: white;
+  position: absolute;
+  z-index: 5;
+  padding: 0.5rem 0;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  bottom: 1rem;
+  right: 1.5rem;
+}
+
+.VideoCardMenu__Item {
+  width: 100%;
+  height: auto;
+  padding: 1rem;
+  text-decoration: none;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.VideoCardMenu__Item:hover {
+  background-color: var(--menu-item-hover-color);
+}
+
+.VideoCardMenu__Item--Blue {
+  color: var(--dark-gradient-color);
+}
+
+.VideoCardMenu__Item > span {
+  margin-left: 8px;
+}
+
+.reveal {
+  animation-name: reveal;
+  animation-duration: .15s;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.reveal--inverse {
+  animation-name: reveal--inverse;
+  animation-duration: .5s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
+}
+
+@keyframes reveal {
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes reveal--inverse {
+  100% {
+    transform: scale(0, 0);
   }
 }
