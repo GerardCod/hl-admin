@@ -28,7 +28,7 @@ const VideosPage = () => {
         </Link>
       </header>
       {
-        state.videos && <VideoPlayer url={state.videos[state.videos.length - 1]} />
+        state.videos && <VideoPlayer url={state.videos[state.videos.length - 1].url} />
       }
       <h2 className="Title">Otros vídeos subidos</h2>
       <section className="flex PlayList">
