@@ -1,5 +1,4 @@
-import React, {createContext, useCallback, useReducer} from 'react';
-import { useRef } from 'react/cjs/react.development';
+import React, {createContext, useCallback, useReducer, useRef } from 'react';
 import { ERROR, FETCH_VIDEOS_SUCCESS, LOADING, RESPONSE_SUCCESS } from '../reducers/Actions';
 import VideosReducer, {initialState} from '../reducers/VideosReducer';
 import { firestore, storage } from '../services/Firebase';
@@ -9,7 +8,7 @@ export const VideoContext = createContext();
 
 const VideoProvider = ({children}) => {
   const [state, dispatch] = useReducer(VideosReducer, initialState);
-  const listenerRef = useRef();
+  const listenerRef = useRef({});
 
   const uploadVideo = useCallback(async (video, file) => {
     dispatch({type: LOADING});
