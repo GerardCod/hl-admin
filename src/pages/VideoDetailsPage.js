@@ -1,18 +1,26 @@
 import React, { useContext, useState, useEffect } from 'react';
-import ReactPlayer from 'react-player';
 import { Link, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 import { VideoContext } from '../contexts/VideoContext';
+import swal from 'sweetalert';
+import VideoPlayer from '../components/VideoPlayer';
 
 const VideoDetailsPage = () => {
   const { getVideo } = useContext(VideoContext);
   const { id } = useParams();
-  const {video, setVideo} = useState({});
+  const [video, setVideo] = useState({});
 
   useEffect(() => {
-    const videoFound = getVideo(id);
-    setVideo(videoFound);
+    getVideo(id).then(data => {
+      setVideo(data);
+    }).catch(e => {
+      swal({
+        title: 'Error cargando el vídeo',
+        text: e.message,
+        icon: 'error'
+      })
+    });
   }, [id, getVideo, setVideo])
 
   return (
@@ -26,7 +34,7 @@ const VideoDetailsPage = () => {
             <span>Regresar</span>
           </Link>
           <h1>{video.title}</h1>
-          <ReactPlayer url={video.url} controls light />
+          <VideoPlayer url={video.url} />
           <section>
             <h2>Descripción</h2>
             <p>{video.description}</p>
