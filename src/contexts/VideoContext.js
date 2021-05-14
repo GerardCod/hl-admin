@@ -32,7 +32,11 @@ const VideoProvider = ({children}) => {
     });
   }, []);
 
-  const propsChildren = { state, uploadVideo, fetchVideos, listenerRef };
+  const getVideo = useCallback((id) => {
+    return state.videos.find(video => video.id === id);
+  }, []);
+
+  const propsChildren = { state, uploadVideo, fetchVideos, listenerRef, getVideo };
 
   return (
     <VideoContext.Provider value={propsChildren}>
