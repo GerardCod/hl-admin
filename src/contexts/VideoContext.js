@@ -32,7 +32,16 @@ const VideoProvider = ({children}) => {
     });
   }, []);
 
-  const propsChildren = { state, uploadVideo, fetchVideos, listenerRef };
+  const getVideo = useCallback(async (id) => {
+    try {
+      const docRef = await firestore.doc(`videos/${id}`).get();
+      return collectIdAndData(docRef);
+    } catch (e) {
+      return e;
+    } 
+  }, []);
+
+  const propsChildren = { state, uploadVideo, fetchVideos, listenerRef, getVideo };
 
   return (
     <VideoContext.Provider value={propsChildren}>
