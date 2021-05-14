@@ -8,7 +8,7 @@ export const VideoContext = createContext();
 
 const VideoProvider = ({children}) => {
   const [state, dispatch] = useReducer(VideosReducer, initialState);
-  const listenerRef = useRef();
+  const listenerRef = useRef({});
 
   const uploadVideo = useCallback(async (video, file) => {
     dispatch({type: LOADING});
