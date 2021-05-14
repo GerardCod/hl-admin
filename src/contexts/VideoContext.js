@@ -1,5 +1,4 @@
-import React, {createContext, useCallback, useReducer} from 'react';
-import { useRef } from 'react/cjs/react.development';
+import React, {createContext, useCallback, useReducer, useRef } from 'react';
 import { ERROR, FETCH_VIDEOS_SUCCESS, LOADING, RESPONSE_SUCCESS } from '../reducers/Actions';
 import VideosReducer, {initialState} from '../reducers/VideosReducer';
 import { firestore, storage } from '../services/Firebase';
