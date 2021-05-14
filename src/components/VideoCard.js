@@ -14,7 +14,7 @@ const VideoCard = ({video}) => {
       <footer className="flex VideoCard__Footer">
         <span className="VideoCard__Title">{video.title}</span>
         <FontAwesomeIcon icon={faEllipsisV} className="VideoCard__Menu" onClick={() => setReveal(!reveal)} />
-        <VideoCardMenu show={reveal} />
+        <VideoCardMenu show={reveal} id={video.id} />
       </footer>
     </article>
   );
