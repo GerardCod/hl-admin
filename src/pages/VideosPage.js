@@ -2,9 +2,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import ReactPlayer from 'react-player';
 import VideoCard from '../components/VideoCard';
 import { VideoContext } from '../contexts/VideoContext';
+import VideoPlayer from '../components/VideoPlayer';
 
 const VideosPage = () => {
   const { state, listenerRef, fetchVideos } = useContext(VideoContext);
@@ -28,7 +28,7 @@ const VideosPage = () => {
         </Link>
       </header>
       {
-        state.videos && <ReactPlayer url={state.videos[state.videos.length - 1].url} controls light />
+        state.videos && <VideoPlayer url={state.videos[state.videos.length - 1]} />
       }
       <h2 className="Title">Otros vídeos subidos</h2>
       <section className="flex PlayList">
