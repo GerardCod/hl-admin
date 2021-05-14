@@ -386,3 +386,9 @@ button {
     transform: scale(0, 0);
   }
 }
+
+.VideoLayout {
+  display: grid;
+  grid-template-columns: 70% 1fr;
+  grid-template-rows: 1fr;
+}
