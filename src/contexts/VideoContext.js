@@ -1,5 +1,5 @@
 import React, {createContext, useCallback, useReducer, useRef } from 'react';
-import { ERROR, FETCH_VIDEOS_SUCCESS, LOADING, RESPONSE_SUCCESS } from '../reducers/Actions';
+import { DOCUMENT_FOUND, ERROR, FETCH_VIDEOS_SUCCESS, LOADING, RESPONSE_SUCCESS } from '../reducers/Actions';
 import VideosReducer, {initialState} from '../reducers/VideosReducer';
 import { firestore, storage } from '../services/Firebase';
 import { collectIdAndData } from '../utils';
@@ -9,6 +9,7 @@ export const VideoContext = createContext();
 const VideoProvider = ({children}) => {
   const [state, dispatch] = useReducer(VideosReducer, initialState);
   const listenerRef = useRef({});
+  const videoListenerRef = useRef({});
 
   const uploadVideo = useCallback(async (video, file) => {
     dispatch({type: LOADING});
@@ -18,7 +19,7 @@ const VideoProvider = ({children}) => {
       video.url = url;
       video.createdAt = Date.now();
       await firestore.collection('videos').add(video);
-      dispatch({type: RESPONSE_SUCCESS})
+      dispatch({type: RESPONSE_SUCCESS});
     } catch(e) {
       dispatch({type: ERROR, payload: e.message})
       return e;
@@ -33,15 +34,37 @@ const VideoProvider = ({children}) => {
   }, []);
 
   const getVideo = useCallback(async (id) => {
+    dispatch({type: LOADING});
     try {
       const docRef = await firestore.doc(`videos/${id}`).get();
-      return collectIdAndData(docRef);
+      const payload = collectIdAndData(docRef);
+      dispatch({type: DOCUMENT_FOUND, payload})
     } catch (e) {
-      return e;
+      dispatch({type: ERROR, payload: e.message});
     } 
   }, []);
 
-  const propsChildren = { state, uploadVideo, fetchVideos, listenerRef, getVideo };
+  const getAndObserveVideo = useCallback((id) => {
+    dispatch({type: LOADING});
+    videoListenerRef.current = firestore.doc(`videos/${id}`).onSnapshot(videoSnapshot => {
+      const video = collectIdAndData(videoSnapshot);
+      dispatch({type: DOCUMENT_FOUND, payload: video});
+    }, error => {
+      dispatch({type: ERROR, payload: error.message});
+    });
+  }, []);
+
+  const editVideo = useCallback(async (id, data) => {
+    dispatch({type: LOADING});
+    try {
+      await firestore.doc(`videos/${id}`).update(data);
+      dispatch({type: RESPONSE_SUCCESS});
+    } catch (e) {
+      dispatch({type: ERROR, payload: e.message})
+    }
+  }, []);
+
+  const propsChildren = { state, uploadVideo, fetchVideos, listenerRef, getVideo, editVideo, getAndObserveVideo, videoListenerRef};
 
   return (
     <VideoContext.Provider value={propsChildren}>

@@ -66,7 +66,7 @@ const UploadVideoForm = () => {
       <br></br>
       {
         state.loading ? 
-        <button type="button" className="Button AddVideo Button--Success UploadButton">
+        <button type="button" className="Button AddVideo Button--Success UploadButton" disabled>
           <FontAwesomeIcon icon={faCircleNotch} className="Loading" />
           <span>Subiendo vídeo</span>
         </button> 
