@@ -1,15 +1,16 @@
-import { ERROR, FETCH_VIDEOS_SUCCESS, LOADING, RESPONSE_SUCCESS } from "./Actions";
+import { DOCUMENT_FOUND, ERROR, FETCH_VIDEOS_SUCCESS, LOADING, RESPONSE_SUCCESS } from "./Actions";
 
 export const initialState = {
   loading: false,
   videos: null,
   error: null,
+  videoSelected: null,
 }
 
 const VideosReducer = (state, action) => {
   switch (action.type) {
     case LOADING:
-      return {...state, loading: true};
+      return {...state, loading: true, error: null, videoSelected: null};
     case FETCH_VIDEOS_SUCCESS:
       return {
         loading: false,
@@ -23,10 +24,17 @@ const VideosReducer = (state, action) => {
       }
     case ERROR:
       return {
+        ...state,
         loading: false,
         error: action.payload,
-        videos: null
       };
+    case DOCUMENT_FOUND: 
+      return {
+        ...state,
+        loading: false,
+        videoSelected: action.payload,
+        error: null
+      }
     default:
       return state;
   }
