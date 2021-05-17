@@ -66,7 +66,19 @@ const VideoProvider = ({children}) => {
     }
   }, []);
 
-  const propsChildren = { state, uploadVideo, fetchVideos, listenerRef, getVideo, editVideo, getAndObserveVideo, videoListenerRef};
+  const removeVideo = useCallback(async (id, onSuccess, onError) => {
+    dispatch({type: LOADING});
+    try {
+      await firestore.doc(`videos/${id}`).delete();
+      dispatch({type: RESPONSE_SUCCESS});
+      onSuccess();
+    } catch (error) {
+      dispatch({type: ERROR, payload: error.message});
+      onError(error.message);
+    }
+  }, []);
+
+  const propsChildren = { state, uploadVideo, fetchVideos, listenerRef, getVideo, editVideo, getAndObserveVideo, videoListenerRef, removeVideo};
    
 
   return (

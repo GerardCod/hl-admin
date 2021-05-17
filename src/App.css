@@ -27,6 +27,14 @@ button {
   height: 100vh;
 }
 
+.full-width {
+  width: 100%;
+}
+
+.full-height {
+  height: 100%;
+}
+
 .gradient-blue {
   background: linear-gradient(to right, var(--light-gradient-color), var(--dark-gradient-color));
 }
@@ -347,6 +355,8 @@ button {
   text-decoration: none;
   justify-content: space-evenly;
   align-items: center;
+  background-color: white;
+  border: none;
 }
 
 .VideoCardMenu__Item:hover {
@@ -409,4 +419,20 @@ button {
 
 .Loader__Text {
   font-size: 1rem;
+}
+
+.Illustration {
+  width: 30vmax;
+  height: 15vmax;
+}
+
+.Illustration > img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.IllustrationDescription {
+  font-weight: bold;
+  font-size: 20px;
 }
