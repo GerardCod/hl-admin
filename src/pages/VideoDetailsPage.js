@@ -7,16 +7,26 @@ import swal from 'sweetalert';
 import VideoPlayer from '../components/VideoPlayer';
 
 const VideoDetailsPage = () => {
-  const { getVideo, state: { videoSelected, error } } = useContext(VideoContext);
+  const { getAndObserveVideo, state: { videoSelected }, videoListenerRef } = useContext(VideoContext);
   const { id } = useParams();
 
   useEffect(() => {
-    getVideo(id).catch(() => {
-      swal({ title: 'Error obteniendo el vídeo', text: error, icon: 'error' });
-    });
-  }, [getVideo])
+    function showError(text) {
+      swal({title: 'Error obteniendo el vídeo', text, icon: 'error'});
+    }
 
+    function fetchVideo(id) {
+      getAndObserveVideo(id, showError);
+      return videoListenerRef.current;
+    }
+    const listener = fetchVideo(id);
+    
+    return () => {
+      listener();
+    }
+  }, [getAndObserveVideo, id, videoListenerRef])
 
+  console.log('Rendering component');
   return (
     <>
       <Link to="/videos" className="Back">

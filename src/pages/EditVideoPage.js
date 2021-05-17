@@ -2,26 +2,34 @@ import React, { useEffect, useContext } from 'react';
 import EditVideoForm from '../components/EditVideoForm';
 import { Link, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft, faCircleNotch } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { VideoContext } from '../contexts/VideoContext';
 import swal from 'sweetalert';
 import Loader from '../components/Loader';
 
+
 const EditVideoPage = () => {
   const { id } = useParams();
-  const { getAndObserveVideo, state: {videoSelected, error, loading}, videoListenerRef} = useContext(VideoContext); 
+  const { getAndObserveVideo, state: {videoSelected, loading}, videoListenerRef} = useContext(VideoContext); 
 
   useEffect(() => {
-    getAndObserveVideo(id);
-    const subscriber = videoListenerRef.current;
-    if (error) {
-      swal({title: 'Error obteniendo el usuario', text: error, icon: 'error'});
+    function showErrorMessage(text) {
+      swal({title: 'Error obteniendo el vídeo', text, icon: 'error'});
     }
+
+    function executeFetch(id) {
+      getAndObserveVideo(id, showErrorMessage);
+      return videoListenerRef.current;
+    }
+
+    const subscriber = executeFetch(id);
 
     return () => {
       subscriber();
     }
-  }, [getAndObserveVideo]);
+  }, [id, getAndObserveVideo, videoListenerRef]);
+
+  console.log('Rendering component');
 
   return (
     <>
