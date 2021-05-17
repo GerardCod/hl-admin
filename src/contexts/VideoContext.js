@@ -67,6 +67,7 @@ const VideoProvider = ({children}) => {
   }, []);
 
   const propsChildren = { state, uploadVideo, fetchVideos, listenerRef, getVideo, editVideo, getAndObserveVideo, videoListenerRef};
+   
 
   return (
     <VideoContext.Provider value={propsChildren}>
