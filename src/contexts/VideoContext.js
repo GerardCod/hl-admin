@@ -33,7 +33,7 @@ const VideoProvider = ({children}) => {
     });
   }, []);
 
-  const getVideo = useCallback(async (id) => {
+  const getVideo = useCallback(async (id, errorCallback) => {
     dispatch({type: LOADING});
     try {
       const docRef = await firestore.doc(`videos/${id}`).get();
@@ -41,16 +41,18 @@ const VideoProvider = ({children}) => {
       dispatch({type: DOCUMENT_FOUND, payload})
     } catch (e) {
       dispatch({type: ERROR, payload: e.message});
+      errorCallback(e.message);
     } 
   }, []);
 
-  const getAndObserveVideo = useCallback((id) => {
+  const getAndObserveVideo = useCallback((id, errorCallback) => {
     dispatch({type: LOADING});
     videoListenerRef.current = firestore.doc(`videos/${id}`).onSnapshot(videoSnapshot => {
       const video = collectIdAndData(videoSnapshot);
       dispatch({type: DOCUMENT_FOUND, payload: video});
     }, error => {
       dispatch({type: ERROR, payload: error.message});
+      errorCallback(error.message);
     });
   }, []);
 
