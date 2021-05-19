@@ -5,8 +5,9 @@ import { Link } from 'react-router-dom';
 import VideoCard from '../components/VideoCard';
 import { VideoContext } from '../contexts/VideoContext';
 import VideoPlayer from '../components/VideoPlayer';
-import illustration from '../videos.png';
+import illustration from '../assets/videos.png';
 import Illustration from '../components/Illustration';
+import Loader from '../components/Loader';
 
 const VideosPage = () => {
   const { state, listenerRef, fetchVideos } = useContext(VideoContext);
@@ -23,12 +24,15 @@ const VideosPage = () => {
     <>
       <header className="flex VideosHeader">
         <h1>Vídeos</h1>
-        <Link to="/videos/upload" className="Button AddVideo Button--Success">
+        <Link to="/admin/videos/upload" className="Button AddVideo Button--Success">
           <FontAwesomeIcon icon={faPlus} />
           <span>Subir vídeo</span>
         </Link>
       </header>
       {
+        state.loading ? 
+          <Loader text={'Cargando vídeos'} />
+        :
         (state.videos && state.videos.length > 0) ?
           <div>
             <h2 className="Title">Último vídeo subido</h2>

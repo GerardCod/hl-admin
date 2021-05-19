@@ -1,14 +1,15 @@
 import React from 'react';
-import { Route, Switch } from 'react-router';
-import Admin from './Admin';
+import { Route, Switch, useRouteMatch } from 'react-router';
+import PodcastsPage from '../pages/PodcastsPage';
 
 const PodcastsContainer = () => {
+  let { path } = useRouteMatch("/admin/podcasts");
+
+  console.log(path);
   return (
-    <Admin>
-      <Switch>
-        <Route path="/" exact />
-      </Switch>
-    </Admin>
+    <Switch>
+      <Route path={path} exact component={PodcastsPage} />
+    </Switch>
   );
 }
 

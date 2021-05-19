@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import lady from '../lady.svg';
+import lady from '../assets/lady.svg';
 
 const LoginForm = () => {
   const [data, setData] = useState({})
@@ -21,7 +21,7 @@ const LoginForm = () => {
   return (
     <form className="Form flex flex--column" onSubmit={handleSubmit}>
       {
-        redirect && <Redirect to="/videos" />
+        redirect && <Redirect to="/admin/videos" />
       }
       <object data={lady} width="175" height="275" aria-label="lady"></object>
       <p className="Textfield">

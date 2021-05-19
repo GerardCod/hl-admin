@@ -1,5 +1,5 @@
 import React from 'react';
- import SidenavAdmin from '../components/SidenavAdmin';
+import SidenavAdmin from '../components/SidenavAdmin';
 
 const Admin = ({children}) => {
   return (

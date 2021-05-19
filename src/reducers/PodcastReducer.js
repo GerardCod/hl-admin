@@ -1,4 +1,4 @@
-import { FETCH_DOCUMENTS, LOADING } from './Actions';
+import { FETCH_DOCUMENTS, LOADING, ERROR } from './Actions';
 
 export const initialState = {
   loading: false,

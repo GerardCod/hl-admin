@@ -1,7 +1,7 @@
 import { createContext, useCallback, useReducer, useRef } from "react";
 import { firestore } from '../services/Firebase';
 import PodcastReducer, { initialState } from '../reducers/PodcastReducer';
-import { FETCH_DOCUMENTS, LOADING } from "../reducers/Actions";
+import { FETCH_DOCUMENTS, LOADING, ERROR } from "../reducers/Actions";
 import { collectIdAndData } from '../utils';
 
 export const PodcastContext = createContext();
@@ -10,7 +10,7 @@ const PodcastProvider = ({children}) => {
   const [state, dispatch] = useReducer(PodcastReducer, initialState);
   const listenerRef = useRef({});
 
-  const fetchVideos = useCallback((errorCallback) => {
+  const fetchPodcasts = useCallback((errorCallback) => {
     dispatch({type: LOADING});
     listenerRef.current = firestore.collection('podcasts')
     .onSnapshot(snapshot => {
@@ -22,7 +22,7 @@ const PodcastProvider = ({children}) => {
     });
   }, []);
 
-  const childProps = {fetchVideos, state}
+  const childProps = {fetchPodcasts, state, listenerRef}
 
   return (
     <PodcastContext.Provider value={childProps}>

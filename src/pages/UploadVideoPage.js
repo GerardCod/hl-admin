@@ -7,7 +7,7 @@ import UploadVideoForm from '../components/UploadVideoForm';
 const UploadVideoPage = () => {
   return (
     <>
-      <Link to="/videos" className="Back">
+      <Link to="/admin/videos" className="Back">
         <FontAwesomeIcon icon={faChevronLeft} />
         <span>Regresar</span>
       </Link>

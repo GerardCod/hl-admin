@@ -33,7 +33,7 @@ const EditVideoPage = () => {
 
   return (
     <>
-      <Link to="/videos" className="Back">
+      <Link to="/admin/videos" className="Back">
         <FontAwesomeIcon icon={faChevronLeft} />
         <span>Regresar</span>
       </Link>
