@@ -1,11 +1,7 @@
 import { createContext, useCallback, useReducer, useRef } from "react";
 import { firestore, storage } from '../services/Firebase';
 import PodcastReducer, { initialState } from '../reducers/PodcastReducer';
-<<<<<<< HEAD
-import { FETCH_DOCUMENTS, LOADING, ERROR } from "../reducers/Actions";
-=======
 import { FETCH_DOCUMENTS, LOADING, ERROR, RESPONSE_SUCCESS } from "../reducers/Actions";
->>>>>>> feature/uploadPodcast
 import { collectIdAndData } from '../utils';
 
 export const PodcastContext = createContext();
