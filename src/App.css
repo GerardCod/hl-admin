@@ -524,3 +524,15 @@ button {
   margin-right: 10px;
   font-size: 1.5rem;
 }
+
+.cursor--pointer {
+  cursor: pointer;
+}
+
+.PodcastLayout {
+  width: 100%;
+  height: auto;
+  display: grid;
+  grid-template-columns: 70% 1fr;
+  grid-template-rows: 1fr;
+}
