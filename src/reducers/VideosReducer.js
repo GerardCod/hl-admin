@@ -1,5 +1,3 @@
-import { DOCUMENT_FOUND, ERROR, FETCH_VIDEOS_SUCCESS, LOADING, RESPONSE_SUCCESS } from "./Actions";
-
 export const initialState = {
   loading: false,
   videos: null,
