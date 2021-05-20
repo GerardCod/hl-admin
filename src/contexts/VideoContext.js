@@ -27,6 +27,7 @@ const VideoProvider = ({children}) => {
   }, []);
 
   const fetchVideos = useCallback(() => {
+    dispatch({type: LOADING});
     listenerRef.current = firestore.collection('videos').onSnapshot(snapshot => {
       const videos = snapshot.docs.map(collectIdAndData).sort((a, b) => a.createdAt - b.createdAt);
       dispatch({type: FETCH_VIDEOS_SUCCESS, payload: videos});

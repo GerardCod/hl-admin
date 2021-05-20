@@ -12,6 +12,8 @@
   --light-success-color: #E8FAE1;
   --dark-success-color: #286510;
   --menu-item-hover-color: #f5f5f5;
+  --alert-color: #FF773D;
+  --danger-color: #D92424;
 }
 
 * {
@@ -173,6 +175,9 @@ button {
   align-self: flex-start;
   padding-left: 1.5rem;
   margin-bottom: 1rem;
+  width: 100%;
+  height: auto;
+  flex-wrap: nowrap;
 }
 
 .Sidenav__SectionTitle {
@@ -182,13 +187,49 @@ button {
 }
 
 .Sidenav__SectionItem {
-  padding-left: 1.25rem;
+  padding: 1.25rem 1rem 1rem 1rem;
   text-decoration: none;
   font-size: 18px;
+  position: relative;
+  width: 100%;
 }
 
-.Sidenav__SectionItem > span {
+.Sidenav__SectionItemText, .Sidenav__SectionItemIcon {
   margin-left: 10px;
+  position: relative;
+  z-index: 10;
+  transition-property: color, font-weight;
+  transition-duration: 0.5s;
+  transition-timing-function: ease;
+}
+
+.Sidenav__SectionItemBg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 0;
+  border-top-left-radius: 4rem;
+  border-bottom-left-radius: 4rem;
+  background-color: white;
+}
+
+.Sidenav__SectionItem--Active > .Sidenav__SectionItemText, .Sidenav__SectionItem--Active > .Sidenav__SectionItemIcon {
+  color: var(--success-color);
+  font-weight: bold;
+}
+
+.Sidenav__SectionItem--Active > .Sidenav__SectionItemBg {
+  animation-name: show;
+  animation-duration: .4s;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+}
+
+@keyframes show {
+  100% {
+    width: 100%;
+  }
 }
 
 .Title {
@@ -233,7 +274,12 @@ button {
 
 .VideoCard__Title {
   font-size: 1rem;
-  font-weight: bold; 
+  font-weight: bold;
+  max-width: 70%;
+  height: 1.2rem;
+  word-wrap: normal;
+  overflow: hidden;
+  text-overflow: ellipsis; 
 }
 
 .VideoCard__Menu {
@@ -435,4 +481,46 @@ button {
 .IllustrationDescription {
   font-weight: bold;
   font-size: 20px;
+}
+
+.ListItem {
+  width: 90%;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  justify-content: space-between;
+}
+
+.ListItem__Icon {
+  font-size: 3rem;
+  align-self: center;
+}
+
+.Icon--Orange {
+  color: var(--alert-color);
+}
+
+.Icon--Purple {
+  color: var(--thumbnail-color);
+}
+
+.Icon--Blue {
+  color: var(--dark-gradient-color);
+}
+
+.Icon--Red {
+  color: var(--danger-color);
+}
+
+.ListItem__Content {
+  align-self: flex-start;
+}
+
+.ListItem__Description {
+  margin-left: 1rem;
+}
+
+.ListItem__Actions > * {
+  margin-right: 10px;
+  font-size: 1.5rem;
 }

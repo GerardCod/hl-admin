@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import lady from '../lady.svg';
+import lady from '../assets/lady.svg';
 
 const ForgotPasswordForm = () => {
   const [data, setData] = useState({});

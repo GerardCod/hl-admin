@@ -1,20 +1,20 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
-import UploadVideoForm from '../components/UploadVideoForm';
+import { Link } from 'react-router-dom';
+import UploadPodcastForm from '../components/UploadPodcastForm';
 
-const UploadVideoPage = () => {
+const UploadPodcastPage = () => {
   return (
     <>
-      <Link to="/admin/videos" className="Back">
+      <Link to="/admin/podcasts" className="Back">
         <FontAwesomeIcon icon={faChevronLeft} />
         <span>Regresar</span>
       </Link>
-      <h1>Subir vídeo</h1>
-      <UploadVideoForm />
+      <h1>Subir un podcast</h1>
+      <UploadPodcastForm />
     </>
   );
 }
 
-export default UploadVideoPage;
+export default UploadPodcastPage;
