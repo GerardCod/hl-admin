@@ -8,36 +8,15 @@ export const initialState = {
 }
 
 const VideosReducer = (state, action) => {
-  switch (action.type) {
-    case LOADING:
-      return {...state, loading: true, error: null, videoSelected: null};
-    case FETCH_VIDEOS_SUCCESS:
-      return {
-        loading: false,
-        videos: action.payload,
-        error: null,
-      }
-    case RESPONSE_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-      }
-    case ERROR:
-      return {
-        ...state,
-        loading: false,
-        error: action.payload,
-      };
-    case DOCUMENT_FOUND: 
-      return {
-        ...state,
-        loading: false,
-        videoSelected: action.payload,
-        error: null
-      }
-    default:
-      return state;
+  const states = {
+    LOADING: {...state, loading: true, error: null, videoSelected: null},
+    FETCH_VIDEOS_SUCCESS: {loading: false, videos: action.payload, error: null},
+    RESPONSE_SUCCESS: {...state, loading: false},
+    ERROR: {...state, loading: false, error: action.payload},
+    DOCUMENT_FOUND: {...state, loading: false, videoSelected: action.payload, error: null}
   }
+
+  return states[action.type] || state;
 }
 
 export default VideosReducer;

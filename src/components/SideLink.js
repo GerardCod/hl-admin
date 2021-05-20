@@ -6,7 +6,7 @@ const SideLink = ({ url, icon, text }) => {
   return (
     <Link to={url} className="Sidenav__SectionItem Text--white">
       <FontAwesomeIcon icon={icon} />
-      <span>{text}</span>
+      <span className="Sidenav__SectionItemText">{text}</span>
     </Link>
   );
 }

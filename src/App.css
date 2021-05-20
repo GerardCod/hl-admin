@@ -12,6 +12,8 @@
   --light-success-color: #E8FAE1;
   --dark-success-color: #286510;
   --menu-item-hover-color: #f5f5f5;
+  --alert-color: #FF773D;
+  --danger-color: #D92424;
 }
 
 * {
@@ -479,4 +481,46 @@ button {
 .IllustrationDescription {
   font-weight: bold;
   font-size: 20px;
+}
+
+.ListItem {
+  width: 90%;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  justify-content: space-between;
+}
+
+.ListItem__Icon {
+  font-size: 3rem;
+  align-self: center;
+}
+
+.Icon--Orange {
+  color: var(--alert-color);
+}
+
+.Icon--Purple {
+  color: var(--thumbnail-color);
+}
+
+.Icon--Blue {
+  color: var(--dark-gradient-color);
+}
+
+.Icon--Red {
+  color: var(--danger-color);
+}
+
+.ListItem__Content {
+  align-self: flex-start;
+}
+
+.ListItem__Description {
+  margin-left: 1rem;
+}
+
+.ListItem__Actions > * {
+  margin-right: 10px;
+  font-size: 1.5rem;
 }

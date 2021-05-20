@@ -1,5 +1,3 @@
-import { FETCH_DOCUMENTS, LOADING, ERROR } from './Actions';
-
 export const initialState = {
   loading: false,
   podcasts: null,
@@ -7,28 +5,14 @@ export const initialState = {
 }
 
 const PodcastReducer = (state, action) => {
-  switch (action.type) {
-    case LOADING:
-      return {
-        ...state,
-        loading: true,
-      };
-    case FETCH_DOCUMENTS:
-      return {
-        ...state,
-        loading: false,
-        podcasts: action.payload,
-        error: null
-      }
-    case ERROR:
-      return {
-        ...state,
-        loading: false,
-        error: action.payload
-      }
-    default:
-      return state;
+  const states = {
+    LOADING: {...state, loading: true, error: null},
+    FETCH_DOCUMENTS: {...state, podcasts: action.payload, loading: false},
+    ERROR: {...state, error: action.payload, loading: false},
+    RESPONSE_SUCCESS: {...state, error: null, loading: false}
   }
+
+  return states[action.type] || state;
 }
 
 export default PodcastReducer;
