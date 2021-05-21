@@ -5,6 +5,7 @@ import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { PodcastContext } from '../contexts/PodcastContext';
 import Loader from '../components/Loader';
 import swal from 'sweetalert';
+import AudioPlayer from './AudioPlayer';
 
 const PodcastDetailsPage = () => {
   const { getPodcastById, state: { podcastSelected }, podcastRef } = useContext(PodcastContext);
@@ -32,9 +33,7 @@ const PodcastDetailsPage = () => {
           <div className="PodcastLayout">
             <div>
               <h1>{podcastSelected.title}</h1>
-              <audio controls>
-                <source src={podcastSelected.url} type="audio/mp3" />
-              </audio>
+              <AudioPlayer url={podcastSelected.url} />
               <p>{podcastSelected.description}</p>
               <section>
                 <h2>Comentarios</h2>
