@@ -62,7 +62,19 @@ const PodcastProvider = ({children}) => {
     }
   }, []);
 
-  const childProps = {fetchPodcasts, state, listenerRef, uploadPodcast, getPodcastById, podcastRef, editPodcast}
+  const removePodcast = useCallback(async (id, {onSuccess, onError}) => {
+    dispatch({type: LOADING});
+    try {
+      await firestore.doc(`podcasts/${id}`).delete();
+      dispatch({type: RESPONSE_SUCCESS});
+      onSuccess();
+    } catch (error) {
+      dispatch({type: ERROR, payload: error.message});
+      onError(error.message);
+    } 
+  }, []);
+
+  const childProps = {fetchPodcasts, state, listenerRef, uploadPodcast, getPodcastById, podcastRef, editPodcast, removePodcast}
 
   return (
     <PodcastContext.Provider value={childProps}>

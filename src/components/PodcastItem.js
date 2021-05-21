@@ -1,10 +1,28 @@
 import { faEdit, faEye, faPodcast, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
+import swal from 'sweetalert';
+import { PodcastContext } from '../contexts/PodcastContext';
+import { onSuccess, onError } from '../utils';
 
 const PodcastItem = ({ title, id }) => {
   let { path } = useRouteMatch();
+  const { removePodcast } = useContext(PodcastContext);
+
+  const handleDelete = () => {
+    swal({
+      title: '¿Realmente desea remover este podcast?',
+      text: 'Luego de removerlo, el podcast ya no estará disponible',
+      icon: 'warning',
+      buttons: ['Cancelar', 'Remover'],
+      dangerMode: true
+    }).then((willDelete) => {
+      if (willDelete) {
+        removePodcast(id, {onSuccess: () => onSuccess('Podcast eliminado'), onError});
+      }
+    });
+  }
 
   return (
     <>
@@ -22,7 +40,7 @@ const PodcastItem = ({ title, id }) => {
           <Link to={`${path}/${id}/edit`} className="cursor--pointer">
             <FontAwesomeIcon icon={faEdit} className="Icon--Purple" />
           </Link>
-          <FontAwesomeIcon icon={faTrash} className="Icon--Red" />
+          <FontAwesomeIcon icon={faTrash} className="Icon--Red cursor--pointer" onClick={handleDelete}ñ />
         </div>
       </article>
     </>
