@@ -19,7 +19,9 @@ const PodcastItem = ({ title, id }) => {
           <Link to={`${path}/${id}`} className="cursor--pointer">
             <FontAwesomeIcon icon={faEye} className="Icon--Blue" />
           </Link>
-          <FontAwesomeIcon icon={faEdit} className="Icon--Purple" />
+          <Link to={`${path}/${id}/edit`} className="cursor--pointer">
+            <FontAwesomeIcon icon={faEdit} className="Icon--Purple" />
+          </Link>
           <FontAwesomeIcon icon={faTrash} className="Icon--Red" />
         </div>
       </article>

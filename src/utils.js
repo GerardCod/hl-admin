@@ -1,3 +1,4 @@
+import swal from "sweetalert";
 
 export const collectIdAndData = (doc) => {
   const data = doc.data();
@@ -16,3 +17,6 @@ export const onceClosure = () => {
     }
   }
 }
+
+export const onSuccess = (text = 'Éxito en la respuesta', title = 'Bien hecho') => swal({title, text, icon: 'success' });
+export const onError = (text = 'Error en la operación', title = 'Lo siento') => swal({title, text, icon: 'error'}); 

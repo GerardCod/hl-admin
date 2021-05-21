@@ -50,7 +50,19 @@ const PodcastProvider = ({children}) => {
     });
   }, []);
 
-  const childProps = {fetchPodcasts, state, listenerRef, uploadPodcast, getPodcastById, podcastRef}
+  const editPodcast = useCallback(async (id, data, {onSuccess, onError}) => {
+    dispatch({type: LOADING});
+    try {
+      await firestore.doc(`podcasts/${id}`).update(data);
+      dispatch({type: RESPONSE_SUCCESS}); 
+      onSuccess();
+    } catch (error) {
+      dispatch({type: ERROR, payload: error.message});
+      onError(error.message)
+    }
+  }, []);
+
+  const childProps = {fetchPodcasts, state, listenerRef, uploadPodcast, getPodcastById, podcastRef, editPodcast}
 
   return (
     <PodcastContext.Provider value={childProps}>
