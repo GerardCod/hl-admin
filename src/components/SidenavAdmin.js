@@ -1,4 +1,4 @@
-import { faVideo, faSignOutAlt, faPodcast } from '@fortawesome/free-solid-svg-icons';
+import { faVideo, faSignOutAlt, faPodcast, faUser } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
 import SideNavLink from './SideNavLink';
 import SideLink from './SideLink';
@@ -12,6 +12,7 @@ const SidenavAdmin = () => {
       </figure>
       <section className="Sidenav__Section flex flex--column">
         <h3 className="Sidenav__SectionTitle Text--white">Gestión</h3>
+        <SideNavLink url="/admin/accounts" icon={faUser} text="Usuarios" />
         <SideNavLink url="/admin/videos" icon={faVideo} text="Videos" />
         <SideNavLink url="/admin/podcasts" icon={faPodcast} text="Podcasts" />
       </section>

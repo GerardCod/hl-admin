@@ -1,4 +1,4 @@
-import { createContext, useCallback, useReducer } from "react";
+import { createContext, useCallback, useReducer, useRef } from "react";
 import { firestore } from '../services/Firebase';
 import { collectIdAndData } from '../utils';
 import AccountReducer, { initialState } from '../reducers/AccountReducer';
@@ -10,7 +10,7 @@ const AccountProvider = ({children}) => {
   const [state, dispatch] = useReducer(AccountReducer, initialState);
   const listenerRef = useRef();
   
-  const fetchDocuments = useCallback(({onError}) => {
+  const fetchAccounts = useCallback(({onError}) => {
     dispatch({type: LOADING});
     listenerRef.current = firestore.collection('accounts').onSnapshot(
       snapshot => {
@@ -23,7 +23,7 @@ const AccountProvider = ({children}) => {
     );
   }, []);
   
-  const childProps = { fetchDocuments, state, listenerRef }
+  const childProps = { fetchAccounts, state, listenerRef }
 
   return (
     <AccountContext.Provider value={ childProps }>

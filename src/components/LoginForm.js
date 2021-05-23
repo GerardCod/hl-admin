@@ -21,7 +21,7 @@ const LoginForm = () => {
   return (
     <form className="Form flex flex--column" onSubmit={handleSubmit}>
       {
-        redirect && <Redirect to="/admin/podcasts" />
+        redirect && <Redirect to="/admin/accounts" />
       }
       <object data={lady} width="175" height="275" aria-label="lady"></object>
       <p className="Textfield">

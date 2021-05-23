@@ -187,7 +187,7 @@ button {
 }
 
 .Sidenav__SectionItem {
-  padding: 1.25rem 1rem 1rem 1rem;
+  padding: .8rem 1.25rem;
   text-decoration: none;
   font-size: 18px;
   position: relative;
