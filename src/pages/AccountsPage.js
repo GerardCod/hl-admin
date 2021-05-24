@@ -24,7 +24,7 @@ const AccountsPage = () => {
     <div>
       <header className="flex VideosHeader">
         <h1>Cuentas de usuario</h1>
-        <Link to="/admin/accounts" className="Button AddVideo Button--Success">
+        <Link to="/admin/accounts/new" className="Button AddVideo Button--Success">
           <FontAwesomeIcon icon={faPlus} />
           <span>Crear nueva cuenta</span>
         </Link>

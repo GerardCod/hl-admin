@@ -20,3 +20,18 @@ export const onceClosure = () => {
 
 export const onSuccess = (text = 'Éxito en la respuesta', title = 'Bien hecho') => swal({title, text, icon: 'success' });
 export const onError = (text = 'Error en la operación', title = 'Lo siento') => swal({title, text, icon: 'error'}); 
+
+export const roles = [
+  {
+    name: 'Estudiante',
+    slugName: 'E'
+  },
+  {
+    name: 'Tutor',
+    slugName: 'T'
+  },
+  {
+    name: 'Docente',
+    slugName: 'D'
+  }
+];

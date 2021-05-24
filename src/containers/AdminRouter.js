@@ -10,13 +10,13 @@ const AccountProvider = React.lazy(() => import('../contexts/AccountContext'));
 //Containers
 const VideosContainer = React.lazy(() => import('./VideosContainer'));
 const PodcastsContainer = React.lazy(() => import('./PodcastsContainer'));
-const AccountsPage = React.lazy(() => import('../pages/AccountsPage'));
+const AccountsContainer = React.lazy(() => import('./AccountsContainer'));
 
 const AdminRouter = () => (
   <Admin>
     <Suspense fallback={<div>Loading...</div>}>
       <AccountProvider>
-        <Route path="/admin/accounts" component={AccountsPage} />
+        <Route path="/admin/accounts" component={AccountsContainer} />
       </AccountProvider>
       <VideoProvider>
         <Route path="/admin/videos" component={VideosContainer} />

@@ -4,9 +4,7 @@ import swal from 'sweetalert';
 import EditPodcastForm from '../components/EditPodcastForm';
 import { PodcastContext } from '../contexts/PodcastContext';
 import Loader from '../components/Loader';
-import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import Back from '../components/Back';
 
 const EditPodcastPage = () => {
   const { getPodcastById, state: { podcastSelected }, podcastRef } = useContext(PodcastContext);
@@ -25,10 +23,7 @@ const EditPodcastPage = () => {
 
   return (
     <>
-      <Link to="/admin/podcasts" className="Back">
-        <FontAwesomeIcon icon={faChevronLeft} />
-        <span>Regresar</span>
-      </Link>
+      <Back urlBack="/admin/podcasts" />
       <h1>Modificación del vídeo</h1>
       {
         podcastSelected ?
