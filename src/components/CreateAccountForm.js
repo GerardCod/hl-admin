@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleNotch, faSave } from '@fortawesome/free-solid-svg-icons';
 import { roles, onSuccess, onError } from '../utils';
 import { AccountContext } from '../contexts/AccountContext';
+import AvatarSelector from './AvatarSelector';
+import AvatarProvider from '../contexts/AvatarContext';
 
 const CreateAccountForm = () => {
   const { state, createStudentAccount, createAccount } = useContext(AccountContext);
@@ -67,6 +69,9 @@ const CreateAccountForm = () => {
             }
           </select>
         </p>
+        <AvatarProvider>
+          <AvatarSelector onChange={handleChange} />
+        </AvatarProvider>
         <br></br>
         {
           state.loading ?
@@ -75,7 +80,7 @@ const CreateAccountForm = () => {
               <span>Creando cuenta</span>
             </button>
             :
-            <button type="submit" className="Button AddVideo Button--Success UploadButton" disabled={(!data.name || !data.email || !data.password || !data.role)}>
+            <button type="submit" className="Button AddVideo Button--Success UploadButton" disabled={(!data.name || !data.email || !data.password || !data.role || !data.avatar)}>
               <FontAwesomeIcon icon={faSave} />
               <span>Guardar cambios</span>
             </button>
