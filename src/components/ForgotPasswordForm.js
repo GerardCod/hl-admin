@@ -1,8 +1,6 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import lady from '../assets/lady.svg';
+import Back from './Back';
 
 const ForgotPasswordForm = () => {
   const [data, setData] = useState({});
@@ -20,10 +18,7 @@ const ForgotPasswordForm = () => {
 
   return (
     <form className="Form flex flex--column" onSubmit={handleSubmit}>
-      <Link to="/" className="Back">
-        <FontAwesomeIcon icon={faChevronLeft} />
-        <span>Regresar</span>
-      </Link>      
+      <Back urlBack="/" />     
       <object data={lady} width="175" height="275" aria-label="lady"></object>
       <p className="Textfield">
         <label className="Textfield__Label" htmlFor="email">Correo electrónico</label>

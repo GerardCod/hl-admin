@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch, useRouteMatch } from 'react-router';
-import PodcastDetailsPage from '../components/PodcastDetailsPage';
+import PodcastDetailsPage from '../pages/PodcastDetailsPage';
 import EditPodcastPage from '../pages/EditPodcastPage';
 
 const PodcastRouter = () => {

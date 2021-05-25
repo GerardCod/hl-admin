@@ -14,6 +14,7 @@
   --menu-item-hover-color: #f5f5f5;
   --alert-color: #FF773D;
   --danger-color: #D92424;
+  --alert-input-color: #FFEEE7;
 }
 
 * {
@@ -535,4 +536,112 @@ button {
   display: grid;
   grid-template-columns: 70% 1fr;
   grid-template-rows: 1fr;
+}
+
+.AvatarSelector {
+  width: 100%;
+  padding: 1rem;
+}
+
+.AvatarSelecter__Container {
+  width: 100%;
+  height: auto;
+  justify-content: space-between
+  ;
+}
+
+.AvatarOption {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+}
+
+.AvatarOption__Img, .AvatarOption__Select, .AvatartOption__Checked {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.AvatarOption__Img {
+  z-index: 1;
+  object-fit: cover;
+}
+
+.AvatarOption__Select {
+  z-index: 3;
+  background: rgba(255,255,255,0);
+  opacity: 0;
+}
+
+.AvatarOption__Checked {
+  background-color: var(--success-color);
+  color: white;
+  display: none;
+  z-index: 2;
+}
+
+.AvatarOption__Select:checked ~ .AvatarOption__Checked {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.AccountItem__Avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.AccountsTable {
+  width: 100%;
+  height: auto;
+  border-collapse: collapse;
+}
+
+.AccountsTable th {
+  color: #E3E7E5;
+  font-weight: bold;
+  font-size: 18px;
+  padding: .5rem;
+}
+
+.AccountsTable th:first-child {
+  width: 100px;
+}
+
+.AccountsTable thead {
+  background-color: var(--dark-gradient-color);
+}
+
+.AccountItem {
+  width: 100%;
+  height: 100px;
+}
+
+.AccountItem__Avatar {
+  margin: 0;
+}
+
+.AccountItem p {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+
+.AccountItem__Avatar > img {
+  width: inherit;
+  height: inherit;
+  object-fit: cover;
+}
+
+.AccountItem__Actions {
+  font-size: 32px;
+  height: 100%;
+  text-align: center;
+}
+
+.AccountItem__Actions > * {
+  margin-left: 1rem;
 }

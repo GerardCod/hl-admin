@@ -1,11 +1,10 @@
 import React, { useContext, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import { useParams } from 'react-router-dom';
 import { PodcastContext } from '../contexts/PodcastContext';
 import Loader from '../components/Loader';
 import swal from 'sweetalert';
-import AudioPlayer from './AudioPlayer';
+import AudioPlayer from '../components/AudioPlayer';
+import Back from '../components/Back';
 
 const PodcastDetailsPage = () => {
   const { getPodcastById, state: { podcastSelected }, podcastRef } = useContext(PodcastContext);
@@ -24,10 +23,7 @@ const PodcastDetailsPage = () => {
   console.log(id);
   return (
     <>
-      <Link to="/admin/podcasts" className="Back">
-        <FontAwesomeIcon icon={faChevronLeft} />
-        <span>Regresar</span>
-      </Link>
+      <Back urlBack="/admin/podcasts" />
       {
         podcastSelected ?
           <div className="PodcastLayout">

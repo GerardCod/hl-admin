@@ -7,6 +7,7 @@ import peopleImg from '../assets/people.png';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import AccountsTable from '../components/AccountsTable';
 
 const AccountsPage = () => {
   const { fetchAccounts, state, listenerRef } = useContext(AccountContext);
@@ -24,16 +25,17 @@ const AccountsPage = () => {
     <div>
       <header className="flex VideosHeader">
         <h1>Cuentas de usuario</h1>
-        <Link to="/admin/accounts" className="Button AddVideo Button--Success">
+        <Link to="/admin/accounts/new" className="Button AddVideo Button--Success">
           <FontAwesomeIcon icon={faPlus} />
           <span>Crear nueva cuenta</span>
         </Link>
       </header>
+      <br></br>
       {
         state.loading ?
           <Loader text="Cargando cuentas de usuario" />
           : (state.accounts && state.accounts.length > 0) ?
-            <div>Hay cuentas de usuario</div> :
+            <AccountsTable accounts={state.accounts} /> :
             <Illustration illustration={peopleImg} message="No hay usuarios registrados en la plataforma" />
       }
     </div>

@@ -1,10 +1,11 @@
 import React, { useContext, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft, faCircleNotch } from '@fortawesome/free-solid-svg-icons';
+import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 import { VideoContext } from '../contexts/VideoContext';
 import swal from 'sweetalert';
 import VideoPlayer from '../components/VideoPlayer';
+import Back from '../components/Back';
 
 const VideoDetailsPage = () => {
   const { getAndObserveVideo, state: { videoSelected }, videoListenerRef } = useContext(VideoContext);
@@ -26,13 +27,9 @@ const VideoDetailsPage = () => {
     }
   }, [getAndObserveVideo, id, videoListenerRef])
 
-  console.log('Rendering component');
   return (
     <>
-      <Link to="/admin/videos" className="Back">
-        <FontAwesomeIcon icon={faChevronLeft} />
-        <span>Regresar</span>
-      </Link>
+      <Back urlBack="/admin/videos" />
       {
         videoSelected ?
           <div className="VideoLayout">

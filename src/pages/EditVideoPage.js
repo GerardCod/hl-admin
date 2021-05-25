@@ -1,11 +1,10 @@
 import React, { useEffect, useContext } from 'react';
 import EditVideoForm from '../components/EditVideoForm';
-import { Link, useParams } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import { useParams } from 'react-router-dom';
 import { VideoContext } from '../contexts/VideoContext';
 import swal from 'sweetalert';
 import Loader from '../components/Loader';
+import Back from '../components/Back';
 
 
 const EditVideoPage = () => {
@@ -29,14 +28,9 @@ const EditVideoPage = () => {
     }
   }, [id, getAndObserveVideo, videoListenerRef]);
 
-  console.log('Rendering component');
-
   return (
     <>
-      <Link to="/admin/videos" className="Back">
-        <FontAwesomeIcon icon={faChevronLeft} />
-        <span>Regresar</span>
-      </Link>
+      <Back urlBack="/admin/videos" />
       <h1>Modificación de vídeo</h1>
       {
         loading ?
