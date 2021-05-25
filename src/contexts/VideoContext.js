@@ -67,12 +67,12 @@ const VideoProvider = ({children}) => {
     }
   }, []);
 
-  const removeVideo = useCallback(async (id, onSuccess, onError) => {
+  const removeVideo = useCallback(async (id, {onSuccess, onError}) => {
     dispatch({type: LOADING});
     try {
       await firestore.doc(`videos/${id}`).delete();
       dispatch({type: RESPONSE_SUCCESS});
-      onSuccess();
+      onSuccess('El vídeo fue eliminado con éxito');
     } catch (error) {
       dispatch({type: ERROR, payload: error.message});
       onError(error.message);
