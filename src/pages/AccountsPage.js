@@ -7,6 +7,7 @@ import peopleImg from '../assets/people.png';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import AccountsTable from '../components/AccountsTable';
 
 const AccountsPage = () => {
   const { fetchAccounts, state, listenerRef } = useContext(AccountContext);
@@ -29,11 +30,12 @@ const AccountsPage = () => {
           <span>Crear nueva cuenta</span>
         </Link>
       </header>
+      <br></br>
       {
         state.loading ?
           <Loader text="Cargando cuentas de usuario" />
           : (state.accounts && state.accounts.length > 0) ?
-            <div>Hay cuentas de usuario</div> :
+            <AccountsTable accounts={state.accounts} /> :
             <Illustration illustration={peopleImg} message="No hay usuarios registrados en la plataforma" />
       }
     </div>

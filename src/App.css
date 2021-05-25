@@ -587,3 +587,61 @@ button {
   justify-content: center;
   align-items: center;
 }
+
+.AccountItem__Avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.AccountsTable {
+  width: 100%;
+  height: auto;
+  border-collapse: collapse;
+}
+
+.AccountsTable th {
+  color: #E3E7E5;
+  font-weight: bold;
+  font-size: 18px;
+  padding: .5rem;
+}
+
+.AccountsTable th:first-child {
+  width: 100px;
+}
+
+.AccountsTable thead {
+  background-color: var(--dark-gradient-color);
+}
+
+.AccountItem {
+  width: 100%;
+  height: 100px;
+}
+
+.AccountItem__Avatar {
+  margin: 0;
+}
+
+.AccountItem p {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+
+.AccountItem__Avatar > img {
+  width: inherit;
+  height: inherit;
+  object-fit: cover;
+}
+
+.AccountItem__Actions {
+  font-size: 32px;
+  height: 100%;
+  text-align: center;
+}
+
+.AccountItem__Actions > * {
+  margin-left: 1rem;
+}
