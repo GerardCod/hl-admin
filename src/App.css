@@ -645,3 +645,27 @@ button {
 .AccountItem__Actions > * {
   margin-left: 1rem;
 }
+
+.Account {
+  width: 80%;
+  height: 15rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+}
+
+.Account__Avatar {
+  width: 30%;
+  height: 100%;
+  margin: 0;
+}
+
+.Account__Avatar > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.Account__Details {
+  padding: 0.5rem 1rem; 
+}
