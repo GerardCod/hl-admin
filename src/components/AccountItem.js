@@ -1,8 +1,11 @@
 import { faEdit, faEye, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
+import { Link, useRouteMatch } from 'react-router-dom';
 
-const AccountItem = ({avatar, name, role}) => {
+const AccountItem = ({avatar, name, role, id}) => {
+  const {path} = useRouteMatch();
+
   return (
     <>
       <tr className="AccountItem">
@@ -18,7 +21,9 @@ const AccountItem = ({avatar, name, role}) => {
           <p>{role.name}</p>
         </td>
         <td className="AccountItem__Actions">
-          <FontAwesomeIcon className="Icon--Blue" icon={faEye} />
+          <Link to={`${path}/${id}`}>
+            <FontAwesomeIcon className="Icon--Blue" icon={faEye} />
+          </Link>
           <FontAwesomeIcon className="Icon--Purple" icon={faEdit} />
           <FontAwesomeIcon className="Icon--Red" icon={faTrash} />
         </td>

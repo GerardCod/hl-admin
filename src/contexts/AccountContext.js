@@ -2,13 +2,14 @@ import { createContext, useCallback, useReducer, useRef } from "react";
 import { firestore } from '../services/Firebase';
 import { collectIdAndData, roles } from '../utils';
 import AccountReducer, { initialState } from '../reducers/AccountReducer';
-import { ERROR, FETCH_DOCUMENTS, LOADING, RESPONSE_SUCCESS } from '../reducers/Actions';
+import { DOCUMENT_FOUND, ERROR, FETCH_DOCUMENTS, LOADING, RESPONSE_SUCCESS } from '../reducers/Actions';
 
 export const AccountContext = createContext();
 
 const AccountProvider = ({children}) => {
   const [state, dispatch] = useReducer(AccountReducer, initialState);
   const listenerRef = useRef();
+  const accountRef = useRef();
   
   const fetchAccounts = useCallback(({onError}) => {
     dispatch({type: LOADING});
@@ -50,7 +51,20 @@ const AccountProvider = ({children}) => {
     } 
   }, []);
 
-  const childProps = { fetchAccounts, state, listenerRef, createStudentAccount, createAccount }
+  const getAccount = useCallback((id, {onError}) => {
+    dispatch({type: LOADING});
+    accountRef.current = firestore.doc(`accounts/${id}`).onSnapshot(
+      snapshot => {
+        const account = collectIdAndData(snapshot);
+        dispatch({type: DOCUMENT_FOUND, payload: account});
+      }, error => {
+        dispatch({type: ERROR, payload: error.message});
+        onError(error.message);
+      }
+    );
+  }, []);
+
+  const childProps = { fetchAccounts, state, listenerRef, createStudentAccount, createAccount, getAccount, accountRef }
 
   return (
     <AccountContext.Provider value={ childProps }>
