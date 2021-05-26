@@ -76,7 +76,19 @@ const AccountProvider = ({children}) => {
     }
   }, []);
 
-  const childProps = { fetchAccounts, state, listenerRef, createStudentAccount, createAccount, getAccount, accountRef, editAccount }
+  const deleteAccount = useCallback(async (id, {onSuccess, onError}) => {
+    dispatch({type: LOADING});
+    try {
+      await firestore.doc(`accounts/${id}`).delete();
+      dispatch({type: RESPONSE_SUCCESS});
+      onSuccess('Cuenta eliminada exitosamente');     
+    } catch (error) {
+      dispatch({type: ERROR, payload: error.message});
+      onError(error.message)
+    }
+  }, []);
+
+  const childProps = { fetchAccounts, state, listenerRef, createStudentAccount, createAccount, getAccount, accountRef, editAccount, deleteAccount }
 
   return (
     <AccountContext.Provider value={ childProps }>

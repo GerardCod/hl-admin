@@ -1,10 +1,28 @@
 import { faEdit, faEye, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
+import swal from 'sweetalert';
+import { AccountContext } from '../contexts/AccountContext';
+import { onError, onSuccess } from '../utils';
 
 const AccountItem = ({avatar, name, role, id}) => {
   const {path} = useRouteMatch();
+  const { deleteAccount } = useContext(AccountContext);
+
+  const handleDelete = () => {
+    swal({
+      title: '¿Realmente deseas eliminar este usuario?',
+      text: 'Luego de eliminarlo, el usuario no volverá a estar disponible en la plataforma',
+      buttons: ['Cancelar', 'Eliminar'],
+      icon: 'warning',
+      dangerMode: true
+    }).then(willDelete => {
+      if (willDelete) {
+        deleteAccount(id, {onSuccess, onError})
+      }
+    });
+  }
 
   return (
     <>
@@ -27,7 +45,7 @@ const AccountItem = ({avatar, name, role, id}) => {
           <Link to={`${path}/${id}/edit`}>
             <FontAwesomeIcon className="Icon--Purple" icon={faEdit} />
           </Link>
-          <FontAwesomeIcon className="Icon--Red" icon={faTrash} />
+          <FontAwesomeIcon className="Icon--Red cursor--pointer" icon={faTrash} onClick={handleDelete}/>
         </td>
       </tr>
     </>
