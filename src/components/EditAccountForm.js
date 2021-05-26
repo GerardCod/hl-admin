@@ -1,16 +1,16 @@
 import React, { useContext, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleNotch, faSave } from '@fortawesome/free-solid-svg-icons';
-import { roles, onSuccess, onError } from '../utils';
 import { AccountContext } from '../contexts/AccountContext';
+import { onError, onSuccess, roles } from '../utils';
 import AvatarSelector from './AvatarSelector';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSave, faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 
-const CreateAccountForm = () => {
-  const { state, createStudentAccount, createAccount } = useContext(AccountContext);
-  const [data, setData] = useState({});
+const EditAccountForm = ({ account }) => {
+  const [data, setData] = useState(account);
+  const { state, editAccount } = useContext(AccountContext);
 
   const handleChange = e => {
-    let value = (e.target.name === 'role') ? JSON.parse(e.target.value) : e.target.value;
+    const value = (e.target.name === 'role') ? JSON.parse(e.target.value) : e.target.value;
     setData({
       ...data,
       [e.target.name]: value
@@ -19,19 +19,7 @@ const CreateAccountForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    if (data.password !== data.confirmPassword) {
-      onError('Las contraseñas no coinciden');
-    } else {
-      submitData(data);
-    }
-  }
-
-  const submitData = (data) => {
-    if (data.role.name === roles[0].name) {
-      createStudentAccount(data, { onSuccess, onError });
-    } else {
-      createAccount(data, { onSuccess, onError });
-    }
+    editAccount(account.id, data, {onSuccess, onError});
   }
 
   return (
@@ -39,17 +27,18 @@ const CreateAccountForm = () => {
       <form className="Form--Upload flex flex--column" onSubmit={handleSubmit}>
         <p className="Textfield">
           <label className="Textfield__Label" htmlFor="name">Nombre completo del usuario</label>
-          <input className="Textfield__Input Input--Full" type="text" name="name" id="name" onChange={handleChange} placeholder="Katia Rodríguez" required />
+          <input className="Textfield__Input Input--Full" defaultValue={data.name} type="text" name="name" id="name" onChange={handleChange} placeholder="Katia Rodríguez" required />
         </p>
         <p className="Textfield">
           <label className="Textfield__Label" htmlFor="email">Correo electrónico</label>
-          <input className="Textfield__Input Input--Full" type="email" name="email" id="email" onChange={handleChange} placeholder="ejemplo@ejemplo.com" required />
+          <input className="Textfield__Input Input--Full" type="email" defaultValue={data.email} name="email" id="email" onChange={handleChange} placeholder="ejemplo@ejemplo.com" required />
         </p>
         <p className="Textfield">
           <label className="Textfield__Label" htmlFor="password">Contraseña</label>
           <input className="Textfield__Input Input--Full" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$"
             title="La contraseña debe tener al menos 8 caracteres y debe contener una letra minúscula. una letra mayúscula y un número"
             type="password" name="password" id="password"
+            defaultValue={data.password}
             onChange={handleChange} placeholder="**************" required />
         </p>
         <p className="Textfield">
@@ -57,11 +46,12 @@ const CreateAccountForm = () => {
           <input className="Textfield__Input Input--Full" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$"
             title="La contraseña debe tener al menos 8 caracteres y debe contener una letra minúscula. una letra mayúscula y un número"
             type="password" name="confirmPassword" id="confirmPassword"
+            defaultValue={data.confirmPassword}
             onChange={handleChange} placeholder="**************" required />
         </p>
         <p className="Textfield">
           <label className="Textfield__Label" htmlFor="role">Rol</label>
-          <select className="Textfield__Input Input--Full" name="role" defaultValue="" id="role" onChange={handleChange} required>
+          <select className="Textfield__Input Input--Full" name="role" defaultValue={JSON.stringify(data.role)} id="role" onChange={handleChange} required>
             <option value="">Elige un rol</option>
             {
               roles.map((role, idx) => <option key={`role-${idx}`} value={JSON.stringify(role)}>{role.name}</option>)
@@ -74,7 +64,7 @@ const CreateAccountForm = () => {
           state.loading ?
             <button type="button" className="Button AddVideo Button--Success UploadButton" disabled>
               <FontAwesomeIcon icon={faCircleNotch} className="Loading" />
-              <span>Creando cuenta</span>
+              <span>Modificando cuenta</span>
             </button>
             :
             <button type="submit" className="Button AddVideo Button--Success UploadButton" disabled={(!data.name || !data.email || !data.password || !data.role || !data.avatar)}>
@@ -87,4 +77,4 @@ const CreateAccountForm = () => {
   );
 }
 
-export default CreateAccountForm;
+export default EditAccountForm;

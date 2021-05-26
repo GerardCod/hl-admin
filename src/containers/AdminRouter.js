@@ -6,6 +6,7 @@ import { Route } from 'react-router-dom';
 const VideoProvider = React.lazy(() => import('../contexts/VideoContext'));
 const PodcastProvider = React.lazy(() => import('../contexts/PodcastContext'));
 const AccountProvider = React.lazy(() => import('../contexts/AccountContext'));
+const AvatarProvider = React.lazy(() => import('../contexts/AvatarContext'));
 
 //Containers
 const VideosContainer = React.lazy(() => import('./VideosContainer'));
@@ -16,7 +17,9 @@ const AdminRouter = () => (
   <Admin>
     <Suspense fallback={<div>Loading...</div>}>
       <AccountProvider>
-        <Route path="/admin/accounts" component={AccountsContainer} />
+        <AvatarProvider>
+          <Route path="/admin/accounts" component={AccountsContainer} />
+        </AvatarProvider>
       </AccountProvider>
       <VideoProvider>
         <Route path="/admin/videos" component={VideosContainer} />

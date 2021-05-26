@@ -24,7 +24,9 @@ const AccountItem = ({avatar, name, role, id}) => {
           <Link to={`${path}/${id}`}>
             <FontAwesomeIcon className="Icon--Blue" icon={faEye} />
           </Link>
-          <FontAwesomeIcon className="Icon--Purple" icon={faEdit} />
+          <Link to={`${path}/${id}/edit`}>
+            <FontAwesomeIcon className="Icon--Purple" icon={faEdit} />
+          </Link>
           <FontAwesomeIcon className="Icon--Red" icon={faTrash} />
         </td>
       </tr>
