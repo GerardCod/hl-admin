@@ -6,6 +6,7 @@ import React from 'react';
 import NotFoundPage from './pages/NotFoundPage';
 import AdminRouter from './containers/AdminRouter';
 import AuthProvider from './contexts/AuthContext';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
@@ -14,7 +15,9 @@ function App() {
         <Switch>
           <Route path="/" exact component={LoginPage} />
           <Route path="/forgot_password" component={ForgotPasswordPage} />
-          <Route path="/admin" component={AdminRouter} />
+          <ProtectedRoute>
+            <Route path="/admin" component={AdminRouter} />
+          </ProtectedRoute>
           <Route path="*" component={NotFoundPage} />
         </Switch>
       </BrowserRouter>
