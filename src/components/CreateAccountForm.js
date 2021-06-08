@@ -1,13 +1,14 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleNotch, faSave } from '@fortawesome/free-solid-svg-icons';
-import { roles, onSuccess, onError } from '../utils';
+import { onSuccess, onError, userRoles } from '../utils';
 import { AccountContext } from '../contexts/AccountContext';
 import AvatarSelector from './AvatarSelector';
 
 const CreateAccountForm = () => {
   const { state, createStudentAccount, createAccount } = useContext(AccountContext);
   const [data, setData] = useState({});
+  const formRef = useRef({});
 
   const handleChange = e => {
     let value = (e.target.name === 'role') ? JSON.parse(e.target.value) : e.target.value;
@@ -24,10 +25,12 @@ const CreateAccountForm = () => {
     } else {
       submitData(data);
     }
+    formRef.current.reset();
+    setData({});
   }
 
   const submitData = (data) => {
-    if (data.role.name === roles[0].name) {
+    if (data.role.name === userRoles[0].name) {
       createStudentAccount(data, { onSuccess, onError });
     } else {
       createAccount(data, { onSuccess, onError });
@@ -36,7 +39,7 @@ const CreateAccountForm = () => {
 
   return (
     <>
-      <form className="Form--Upload flex flex--column" onSubmit={handleSubmit}>
+      <form ref={formRef} className="Form--Upload flex flex--column" onSubmit={handleSubmit}>
         <p className="Textfield">
           <label className="Textfield__Label" htmlFor="name">Nombre completo del usuario</label>
           <input className="Textfield__Input Input--Full" type="text" name="name" id="name" onChange={handleChange} placeholder="Katia Rodríguez" required />
@@ -64,11 +67,11 @@ const CreateAccountForm = () => {
           <select className="Textfield__Input Input--Full" name="role" defaultValue="" id="role" onChange={handleChange} required>
             <option value="">Elige un rol</option>
             {
-              roles.map((role, idx) => <option key={`role-${idx}`} value={JSON.stringify(role)}>{role.name}</option>)
+              userRoles.map((role, idx) => <option key={`role-${idx}`} value={JSON.stringify(role)}>{role.name}</option>)
             }
           </select>
         </p>
-        <AvatarSelector onChange={handleChange} />
+        <AvatarSelector onChange={handleChange} value={data.avatar} />
         <br></br>
         {
           state.loading ?

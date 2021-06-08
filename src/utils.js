@@ -35,3 +35,14 @@ export const roles = [
     slugName: 'D'
   }
 ];
+
+export const userRoles = [
+  {
+    name: 'Estudiante',
+    slugName: 'E'
+  },
+  {
+    name: 'Docente',
+    slugName: 'D'
+  }
+];
