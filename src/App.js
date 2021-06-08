@@ -5,17 +5,20 @@ import LoginPage from './pages/LoginPage';
 import React from 'react';
 import NotFoundPage from './pages/NotFoundPage';
 import AdminRouter from './containers/AdminRouter';
+import AuthProvider from './contexts/AuthContext';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route path="/" exact component={LoginPage} />
-        <Route path="/forgot_password" component={ForgotPasswordPage} />
-        <Route path="/admin" component={AdminRouter} />
-        <Route path="*" component={NotFoundPage} />
-      </Switch>
-    </BrowserRouter>
+    <AuthProvider>
+      <BrowserRouter>
+        <Switch>
+          <Route path="/" exact component={LoginPage} />
+          <Route path="/forgot_password" component={ForgotPasswordPage} />
+          <Route path="/admin" component={AdminRouter} />
+          <Route path="*" component={NotFoundPage} />
+        </Switch>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 

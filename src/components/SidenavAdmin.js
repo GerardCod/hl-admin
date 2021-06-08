@@ -1,14 +1,17 @@
 import { faVideo, faSignOutAlt, faPodcast, faUser } from '@fortawesome/free-solid-svg-icons';
-import React from 'react';
+import React, { useContext } from 'react';
 import SideNavLink from './SideNavLink';
 import SideLink from './SideLink';
+import { AuthContext } from '../contexts/AuthContext';
 
 const SidenavAdmin = () => {
+  const {signOut, state} = useContext(AuthContext); 
+
   return (
     <nav className="Sidenav flex flex--column">
-      <figure className="AvatarWrapper">
-        <img src="https://firebasestorage.googleapis.com/v0/b/homegrown-learning.appspot.com/o/avatar_katia.webp?alt=media&token=15295e33-bd7e-4948-90dd-cc60e6d5a2e2" alt="avatar" className="Avatar" />
-        <figcaption className="Avatar__Description Text--white">Hola Katia</figcaption>
+      <figure className="AvatarWrapper flex--center">
+        <img src={state.user.avatar} alt="avatar" className="Avatar" />
+        <figcaption className="Avatar__Description Text--white">Hola {state.user.name}</figcaption>
       </figure>
       <section className="Sidenav__Section flex flex--column">
         <h3 className="Sidenav__SectionTitle Text--white">Gestión</h3>
@@ -18,7 +21,7 @@ const SidenavAdmin = () => {
       </section>
       <section className="Sidenav__Section flex flex--column">
         <h3 className="Sidenav__SectionTitle Text--white">Configuración</h3>
-        <SideLink url="/" icon={faSignOutAlt} text="Salir" />
+        <SideLink url="/" icon={faSignOutAlt} text="Salir" onClick={() => { signOut(); }} />
       </section>
     </nav>
   );
