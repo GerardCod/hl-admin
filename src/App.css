@@ -91,13 +91,18 @@ button {
 .SubmitButton {
   width: 25vw;
   padding: 1rem;
-  background-color: var(--dark-gradient-color);
+  background-color: var(--sidenav-background-color);
   color: white;
   border-radius: 8px;
 }
 
 .SubmitButton:hover, .SubmitButton:focus {
   background-color: var(--light-gradient-color);
+}
+
+.SubmitButton:disabled {
+  background-color: var(--dark-gradient-color);
+  cursor: default;
 }
 
 .forgotPassword {
