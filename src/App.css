@@ -1,6 +1,7 @@
 :root {
   --light-gradient-color: #29C9FF;
   --dark-gradient-color: #003F54;
+  --light-primary-color: #DBF6FF;
   --input-background-color: #C8CFCC;
   --link-font-color: #707070;
   --sidenav-background-color: #007EA8;
@@ -152,6 +153,8 @@ button {
 
 .AvatarWrapper {
   margin-top: 10vh;
+  display: inherit;
+  flex-direction: column;
 }
 
 .Avatar {
@@ -160,6 +163,7 @@ button {
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 1.5rem;
+  
 }
 
 .Avatar__Description {
@@ -313,6 +317,11 @@ button {
 .Button--Success {
   background-color: var(--success-color);
   color: var(--light-success-color);
+}
+
+.Button--Primary {
+  background-color: var(--dark-gradient-color);
+  color: var(--light-primary-color);
 }
 
 .Form--Upload {
