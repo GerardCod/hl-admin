@@ -43,7 +43,7 @@ const LoginForm = () => {
             <FontAwesomeIcon icon={faCircleNotch} className="Loading" />
             <span>Iniciando sesión</span>
           </button> :
-          <button type="submit" className="SubmitButton">Ingresar</button>
+          <button type="submit" className="SubmitButton" disabled={(!data.email || !data.password)}>Ingresar</button>
       }
     </form>
   );

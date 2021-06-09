@@ -1,6 +1,6 @@
 import React, { createContext, useCallback, useReducer } from "react";
 import AuthReducer, { initialState } from "../reducers/AuthReducer";
-import { ERROR, LOADING, SIGN_OUT, USER_FOUND } from '../reducers/Actions';
+import { ERROR, LOADING, RESPONSE_SUCCESS, SIGN_OUT, USER_FOUND } from '../reducers/Actions';
 import { auth, firestore } from "../services/Firebase";
 import { collectIdAndData } from "../utils";
 
@@ -38,7 +38,19 @@ const AuthProvider = ({children}) => {
     dispatch({type: SIGN_OUT});
   }, []);
 
-  const childProps = {state, signin, signOut};
+  const forgotPassword = useCallback(async (data, {onSuccess, onError}) => {
+    dispatch({type: LOADING});
+    try {
+      await auth.sendPasswordResetEmail(data.email);
+      dispatch({type: RESPONSE_SUCCESS});
+      onSuccess(`Un correo ha sido enviado a la dirección ${data.email}`);
+    } catch (error) {
+      dispatch({type: ERROR, payload: error.message});
+      onError(error.message);
+    }
+  }, []);
+
+  const childProps = {state, signin, signOut, forgotPassword};
 
   return (
     <AuthContext.Provider value={childProps}>
