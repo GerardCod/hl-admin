@@ -1,0 +1,33 @@
+.Link--ForgotPassword {
+  color: var(--link-font-color);
+  align-self: flex-end;
+  margin-bottom: 1.25vmax;
+  font-size: 1.25vmax;
+}
+
+@media screen and (min-width: 1025px) {
+  .Link--ForgotPassword {
+    margin-bottom: 1vmax;
+  }
+}
+
+.Link--Back {
+  align-self: flex-start;
+  font-size: 1.75vmax;
+}
+
+.Link--Back > span {
+  margin-left: .5vmax;
+}
+
+@media screen and (min-width: 769px) {
+  .Link--Back {
+    font-size: 1.25vmax;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .Link--Back {
+    margin-bottom: 1.25vmax;
+  }
+}

@@ -1,0 +1,29 @@
+.Icon {
+  font-size: 3vmax;
+}
+
+@media screen and (min-width: 769px) {
+  .Icon {
+    font-size: 2vmax;
+  }
+}
+
+.Icon--Success {
+  color: var(--success-color);
+}
+
+.Icon--Orange {
+  color: var(--alert-color);
+}
+
+.Icon--Purple {
+  color: var(--thumbnail-color);
+}
+
+.Icon--Blue {
+  color: var(--dark-gradient-color);
+}
+
+.Icon--Red {
+  color: var(--danger-color);
+}

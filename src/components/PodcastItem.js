@@ -27,20 +27,20 @@ const PodcastItem = ({ title, id }) => {
   return (
     <>
       <article className="flex ListItem">
-        <div className="ListItem__Content flex">
+        <div className="ListItem__Content flex f-align--center">
           <FontAwesomeIcon icon={faPodcast} className="ListItem__Icon Icon--Orange" />
           <div className="ListItem__Description">
             <h4>{title}</h4>
           </div>
         </div>
-        <div className="flex flex--center ListItem__Actions">
+        <div className="flex f-justify--center f-align--center ListItem__Actions">
           <Link to={`${path}/${id}`} className="cursor--pointer">
             <FontAwesomeIcon icon={faEye} className="Icon--Blue" />
           </Link>
           <Link to={`${path}/${id}/edit`} className="cursor--pointer">
             <FontAwesomeIcon icon={faEdit} className="Icon--Purple" />
           </Link>
-          <FontAwesomeIcon icon={faTrash} className="Icon--Red cursor--pointer" onClick={handleDelete}ñ />
+          <FontAwesomeIcon icon={faTrash} className="Icon--Red cursor--pointer" onClick={handleDelete} />
         </div>
       </article>
     </>

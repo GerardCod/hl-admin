@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import lady from '../assets/lady.svg';
+import logo from '../assets/logo.svg';
 import { AuthContext } from '../contexts/AuthContext';
 import { onError, onSuccess } from '../utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -23,28 +23,35 @@ const LoginForm = () => {
   }
 
   return (
-    <form className="Form flex flex--column" onSubmit={handleSubmit}>
+    <form className="LoginForm flex flex--column f-justify--evenly" onSubmit={handleSubmit}>
       {
         state.user && <Redirect to="/admin/accounts" />
       }
-      <object data={lady} width="175" height="275" aria-label="lady"></object>
-      <p className="Textfield">
-        <label className="Textfield__Label" htmlFor="email">Correo electrónico</label>
-        <input className="Textfield__Input" type="email" name="email" id="email" onChange={handleChange} placeholder="ejemplo@gmail.com" />
-      </p>
-      <p className="Textfield">
-        <label className="Textfield__Label" htmlFor="password">Contraseña</label>
-        <input className="Textfield__Input" type="password" name="password" id="password" onChange={handleChange} placeholder="********" />
-        <Link to="/forgot_password" className="forgotPassword">¿Olvidaste su contraseña?</Link>
-      </p>
-      {
-        state.loading ?
-          <button type="button" className="SubmitButton AddVideo" disabled>
-            <FontAwesomeIcon icon={faCircleNotch} className="Loading" />
-            <span>Iniciando sesión</span>
-          </button> :
-          <button type="submit" className="SubmitButton" disabled={(!data.email || !data.password)}>Ingresar</button>
-      }
+      <figure className="f-self-align--center Lady">
+        <img src={logo} alt="platform_logo" />
+        <figcaption>Bienvenido a Homegrown Learning</figcaption>
+      </figure>
+      <div className="flex flex--column">
+        <p className="Textfield width--full">
+          <label className="Textfield__Label" htmlFor="email">Correo electrónico</label>
+          <input className="Textfield__Input width--full" type="email" name="email" id="email" onChange={handleChange} placeholder="ejemplo@gmail.com" />
+        </p>
+        <p className="Textfield width--full">
+          <label className="Textfield__Label" htmlFor="password">Contraseña</label>
+          <input className="Textfield__Input width--full" type="password" name="password" id="password" onChange={handleChange} placeholder="********" />
+        </p>
+        <div className="f-self-align--end">
+          <Link to="/forgot_password" className="Link--ForgotPassword">¿Olvidaste tu contraseña?</Link>
+        </div>
+        {
+          state.loading ?
+            <button type="button" className="Button Button--Primary Button--Icon width--full" disabled>
+              <FontAwesomeIcon icon={faCircleNotch} className="Loading" />
+              <span>Iniciando sesión</span>
+            </button> :
+            <button type="submit" className="Button Button--Primary width--full" disabled={(!data.email || !data.password)}>Ingresar</button>
+        }
+      </div>
     </form>
   );
 }

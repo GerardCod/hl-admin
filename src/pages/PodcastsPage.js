@@ -30,7 +30,7 @@ const PodcastsPage = () => {
     <>
       <header className="flex VideosHeader">
         <h1>Podcasts</h1>
-        <Link to={`${path}/upload`} className="Button AddVideo Button--Success">
+        <Link to={`${path}/upload`} className="Button Button--Icon Button--Add Button--Success">
           <FontAwesomeIcon icon={faPlus} />
           <span>Subir podcast</span>
         </Link>

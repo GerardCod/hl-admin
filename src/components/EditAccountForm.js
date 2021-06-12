@@ -58,16 +58,16 @@ const EditAccountForm = ({ account }) => {
             }
           </select>
         </p>
-        <AvatarSelector onChange={handleChange} />
+        <AvatarSelector onChange={handleChange} value={data.avatar} />
         <br></br>
         {
           state.loading ?
-            <button type="button" className="Button AddVideo Button--Success UploadButton" disabled>
+            <button type="button" className="Button Button--Success Button--Icon" disabled>
               <FontAwesomeIcon icon={faCircleNotch} className="Loading" />
               <span>Modificando cuenta</span>
             </button>
             :
-            <button type="submit" className="Button AddVideo Button--Success UploadButton" disabled={(!data.name || !data.email || !data.password || !data.role || !data.avatar)}>
+            <button type="submit" className="Button Button--Success Button--Icon" disabled={(!data.name || !data.email || !data.password || !data.role || !data.avatar)}>
               <FontAwesomeIcon icon={faSave} />
               <span>Guardar cambios</span>
             </button>

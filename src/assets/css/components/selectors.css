@@ -1,0 +1,63 @@
+.AvatarSelector {
+  width: 100%;
+  padding: 1rem;
+  overflow: hidden;
+}
+
+.AvatarSelecter__Container {
+  width: 100%;
+  height: auto;
+  justify-content: space-between
+  ;
+}
+
+.AvatarOption {
+  width: 125px;
+  height: 125px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+}
+
+.AvatarOption__Img, .AvatarOption__Select {
+  width: 100%;
+  height: 100%;
+}
+
+.AvatarOption__Select, .AvatarOption__Checked {
+  position: absolute;
+}
+
+.AvatarOption__Img {
+  object-fit: cover;
+}
+
+.AvatarOption__Select {
+  z-index: 3;
+  background: rgba(255,255,255,0);
+  opacity: 0;
+}
+
+.AvatarOption__Checked {
+  background-color: rgba(81, 203, 32,.5);
+  color: white;
+  display: none;
+  font-size: 2rem;
+  padding: 2rem;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.AvatarOption__Select:checked ~ .AvatarOption__Checked {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.AccountItem__Avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+}

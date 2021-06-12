@@ -55,8 +55,8 @@ const UploadVideoForm = () => {
         <label className="Textfield__Label" htmlFor="description">
           Elige un vídeo
         </label>
-        <div className="Textfield__Input Input--File">
-          <input type="file" name="video" id="video" onChange={handlePickUpFile} required />
+        <div className="Textfield__Input Input--File flex flex--column f-justify--center f-align--center">
+          <input type="file" name="video" id="video" accept="video/mp4" onChange={handlePickUpFile} required />
           <FontAwesomeIcon icon={faFileUpload} className={`Input__Icon ${file ? "Icon--Success" : ""}`} />
           {
             file && <span>{file.name}</span>
@@ -66,12 +66,12 @@ const UploadVideoForm = () => {
       <br></br>
       {
         state.loading ? 
-        <button type="button" className="Button AddVideo Button--Success UploadButton" disabled>
+        <button type="button" className="Button Button--Icon Button--Success width--full" disabled>
           <FontAwesomeIcon icon={faCircleNotch} className="Loading" />
           <span>Subiendo vídeo</span>
         </button> 
         : 
-        <button type="submit" className="Button AddVideo Button--Success UploadButton" disabled={(!data.title || !data.description || !file)}>
+        <button type="submit" className="Button Button--Icon Button--Success width--full" disabled={(!data.title || !data.description || !file)}>
           <FontAwesomeIcon icon={faSave} />
           <span>Guardar cambios</span>
         </button>

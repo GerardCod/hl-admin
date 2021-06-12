@@ -27,7 +27,7 @@ const AccountDetailsPage = () => {
       {
         !accountSelected ?
           <Loader text="Cargando datos de la cuenta" /> :
-          <article className="flex Account">
+          <article className="Account flex flex--column">
             <figure className="Account__Avatar">
               <img src={accountSelected.avatar} alt="avatar" />
             </figure>

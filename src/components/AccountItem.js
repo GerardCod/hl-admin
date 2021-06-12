@@ -40,12 +40,12 @@ const AccountItem = ({avatar, name, role, id}) => {
         </td>
         <td className="AccountItem__Actions">
           <Link to={`${path}/${id}`}>
-            <FontAwesomeIcon className="Icon--Blue" icon={faEye} />
+            <FontAwesomeIcon className="Icon Icon--Blue" icon={faEye} />
           </Link>
           <Link to={`${path}/${id}/edit`}>
-            <FontAwesomeIcon className="Icon--Purple" icon={faEdit} />
+            <FontAwesomeIcon className="Icon Icon--Purple" icon={faEdit} />
           </Link>
-          <FontAwesomeIcon className="Icon--Red cursor--pointer" icon={faTrash} onClick={handleDelete}/>
+          <FontAwesomeIcon className="Icon Icon--Red cursor--pointer" icon={faTrash} onClick={handleDelete}/>
         </td>
       </tr>
     </>

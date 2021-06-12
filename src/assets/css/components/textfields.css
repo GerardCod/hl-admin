@@ -1,0 +1,79 @@
+.Textfield {
+  display: block;
+  margin-bottom: 1vmax;
+}
+
+.Textfield__Label {
+  font-size: calc(2px + 1.5vmax);;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.Textfield__Input {
+  width: 100%;
+  padding: var(--padding-input);
+  font-size: var(--input-font-size);
+  background-color: var(--input-background-color);
+  border-radius: var(--input-border-radius);
+  border: none;
+}
+
+.Textfield__Input:focus {
+  outline: 0;
+}
+
+@media screen and (min-width: 1025px) {
+  .Textfield__Input {
+    --padding-input: 1vmax;
+    --input-font-size: 1vmax;
+  }
+
+  .Textfield__Label {
+    font-size: 1.2vmax;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .Textfield__Input {
+    --padding-input: 1vmax;
+    --input-font-size: 1vmax;
+  }
+}
+
+@media screen and (max-width: 526px) {
+  .Textfield__Input {
+    --input-font-size: 2vmax;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .Textfield__Input {
+    --input-font-size: 2vmax;
+  }
+}
+
+.Input--Full {
+  width: 100%;
+}
+
+.Input--File {
+  height: 20vh;
+  position: relative;
+}
+
+.Input--File > input {
+  position: absolute;
+  z-index: 2;
+  opacity: 0;
+  height: 3rem;
+  width: 100%;
+  height: 100%;
+}
+
+.Input__Icon {
+  font-size: 4rem;
+}
+
+.Input__Icon, .Input--File > input {
+  cursor: pointer;
+}

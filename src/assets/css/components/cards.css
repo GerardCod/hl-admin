@@ -1,0 +1,100 @@
+.VideoCard {
+  flex: 0 0 auto;
+  width: 16rem;
+  height: 14rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-right: 1rem;
+}
+
+@media screen and (max-width: 526px) {
+  .VideoCard {
+    width: 14rem;
+    height: 12rem;
+  }
+}
+
+.VideoCard__Thumbnail {
+  width: 100%;
+  height: 80%;
+  background-color: var(--thumbnail-color);
+}
+
+.VideoCard__Thumbnail > * {
+  font-size: 3rem;
+  color: var(--icon-play-color);
+}
+
+.VideoCard__Footer {
+  padding: 0.5rem;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--title-color);
+  position: relative;
+}
+
+.VideoCard__Title {
+  font-size: 1rem;
+  font-weight: bold;
+  max-width: 70%;
+  height: 1.2rem;
+  word-wrap: normal;
+  overflow: hidden;
+  text-overflow: ellipsis; 
+}
+
+.VideoCard__Menu {
+  cursor: pointer;
+}
+
+.VideoCardMenu {
+  width: 15vmax;
+  height: auto;
+  transform: scale(0);
+  background-color: white;
+  position: absolute;
+  z-index: 5;
+  padding: 0.5rem 0;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  bottom: 1rem;
+  right: 1.5rem;
+}
+
+@media screen and (max-width: 768px) {
+  .VideoCardMenu {
+    width: 22vmax;
+  }
+}
+
+
+.VideoCardMenu__Item {
+  width: 100%;
+  height: auto;
+  padding: 1rem;
+  text-decoration: none;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: white;
+  border: none;
+  font-size: 1.25vmax;
+}
+
+.VideoCardMenu__Item:hover {
+  background-color: var(--menu-item-hover-color);
+}
+
+.VideoCardMenu__Item--Blue {
+  color: var(--dark-gradient-color);
+}
+
+.VideoCardMenu__Item > span {
+  margin-left: 8px;
+}
+
+@media screen and (max-width: 768px) {
+  .VideoCardMenu__Item {
+    font-size: 1.75vmax;
+  }
+}

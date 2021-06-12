@@ -1,7 +1,7 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
+import { faCircleNotch, faEye } from '@fortawesome/free-solid-svg-icons';
 import { VideoContext } from '../contexts/VideoContext';
 import swal from 'sweetalert';
 import VideoPlayer from '../components/VideoPlayer';
@@ -10,6 +10,7 @@ import Back from '../components/Back';
 const VideoDetailsPage = () => {
   const { getAndObserveVideo, state: { videoSelected }, videoListenerRef } = useContext(VideoContext);
   const { id } = useParams();
+  const viewsRef = useRef({});
 
   useEffect(() => {
     function showError(text) {
@@ -27,6 +28,10 @@ const VideoDetailsPage = () => {
     }
   }, [getAndObserveVideo, id, videoListenerRef])
 
+  const revealViews = () => {
+    viewsRef.current.classList.toggle('Views--Active');
+  }
+
   return (
     <>
       <Back urlBack="/admin/videos" />
@@ -36,6 +41,10 @@ const VideoDetailsPage = () => {
             <div>
               <h1>{videoSelected.title}</h1>
               <VideoPlayer url={videoSelected.url} />
+              <button className="Button Button--Icon Button--Primary Button--Views" onClick={revealViews}>
+                <FontAwesomeIcon icon={faEye} />
+                <span>Ver vistas</span>
+              </button>
               <section>
                 <h2>Descripción</h2>
                 <p>{videoSelected.description}</p>
@@ -44,7 +53,7 @@ const VideoDetailsPage = () => {
                 <h2>Comentarios</h2>
               </section>
             </div>
-            <aside>
+            <aside ref={viewsRef} className="Views">
               <h2>Visto por</h2>
             </aside>
           </div> :

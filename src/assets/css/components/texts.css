@@ -1,0 +1,11 @@
+.Text--white {
+  color: white;
+}
+
+.Title {
+  font-size: 18px;
+  color: var(--title-color);
+  font-family: "Poppins", Arial;
+  font-weight: bolder;
+  margin-bottom: 1rem;
+}

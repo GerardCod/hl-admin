@@ -1,0 +1,80 @@
+.Button {
+  cursor: pointer;
+  padding: 1.25vmax;
+  border-radius: 8px;
+  font-size: 1.4vmax;
+}
+
+@media screen and (min-width: 1025px) {
+  .Button {
+    font-size: 1vmax;
+    padding: 1vmax;
+  }
+}
+
+@media screen and (max-width: 526px) {
+  .Button {
+    font-size: 2vmax;
+  }
+}
+
+.Button:disabled {
+  cursor: default;
+}
+
+.Button--Primary {
+  background-color: var(--sidenav-background-color);
+  color: white;
+}
+
+.Button--Success {
+  background-color: var(--success-color);
+  color: var(--light-success-color);
+}
+
+.Button--Primary:disabled {
+  background-color: var(--dark-gradient-color);
+}
+
+.Button--Success:disabled {
+  background-color: var(--dark-success-color);
+}
+
+.Button--Icon {
+  margin-right: 1rem;
+}
+
+.Button--Icon > span {
+  margin-left: 1rem;
+}
+
+.Button--Upload {
+  width: 20vmax;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  padding: 1rem;
+}
+
+.Button--Add {
+  padding: 1vmax;
+}
+
+.NavButton {
+  font-size: 2vmax;
+  padding: 0;
+  background-color: transparent;
+  margin-right: 2vmax;
+}
+
+.Button--Views {
+  width: 16vmax;
+  font-size: 1.5vmax;
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .Button--Views {
+    display: block;
+  }
+}

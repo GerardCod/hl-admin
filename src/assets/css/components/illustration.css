@@ -1,0 +1,82 @@
+.Illustration {
+  width: 30vmax;
+  height: 15vmax;
+  margin-top: 2.5vmax;
+}
+
+.Illustration > img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.IllustrationDescription {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .Illustration {
+    width: 40vmax;
+    height: 20vmax;
+  }
+}
+
+@media screen and (max-width: 526px) {
+  .Illustration {
+    width: 50vmax;
+    height: 25vmax;  
+  }
+}
+
+.Lady {
+  width: 100%;
+  height: auto;
+}
+
+.Lady > img {
+  width: 100%;
+  height: 100%;
+}
+
+.Lady > figcaption {
+  font-family: "Poppins";
+  font-weight: bold;
+  text-align: center;
+  font-size: 2rem;
+  width: 100%;
+  margin-bottom: 4vmax
+}
+
+@media screen and (max-width: 526px) {
+  .Lady {
+    width: 100%;
+    height: 32vmax;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .Lady {
+    width: 30vmax;
+    height: 24vmax;
+    margin-bottom: 3vmax;
+  }
+
+  .Lady > figcaption {
+    font-size: 1.5vmax;
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .Lady {
+    width: 20vmax;
+    height: 16vmax;
+    margin-bottom: 8vmax;
+  }
+
+  .Lady > figcaption {
+    font-size: 1.65vmax;
+  }
+}
+
+

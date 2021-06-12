@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Illustration = ({ illustration, message }) => {
   return (
-    <div className="full-width flex flex--center flex--column">
+    <div className="width--full flex f-justify--center f-align--center flex--column">
       <figure className="Illustration">
         <img src={illustration} alt="illustration" />
       </figure>
