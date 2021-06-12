@@ -8,7 +8,7 @@ const VideoCard = ({video}) => {
 
   return (
     <article className="VideoCard">
-      <div className="VideoCard__Thumbnail flex flex--center">
+      <div className="VideoCard__Thumbnail flex f-justify--center f-align--center">
         <FontAwesomeIcon icon={faPlay} />
       </div>
       <footer className="flex VideoCard__Footer">

@@ -75,12 +75,12 @@ const CreateAccountForm = () => {
         <br></br>
         {
           state.loading ?
-            <button type="button" className="Button AddVideo Button--Success UploadButton" disabled>
+            <button type="button" className="Button Button--Icon Button--Success width--full" disabled>
               <FontAwesomeIcon icon={faCircleNotch} className="Loading" />
               <span>Creando cuenta</span>
             </button>
             :
-            <button type="submit" className="Button AddVideo Button--Success UploadButton" disabled={(!data.name || !data.email || !data.password || !data.role || !data.avatar)}>
+            <button type="submit" className="Button Button--Icon Button--Success width--full" disabled={(!data.name || !data.email || !data.password || !data.role || !data.avatar)}>
               <FontAwesomeIcon icon={faSave} />
               <span>Guardar cambios</span>
             </button>

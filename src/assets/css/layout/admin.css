@@ -1,0 +1,92 @@
+.AdminLayout {
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(14, 1fr);
+  grid-template-rows: 1fr;
+  column-gap: 1rem;
+}
+
+.AdminLayout__Header {
+  display: none;
+  width: 100%;
+  height: var(--header-height);
+  padding: 1rem;
+  box-shadow: 1px 1.5px 2px rgba(0,0,0,0.25);
+}
+
+.AppIcon {
+  width: var(--header-height);
+  height: 100%;
+  margin-right: 1vmax;
+}
+
+.AppIcon > img {
+  width: 100%;
+  height: 100%;
+}
+
+.AdminLayout__Sidenav {
+  grid-column-start: 1;
+  grid-column-end: 5;
+  transition-property: left;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.AdminLayout__Content {
+  grid-column-start: 6;
+  grid-column-end: 15;
+  overflow-y: scroll;
+  padding-top: 2rem;
+}
+
+@media screen and (min-width: 1440px) {
+  .AdminLayout__Sidenav {
+    grid-column-end: 4;
+  }
+  
+  .AdminLayout__Content {
+    grid-column-start: 5;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .AdminLayout {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  
+  .AdminLayout__Content {
+    width: 100%;
+    height: 100%;
+    padding: 1vmin 2vmin;
+    overflow-x: hidden;
+  }
+  
+  .AdminLayout__Sidenav {
+    width: 60vw;
+    height: calc(100% - var(--header-height));
+    position: absolute;
+    z-index: 5;
+    left: -60vw;
+    top: var(--header-height);
+  }
+  
+  .AdminLayout__Header {
+    display: flex;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 526px) {
+  .AdminLayout__Sidenav {
+    width: 80vw;
+    left: -80vw;
+  }
+}
+
+.AdminLayout__Sidenav--Active {
+  left: 0;
+}

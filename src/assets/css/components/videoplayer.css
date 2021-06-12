@@ -1,0 +1,25 @@
+.VideoPlayerContainer {
+  position: relative;
+  overflow: hidden;
+  width: 48vmax;
+  height: 27vmax;
+  margin-bottom: 4vmax;
+}
+
+.VideoPlayerContainer > video {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .VideoPlayerContainer {
+    width: 100%;
+    height: calc((100vw / 16) * 9);
+  }
+}

@@ -1,0 +1,88 @@
+.width--full {
+  width: 100%;
+}
+
+.height--fullscreen {
+  height: 100vh;
+}
+
+.height--full {
+  height: 100%;
+}
+
+.back--gradient-blue {
+  background: linear-gradient(to right, var(--light-gradient-color), var(--dark-gradient-color));
+}
+
+/* Classes related to flexbox layout */
+.flex {
+  display: flex;
+}
+
+.flex--column {
+  flex-direction: column;
+}
+
+.flex--wrap {
+  flex-wrap: wrap;
+}
+
+.f-justify--center {
+  justify-content: center;
+}
+
+.f-justify--around {
+  justify-content: space-around;
+}
+
+.f-justify--evenly {
+  justify-content: space-evenly;
+}
+
+.f-align--center {
+  align-items: center;
+}
+
+.f-self-align--center {
+  align-self: center;
+}
+
+.f-self-align--end {
+  align-self: flex-end;
+}
+
+/* Classes related to cursors */
+
+.cursor--pointer {
+  cursor: pointer;
+}
+
+/* Classes realted to positions */
+
+.position--relative {
+  position: relative;
+}
+
+.position--absolute {
+  position: absolute;
+}
+
+.z-index--1 {
+  z-index: 1;
+}
+
+.top--0 {
+  top: 0;
+}
+
+.top--10v {
+  top: 10vh;
+}
+
+.top--5v {
+  top: 5vh;
+}
+
+.right--0 {
+  right: 0;
+}

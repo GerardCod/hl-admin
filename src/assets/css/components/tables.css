@@ -1,0 +1,32 @@
+.TableWrapper {
+  width: 100%;
+  height: auto;
+  overflow-x: scroll;
+}
+
+.AccountsTable {
+  width: 100%;
+  height: auto;
+  border-collapse: collapse;
+}
+
+.AccountsTable th {
+  color: #E3E7E5;
+  font-weight: bold;
+  font-size: 18px;
+  padding: .5rem;
+}
+
+.AccountsTable th:first-child {
+  width: 100px;
+}
+
+.AccountsTable thead {
+  background-color: var(--dark-gradient-color);
+}
+
+@media screen and (max-width: 526px) {
+  .AccountsTable {
+    width: 100vmax;
+  }
+}

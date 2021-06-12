@@ -1,0 +1,20 @@
+.VideosHeader {
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2vmax;
+}
+
+.PlayList {
+  width: 100%;
+  height: auto;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  margin-bottom: 2rem;
+  overflow-x: scroll;
+}
+
+@media screen and (max-width: 526px) {
+  .VideosHeader {
+    flex-direction: column;
+  }
+}

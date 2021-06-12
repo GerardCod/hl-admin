@@ -1,0 +1,17 @@
+.Loader {
+  width: 100%;
+  height: 100%;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.Loader__Icon {
+  font-size: 10rem;
+  color: var(--dark-gradient-color);
+  margin-bottom: 1rem;
+}
+
+.Loader__Text {
+  font-size: 1rem;
+}

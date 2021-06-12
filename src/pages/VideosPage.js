@@ -24,7 +24,7 @@ const VideosPage = () => {
     <>
       <header className="flex VideosHeader">
         <h1>Vídeos</h1>
-        <Link to="/admin/videos/upload" className="Button AddVideo Button--Success">
+        <Link to="/admin/videos/upload" className="Button Button--Icon Button--Add Button--Success">
           <FontAwesomeIcon icon={faPlus} />
           <span>Subir vídeo</span>
         </Link>
@@ -36,7 +36,7 @@ const VideosPage = () => {
         (state.videos && state.videos.length > 0) ?
           <div>
             <h2 className="Title">Último vídeo subido</h2>
-            <VideoPlayer url={state.videos[state.videos.length - 1].url} />
+            <VideoPlayer url={state.videos[state.videos.length - 1].url} width="100%" />
             <h2 className="Title">Otros vídeos subidos</h2>
             <section className="flex PlayList">
               {

@@ -19,7 +19,7 @@ const AvatarSelector = ({ onChange, value }) => {
   return (
     <fieldset className="AvatarSelector">
       <legend>Elige un avatar</legend>
-      <div className="flex AvatarSelector__Container">
+      <div className="flex flex--wrap AvatarSelector__Container">
         {
           state.loading ?
             <Loader text="Cargando los avatars" /> :

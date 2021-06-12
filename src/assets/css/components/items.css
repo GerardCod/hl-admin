@@ -1,0 +1,62 @@
+.ListItem {
+  width: 90%;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  justify-content: space-between;
+}
+
+.ListItem__Icon {
+  font-size: 3rem;
+  align-self: center;
+}
+
+.ListItem__Content {
+  align-self: flex-start;
+}
+
+.ListItem__Description {
+  margin-left: 1rem;
+}
+
+.ListItem__Actions > * {
+  margin-right: 10px;
+  font-size: 1.5rem;
+}
+
+@media screen and (max-width: 768px) {
+  .ListItem {
+    width: 100%;
+  }
+}
+
+
+.AccountItem {
+  width: 100%;
+  height: 100px;
+}
+
+.AccountItem__Avatar {
+  margin: 0;
+}
+
+.AccountItem p {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+
+.AccountItem__Avatar > img {
+  width: inherit;
+  height: inherit;
+  object-fit: cover;
+}
+
+.AccountItem__Actions {
+  font-size: 32px;
+  height: 100%;
+  text-align: center;
+}
+
+.AccountItem__Actions > * {
+  margin-left: 1rem;
+}

@@ -1,0 +1,28 @@
+:root {
+  /* variables related to colors */
+  --light-gradient-color: #29C9FF;
+  --dark-gradient-color: #003F54;
+  --light-primary-color: #DBF6FF;
+  --input-background-color: #C8CFCC;
+  --link-font-color: #707070;
+  --sidenav-background-color: #007EA8;
+  --title-color: #838383;
+  --border-color: #575757;
+  --thumbnail-color: #6F58C9;
+  --icon-play-color: #EDEAF8;
+  --success-color: #51CB20;
+  --light-success-color: #E8FAE1;
+  --dark-success-color: #286510;
+  --menu-item-hover-color: #f5f5f5;
+  --alert-color: #FF773D;
+  --danger-color: #D92424;
+  --alert-input-color: #FFEEE7;
+
+  /* variables related to sizes and borders */
+  --padding-input: 1.25vmax;
+  --input-border-radius: .4vmax;
+  --header-height: 8vmax;
+
+  /* variables related to font */
+  --input-font-size: 1.4vmax;
+}

@@ -25,7 +25,7 @@ const AccountsPage = () => {
     <div>
       <header className="flex VideosHeader">
         <h1>Cuentas de usuario</h1>
-        <Link to="/admin/accounts/new" className="Button AddVideo Button--Success">
+        <Link to="/admin/accounts/new" className="Button Button--Icon Button--Add Button--Success">
           <FontAwesomeIcon icon={faPlus} />
           <span>Crear nueva cuenta</span>
         </Link>
@@ -35,7 +35,9 @@ const AccountsPage = () => {
         state.loading ?
           <Loader text="Cargando cuentas de usuario" />
           : (state.accounts && state.accounts.length > 0) ?
-            <AccountsTable accounts={state.accounts} /> :
+            <div className="TableWrapper">
+              <AccountsTable accounts={state.accounts} />
+            </div> :
             <Illustration illustration={peopleImg} message="No hay usuarios registrados en la plataforma" />
       }
     </div>

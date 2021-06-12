@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const Back = ({urlBack}) => (
-  <Link to={urlBack} className="Back">
+  <Link to={urlBack} className="Link--Back">
     <FontAwesomeIcon icon={faChevronLeft} />
     <span>Regresar</span>
   </Link>

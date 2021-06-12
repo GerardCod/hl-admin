@@ -1,15 +1,16 @@
 import React, { useContext } from 'react';
 import { Redirect } from 'react-router';
+import { Route } from 'workbox-routing';
 import { AuthContext } from '../contexts/AuthContext';
 
-const ProtectedRoute = ({children}) => {
+const ProtectedRoute = ({path, component}) => {
   const {state} = useContext(AuthContext);
 
   return (
     <>
       {
         state.user ?
-          {children} :
+          <Route path={path} component={component} /> :
         <Redirect to="/" />
       }
     </>

@@ -5,7 +5,7 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons';
 const AvatarOption = React.memo(({onChange, url, value}) => {
   return (
     <div className="AvatarOption">
-      <input type="radio" name="avatar" checked={(value === url)} className="AvatarOption__Select" onChange={onChange} value={url} />
+      <input type="radio" name="avatar" checked={(value === url)} className="AvatarOption__Select cursor--pointer" onChange={onChange} value={url} />
       <span className="AvatarOption__Checked">
         <FontAwesomeIcon icon={faCheck} />
       </span>
