@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { Fragment, useContext, useEffect } from 'react';
 import { useParams } from 'react-router';
 import Back from '../components/Back';
 import EditAccountForm from '../components/EditAccountForm';
@@ -20,7 +20,7 @@ const EditAccountPage = () => {
   }, [getAccount, accountRef, id]);
 
   return (
-    <>
+    <Fragment>
       <Back urlBack="/admin/accounts" />
       <h1>Modificación de cuenta</h1>
       {
@@ -28,7 +28,7 @@ const EditAccountPage = () => {
           <EditAccountForm account={accountSelected} />
           : <Loader text="Cargando datos de la cuenta" />
       }
-    </>
+    </Fragment>
   );
 }
 

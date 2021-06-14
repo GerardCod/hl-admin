@@ -1,13 +1,13 @@
 import { faEdit, faEye, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useContext } from 'react';
+import React, { useContext, Fragment } from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
 import swal from 'sweetalert';
 import { AccountContext } from '../contexts/AccountContext';
 import { onError, onSuccess } from '../utils';
 
-const AccountItem = ({avatar, name, role, id}) => {
-  const {path} = useRouteMatch();
+const AccountItem = ({ avatar, name, role, id }) => {
+  const { path } = useRouteMatch();
   const { deleteAccount } = useContext(AccountContext);
 
   const handleDelete = () => {
@@ -19,13 +19,14 @@ const AccountItem = ({avatar, name, role, id}) => {
       dangerMode: true
     }).then(willDelete => {
       if (willDelete) {
-        deleteAccount(id, {onSuccess, onError})
+        deleteAccount(id, { onSuccess, onError })
       }
     });
   }
 
   return (
-    <>
+    <Fragment>
+
       <tr className="AccountItem">
         <td>
           <figure className="AccountItem__Avatar">
@@ -45,10 +46,10 @@ const AccountItem = ({avatar, name, role, id}) => {
           <Link to={`${path}/${id}/edit`}>
             <FontAwesomeIcon className="Icon Icon--Purple" icon={faEdit} />
           </Link>
-          <FontAwesomeIcon className="Icon Icon--Red cursor--pointer" icon={faTrash} onClick={handleDelete}/>
+          <FontAwesomeIcon className="Icon Icon--Red cursor--pointer" icon={faTrash} onClick={handleDelete} />
         </td>
       </tr>
-    </>
+    </Fragment>
   );
 }
 

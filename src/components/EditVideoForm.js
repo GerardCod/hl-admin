@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, Fragment } from 'react';
 import swal from 'sweetalert';
 import { VideoContext } from '../contexts/VideoContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -26,7 +26,7 @@ const EditVideoForm = ({ id, video }) => {
   }
 
   return (
-    <>
+    <Fragment>
       <div>
         <VideoPlayer url={data.url} />
         <form className="Form--Upload flex flex--column" onSubmit={handleSubmit}>
@@ -52,7 +52,7 @@ const EditVideoForm = ({ id, video }) => {
           }
         </form>
       </div>
-    </>
+    </Fragment>
   );
 }
 

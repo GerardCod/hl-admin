@@ -1,4 +1,4 @@
-import { createContext, useCallback, useReducer, useRef } from "react";
+import React, { createContext, useCallback, useReducer, useRef } from "react";
 import { auth, firestore } from '../services/Firebase';
 import { collectIdAndData, roles } from '../utils';
 import AccountReducer, { initialState } from '../reducers/AccountReducer';

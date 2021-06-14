@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, Fragment } from 'react';
 import AudioPlayer from '../components/AudioPlayer';
 import { PodcastContext } from '../contexts/PodcastContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -22,7 +22,7 @@ const EditPodcastForm = ({ podcast }) => {
   }
 
   return (
-    <>
+    <Fragment>
       <div>
         <AudioPlayer url={data.url} />
         <form className="Form--Upload flex flex--column" onSubmit={handleSubmit}>
@@ -48,7 +48,7 @@ const EditPodcastForm = ({ podcast }) => {
           }
         </form>
       </div>
-    </>
+    </Fragment>
   );
 }
 

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { Fragment, useContext, useState } from 'react';
 import { AccountContext } from '../contexts/AccountContext';
 import { onError, onSuccess, roles } from '../utils';
 import AvatarSelector from './AvatarSelector';
@@ -23,7 +23,7 @@ const EditAccountForm = ({ account }) => {
   }
 
   return (
-    <>
+    <Fragment>
       <form className="Form--Upload flex flex--column" onSubmit={handleSubmit}>
         <p className="Textfield">
           <label className="Textfield__Label" htmlFor="name">Nombre completo del usuario</label>
@@ -73,7 +73,7 @@ const EditAccountForm = ({ account }) => {
             </button>
         }
       </form>
-    </>
+    </Fragment>
   );
 }
 

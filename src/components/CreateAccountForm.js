@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { Fragment, useContext, useRef, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleNotch, faSave } from '@fortawesome/free-solid-svg-icons';
 import { onSuccess, onError, userRoles } from '../utils';
@@ -38,7 +38,7 @@ const CreateAccountForm = () => {
   }
 
   return (
-    <>
+    <Fragment>
       <form ref={formRef} className="Form--Upload flex flex--column" onSubmit={handleSubmit}>
         <p className="Textfield">
           <label className="Textfield__Label" htmlFor="name">Nombre completo del usuario</label>
@@ -86,7 +86,7 @@ const CreateAccountForm = () => {
             </button>
         }
       </form>
-    </>
+    </Fragment>
   );
 }
 

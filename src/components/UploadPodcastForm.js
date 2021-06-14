@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { Fragment, useContext, useRef, useState } from 'react';
 import swal from 'sweetalert';
 import { PodcastContext } from '../contexts/PodcastContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -33,7 +33,7 @@ const UploadPodcastForm = () => {
   }
 
   return (
-    <>
+    <Fragment>
       <form ref={formRef} className="Form--Upload flex flex--column" onSubmit={handleSubmit}>
         <p className="Textfield">
           <label className="Textfield__Label" htmlFor="title">Título del podcast</label>
@@ -69,7 +69,7 @@ const UploadPodcastForm = () => {
             </button>
         }
       </form>
-    </>
+    </Fragment>
   );
 }
 

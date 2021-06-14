@@ -1,6 +1,6 @@
 import { faEdit, faEye, faPodcast, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useContext } from 'react';
+import React, { useContext, Fragment } from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
 import swal from 'sweetalert';
 import { PodcastContext } from '../contexts/PodcastContext';
@@ -25,7 +25,7 @@ const PodcastItem = ({ title, id }) => {
   }
 
   return (
-    <>
+    <Fragment>
       <article className="flex ListItem">
         <div className="ListItem__Content flex f-align--center">
           <FontAwesomeIcon icon={faPodcast} className="ListItem__Icon Icon--Orange" />
@@ -43,7 +43,7 @@ const PodcastItem = ({ title, id }) => {
           <FontAwesomeIcon icon={faTrash} className="Icon--Red cursor--pointer" onClick={handleDelete} />
         </div>
       </article>
-    </>
+    </Fragment>
   );
 }
 
