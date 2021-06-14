@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, Fragment } from 'react';
 import { useParams } from 'react-router';
 import Back from '../components/Back';
 import { AccountContext } from '../contexts/AccountContext';
@@ -21,7 +21,7 @@ const AccountDetailsPage = () => {
   console.log(accountSelected);
 
   return (
-    <>
+    <Fragment>
       <Back urlBack="/admin/accounts" />
       <h1>Detalles de la cuenta</h1>
       {
@@ -38,7 +38,7 @@ const AccountDetailsPage = () => {
             </div>
           </article>
       }
-    </>
+    </Fragment>
   );
 }
 

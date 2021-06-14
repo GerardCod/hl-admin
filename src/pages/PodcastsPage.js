@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, Fragment } from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -27,7 +27,7 @@ const PodcastsPage = () => {
   }, [fetchPodcasts, listenerRef]);
 
   return (
-    <>
+    <Fragment>
       <header className="flex VideosHeader">
         <h1>Podcasts</h1>
         <Link to={`${path}/upload`} className="Button Button--Icon Button--Add Button--Success">
@@ -42,7 +42,7 @@ const PodcastsPage = () => {
           state.podcasts.map(e => <PodcastItem key={`podcast-${e.id}`} {...e} />) :
             <Illustration illustration={podcastIllustration} message={'No hay podcasts en la plataforma'} />
       }
-    </>
+    </Fragment>
   );
 }
 

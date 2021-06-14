@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import React, { useContext, useEffect } from 'react';
+import React, { Fragment, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import VideoCard from '../components/VideoCard';
 import { VideoContext } from '../contexts/VideoContext';
@@ -21,7 +21,7 @@ const VideosPage = () => {
   }, [fetchVideos, listenerRef]);
 
   return (
-    <>
+    <Fragment>
       <header className="flex VideosHeader">
         <h1>Vídeos</h1>
         <Link to="/admin/videos/upload" className="Button Button--Icon Button--Add Button--Success">
@@ -47,7 +47,7 @@ const VideosPage = () => {
           :
           <Illustration illustration={illustration} message={'No hay vídeos agregados'} />
       }
-    </>
+    </Fragment>
   );
 }
 

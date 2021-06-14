@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, Fragment } from 'react';
 import EditVideoForm from '../components/EditVideoForm';
 import { useParams } from 'react-router-dom';
 import { VideoContext } from '../contexts/VideoContext';
@@ -29,7 +29,7 @@ const EditVideoPage = () => {
   }, [id, getAndObserveVideo, videoListenerRef]);
 
   return (
-    <>
+    <Fragment>
       <Back urlBack="/admin/videos" />
       <h1>Modificación de vídeo</h1>
       {
@@ -37,7 +37,7 @@ const EditVideoPage = () => {
         <Loader text='Cargando vídeo...' /> :
         <EditVideoForm id={id} video={videoSelected} /> 
       }
-    </>
+    </Fragment>
   );
 }
 

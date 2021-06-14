@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef, Fragment } from 'react';
 import { useParams } from 'react-router-dom';
 import { PodcastContext } from '../contexts/PodcastContext';
 import Loader from '../components/Loader';
@@ -29,7 +29,7 @@ const PodcastDetailsPage = () => {
 
   console.log(id);
   return (
-    <>
+    <Fragment>
       <Back urlBack="/admin/podcasts" />
       {
         podcastSelected ?
@@ -53,7 +53,7 @@ const PodcastDetailsPage = () => {
           :
           <Loader text="Cargando podcast" />
       }
-    </>
+    </Fragment>
   );
 }
 

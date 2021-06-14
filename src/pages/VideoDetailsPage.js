@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { Fragment, useContext, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleNotch, faEye } from '@fortawesome/free-solid-svg-icons';
@@ -33,7 +33,7 @@ const VideoDetailsPage = () => {
   }
 
   return (
-    <>
+    <Fragment>
       <Back urlBack="/admin/videos" />
       {
         videoSelected ?
@@ -59,7 +59,7 @@ const VideoDetailsPage = () => {
           </div> :
           <FontAwesomeIcon icon={faCircleNotch} className="Loading" />
       }
-    </>
+    </Fragment>
   );
 }
 
