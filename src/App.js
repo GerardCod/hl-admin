@@ -1,8 +1,9 @@
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
+import React from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import LoginPage from './pages/LoginPage';
-import React from 'react';
+import ChangePasswordPage from './pages/ChangePasswordPage';
 import NotFoundPage from './pages/NotFoundPage';
 import AdminRouter from './containers/AdminRouter';
 import AuthProvider from './contexts/AuthContext';
@@ -14,6 +15,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={LoginPage} />
           <Route path="/forgot_password" component={ForgotPasswordPage} />
+          <Route path="/change_password" component={ChangePasswordPage} />
           <Route path="/admin" component={AdminRouter} />
           <Route path="*" component={NotFoundPage} />
         </Switch>
