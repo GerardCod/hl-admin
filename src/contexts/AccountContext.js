@@ -1,5 +1,5 @@
 import React, { createContext, useCallback, useReducer, useRef } from "react";
-import { auth, firestore } from '../services/Firebase';
+import { auth, batch, firestore } from '../services/Firebase';
 import { collectIdAndData, roles } from '../utils';
 import AccountReducer, { initialState } from '../reducers/AccountReducer';
 import { DOCUMENT_FOUND, ERROR, FETCH_DOCUMENTS, LOADING, RESPONSE_SUCCESS } from '../reducers/Actions';
@@ -38,6 +38,7 @@ const AccountProvider = ({children}) => {
     try {
       const uid = await createAuthAccount(data);
       data.uid = uid;
+      delete data.confirmPassword;
       await firestore.collection('accounts').add(data);
 
       data.role = roles[1];
@@ -60,6 +61,7 @@ const AccountProvider = ({children}) => {
     try {
       const uid = await createAuthAccount(data);
       data.uid = uid;
+      delete data.confirmPassword;
       await firestore.collection('accounts').add(data);
 
       await auth.currentUser.sendEmailVerification();
@@ -98,12 +100,21 @@ const AccountProvider = ({children}) => {
     }
   }, []);
 
-  const deleteAccount = useCallback(async (id, {onSuccess, onError}) => {
+  const deleteAccount = useCallback(async ({email, password}, {onSuccess, onError}) => {
     dispatch({type: LOADING});
     try {
-      await firestore.doc(`accounts/${id}`).delete();
-      dispatch({type: RESPONSE_SUCCESS});
-      onSuccess('Cuenta eliminada exitosamente');     
+      await auth.signInWithEmailAndPassword(email, password);
+      await auth.currentUser.delete();
+      firestore.collection('accounts').where('email', '==', email).get()
+        .then(collection => {
+          collection.forEach(doc => {
+            batch.delete(doc.ref);
+          });
+          return batch.commit();
+        }).then(() => {
+          onSuccess('Cuenta(s) eliminada(s) exitosamente');
+          dispatch({type: RESPONSE_SUCCESS});
+        });
     } catch (error) {
       dispatch({type: ERROR, payload: error.message});
       onError(error.message)
