@@ -6,7 +6,7 @@ import swal from 'sweetalert';
 import { AccountContext } from '../contexts/AccountContext';
 import { onError, onSuccess } from '../utils';
 
-const AccountItem = ({ avatar, name, role, id }) => {
+const AccountItem = ({ avatar, name, role, id, email, password }) => {
   const { path } = useRouteMatch();
   const { deleteAccount } = useContext(AccountContext);
 
@@ -19,7 +19,7 @@ const AccountItem = ({ avatar, name, role, id }) => {
       dangerMode: true
     }).then(willDelete => {
       if (willDelete) {
-        deleteAccount(id, { onSuccess, onError })
+        deleteAccount({email, password}, { onSuccess, onError })
       }
     });
   }
