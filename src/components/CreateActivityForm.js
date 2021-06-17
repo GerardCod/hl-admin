@@ -2,10 +2,11 @@ import React, { useContext, useState } from 'react';
 import { ActivityContext } from '../contexts/ActivityContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSave, faCircleNotch } from '@fortawesome/free-solid-svg-icons';
+import { onSuccess, onError } from '../utils';
 
 const CreateActivityForm = () => {
   const [data, setData] = useState({});
-  const { state } = useContext(ActivityContext);
+  const { state, createActivity } = useContext(ActivityContext);
 
   const handleChange = e => {
     setData({
@@ -16,8 +17,7 @@ const CreateActivityForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log('Submitting the data');
-    console.log(data);
+    createActivity(data, {onSuccess, onError});
   }
 
   return (
