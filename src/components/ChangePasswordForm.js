@@ -10,7 +10,6 @@ const ChangePasswordForm = ({ code }) => {
   const [data, setData] = useState({});
   const { state, changePassword } = useContext(AuthContext);
 
-
   const handleChange = e => {
     setData({
       ...data,
