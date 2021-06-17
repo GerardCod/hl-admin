@@ -1,8 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import logo from '../assets/logo.svg';
+import { AuthContext } from '../contexts/AuthContext';
+import { onError, onSuccess } from '../utils';
+import { Redirect } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 
-const ChangePasswordForm = () => {
+const ChangePasswordForm = ({ code }) => {
   const [data, setData] = useState({});
+  const { state, changePassword } = useContext(AuthContext);
 
   const handleChange = e => {
     setData({
@@ -13,12 +19,14 @@ const ChangePasswordForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    delete data.confirmPassword;
-    console.log('Submitting data');
+    changePassword(code, data, { onSuccess, onError });
   }
 
   return (
     <form className="LoginForm flex flex--column f-justify--evenly" onSubmit={handleSubmit}>
+      {
+        state.password_changed && <Redirect to="/" />
+      }
       <figure className="f-self-align--center Lady">
         <img src={logo} alt="platform_logo" />
         <figcaption>Cambio de contraseña</figcaption>
@@ -32,7 +40,14 @@ const ChangePasswordForm = () => {
           <label className="Textfield__Label" htmlFor="confirmPassword">Confirmar contraseña</label>
           <input className="Textfield__Input width--full" type="password" name="confirmPassword" id="confirmPassword" onChange={handleChange} placeholder="********" />
         </p>
-        <button type="submit" className="Button Button--Primary width--full" disabled={(!data.password || !data.confirmPassword)}>Cambiar de contraseña</button>
+        {
+          state.loading ?
+            <button type="button" className="Button Button--Primary Button--Icon width--full" disabled>
+              <FontAwesomeIcon icon={faCircleNotch} className="Loading" />
+              <span>Cambiando la contraseña</span>
+            </button> :
+            <button type="submit" className="Button Button--Primary width--full" disabled={(!data.password || !data.confirmPassword)}>Cambiar de contraseña</button>
+        }
       </div>
     </form>
   );
