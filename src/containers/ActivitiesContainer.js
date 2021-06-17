@@ -1,6 +1,7 @@
 import React from 'react';
 import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import ActivitiesPage from '../pages/ActivitiesPage';
+import CreateActivityPage from '../pages/CreateActivityPage';
 
 const ActivitiesContainer = () => {
   let { path } = useRouteMatch("/admin/activities");  
@@ -8,6 +9,7 @@ const ActivitiesContainer = () => {
   return (
     <Switch>
       <Route exact path={path} component={ActivitiesPage} />
+      <Route path={`${path}/create`} component={CreateActivityPage} />
     </Switch>
   );
 }

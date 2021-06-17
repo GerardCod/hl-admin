@@ -7,7 +7,7 @@ const ActivitiesPage = () => {
     <Fragment>
       <header className="flex VideosHeader">
         <h1>Actividades</h1>
-        <Link to="/admin/activities/upload" className="Button Button--Icon Button--Add Button--Success">
+        <Link to="/admin/activities/create" className="Button Button--Icon Button--Add Button--Success">
           <FontAwesomeIcon icon={faPlus} />
           <span>Agregar actividad</span>
         </Link>
