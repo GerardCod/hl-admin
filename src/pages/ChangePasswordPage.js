@@ -24,7 +24,6 @@ const ChangePasswordPage = () => {
             <Illustration illustration={email} message={state.reset_status} /> :
             <ChangePasswordForm code={query.get('oobCode')} />
       }
-
     </div>
   );
 }
