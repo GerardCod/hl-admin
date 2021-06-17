@@ -1,7 +1,7 @@
 import React, { createContext, useReducer } from 'react';
 import ActivityReducer, { initialState } from '../reducers/ActivityReducer';
 
-const ActivityContext = createContext();
+export const ActivityContext = createContext();
 
 const ActivityProvider = ({children}) => {
   const [state, dispatch] = useReducer(ActivityReducer, initialState);

@@ -33,19 +33,19 @@ const CreateActivityForm = () => {
       <fieldset className="AvatarSelector">
         <legend>Elige un tipo de entrega</legend>
         <div>
-          <label>Comentario</label>
           <input type="radio" id="comment" name="submitType" value="comment" onChange={handleChange} />
+          <label htmlFor="comment">Comentario</label>
         </div>
         <div>
-          <label>Evidencia</label>
-          <input type="radio" id="comment" name="submitType" value="evidence" onChange={handleChange} />
+          <input type="radio" id="evidence" name="submitType" value="evidence" onChange={handleChange} />
+          <label htmlFor="evidence">Evidencia</label>
         </div>
       </fieldset>
       {
         state.loading ?
           <button type="button" className="Button Button--Icon Button--Success width--full" disabled>
             <FontAwesomeIcon icon={faCircleNotch} className="Loading" />
-            <span>Subiendo vídeo</span>
+            <span>Creando la actividad</span>
           </button> :
           <button type="submit" className="Button Button--Icon Button--Success width--full" disabled={(!data.title || !data.description || !data.submitType)}>
             <FontAwesomeIcon icon={faSave} />
