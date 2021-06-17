@@ -16,3 +16,5 @@ const ActivitiesPage = () => {
     </Fragment>
   );
 }
+
+export default ActivitiesPage;
