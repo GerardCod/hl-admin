@@ -27,3 +27,7 @@
 .Icon--Red {
   color: var(--danger-color);
 }
+
+.Icon--Light {
+  color: white;
+}
