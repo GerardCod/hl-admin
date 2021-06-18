@@ -19,7 +19,7 @@ const ChangePasswordPage = () => {
     <div className="width--full height--fullscreen back--gradient-blue flex f-justify--center f-align--center">
       {
         state.loading ?
-          <Loader text="Verificando código de cambio de contraseña" />
+          <Loader text="Verificando código de cambio de contraseña" light />
           : state.reset_status ?
             <Illustration illustration={email} message={state.reset_status} /> :
             <ChangePasswordForm code={query.get('oobCode')} />
