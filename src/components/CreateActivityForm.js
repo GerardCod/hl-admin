@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { ActivityContext } from '../contexts/ActivityContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSave, faCircleNotch } from '@fortawesome/free-solid-svg-icons';
@@ -7,6 +7,7 @@ import { onSuccess, onError } from '../utils';
 const CreateActivityForm = () => {
   const [data, setData] = useState({});
   const { state, createActivity } = useContext(ActivityContext);
+  const formRef = useRef({});
 
   const handleChange = e => {
     setData({
@@ -18,10 +19,12 @@ const CreateActivityForm = () => {
   const handleSubmit = e => {
     e.preventDefault();
     createActivity(data, {onSuccess, onError});
+    setData({});
+    formRef.current.reset();
   }
 
   return (
-    <form className="Form--Upload flex flex--column" onSubmit={handleSubmit}>
+    <form ref={formRef} className="Form--Upload flex flex--column" onSubmit={handleSubmit}>
       <p className="Textfield">
         <label className="Textfield__Label" htmlFor="title">Título de la actividad</label>
         <input className="Textfield__Input Input--Full" type="text" name="title" id="title" onChange={handleChange} placeholder="Actividad 1" required />
