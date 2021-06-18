@@ -39,6 +39,7 @@ const AccountProvider = ({children}) => {
       const uid = await createAuthAccount(data);
       data.uid = uid;
       delete data.confirmPassword;
+      delete data.password;
       await firestore.collection('accounts').add(data);
 
       data.role = roles[1];
@@ -62,6 +63,7 @@ const AccountProvider = ({children}) => {
       const uid = await createAuthAccount(data);
       data.uid = uid;
       delete data.confirmPassword;
+      delete data.password;
       await firestore.collection('accounts').add(data);
 
       await auth.currentUser.sendEmailVerification();
