@@ -1,7 +1,6 @@
 import React from 'react';
 import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import ActivitiesPage from '../pages/ActivitiesPage';
-import ActivityDetailsPage from '../pages/ActivityDetailsPage';
 import CreateActivityPage from '../pages/CreateActivityPage';
 import ActivityRouter from './ActivityRouter';
 

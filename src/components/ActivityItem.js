@@ -1,10 +1,28 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useContext } from 'react';
 import { useRouteMatch, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFile, faEye, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { ActivityContext } from '../contexts/ActivityContext';
+import swal from 'sweetalert';
+import { onError, onSuccess } from '../utils';
 
 const ActivityItem = ({title, id}) => {
   const {path} = useRouteMatch();
+  const { deleteActivity } = useContext(ActivityContext);
+
+  const handleDelete = () => {
+    swal({
+      title: '¿Realmente desea eliminar esta actividad?',
+      text: 'Después de eliminarla, la actividad no volverá a estar disponible en la plataforma.',
+      icon: 'warning',
+      buttons: ['Cancelar', 'Eliminar'],
+      dangerMode: true
+    }).then(willDelete => {
+      if (willDelete) {
+        deleteActivity(id, {onSuccess, onError});
+      }
+    });
+  }
 
   return (
     <Fragment>
@@ -22,7 +40,7 @@ const ActivityItem = ({title, id}) => {
           <Link to={`${path}/${id}/edit`} className="cursor--pointer">
             <FontAwesomeIcon icon={faEdit} className="Icon--Purple" />
           </Link>
-          <FontAwesomeIcon icon={faTrash} className="Icon--Red cursor--pointer" />
+          <FontAwesomeIcon icon={faTrash} className="Icon--Red cursor--pointer" onClick={handleDelete}/>
         </div>
       </article>
     </Fragment>
