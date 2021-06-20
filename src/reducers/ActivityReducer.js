@@ -1,6 +1,6 @@
 export const initialState = {
   loading: false,
-  activities: null,
+  activities: [],
   error: null,
   activitySelected: null,
 }
