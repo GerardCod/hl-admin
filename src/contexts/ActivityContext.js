@@ -4,6 +4,7 @@ import { DOCUMENT_FOUND, ERROR, FETCH_DOCUMENTS, LOADING, RESPONSE_SUCCESS } fro
 import { firestore } from '../services/Firebase';
 import { collectIdAndData } from '../utils';
 
+
 export const ActivityContext = createContext();
 
 const ActivityProvider = ({children}) => {
