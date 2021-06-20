@@ -50,7 +50,19 @@ const ActivityProvider = ({children}) => {
     );
   }, []);
 
-  const childrenProps = { state, createActivity, fetchActivities, listenerRef, activityDetails };
+  const editActivity = useCallback(async (id, data, {onSuccess, onError}) => {
+    dispatch({type: LOADING});
+    try {
+      await firestore.doc(`activities/${id}`).update(data);
+      dispatch({type: RESPONSE_SUCCESS});
+      onSuccess('Actividad actualizada correctamente');
+    } catch (error) {
+      dispatch({type: ERROR, payload: error.message});
+      onError(error.message);
+    } 
+  }, []);
+
+  const childrenProps = { state, createActivity, fetchActivities, listenerRef, activityDetails, editActivity };
 
   return (
     <ActivityContext.Provider value={childrenProps}>
