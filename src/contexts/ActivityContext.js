@@ -1,6 +1,6 @@
 import React, { createContext, useCallback, useReducer, useRef } from 'react';
 import ActivityReducer, { initialState } from '../reducers/ActivityReducer';
-import { ERROR, FETCH_DOCUMENTS, LOADING, RESPONSE_SUCCESS } from '../reducers/Actions';
+import { DOCUMENT_FOUND, ERROR, FETCH_DOCUMENTS, LOADING, RESPONSE_SUCCESS } from '../reducers/Actions';
 import { firestore } from '../services/Firebase';
 import { collectIdAndData } from '../utils';
 
@@ -36,7 +36,21 @@ const ActivityProvider = ({children}) => {
     );;
   }, []);
 
-  const childrenProps = { state, createActivity, fetchActivities, listenerRef };
+  const activityDetails = useCallback((id, {onError}) => {
+    dispatch({type: LOADING});
+    listenerRef.current = firestore.doc(`activities/${id}`).onSnapshot(
+      snapshot => {
+        const document = collectIdAndData(snapshot);
+        dispatch({type: DOCUMENT_FOUND, payload: document});
+      },
+      error => {
+        dispatch({type: ERROR, payload: error.message});
+        onError(error.message);
+      }
+    );
+  }, []);
+
+  const childrenProps = { state, createActivity, fetchActivities, listenerRef, activityDetails };
 
   return (
     <ActivityContext.Provider value={childrenProps}>
