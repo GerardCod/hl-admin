@@ -33,6 +33,10 @@ const CreateActivityForm = () => {
         <label className="Textfield__Label" htmlFor="description">Descripción de la actividad</label>
         <textarea columns="80" rows="10" name="description" id="description" className="Textfield__Input Input--Full" onChange={handleChange} placeholder="Pongan un comentario acerca de lo visto en clase" required />
       </p>
+      <p className="Textfield">
+        <label className="Textfield__Label">Fecha de entrega</label>
+        <input type="date" className="Textfield__Input Input--Full" name="date" id="date" onChange={handleChange} placeholder="Elige una fecha" required />
+      </p>
       <fieldset className="AvatarSelector">
         <legend>Elige un tipo de entrega</legend>
         <div>
@@ -50,7 +54,7 @@ const CreateActivityForm = () => {
             <FontAwesomeIcon icon={faCircleNotch} className="Loading" />
             <span>Creando la actividad</span>
           </button> :
-          <button type="submit" className="Button Button--Icon Button--Success width--full" disabled={(!data.title || !data.description || !data.submitType)}>
+          <button type="submit" className="Button Button--Icon Button--Success width--full" disabled={(!data.title || !data.description || !data.submitType || !data.date)}>
             <FontAwesomeIcon icon={faSave} />
             <span>Guardar cambios</span>
           </button>
