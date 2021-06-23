@@ -30,6 +30,10 @@ const EditActivityForm = ({ activity }) => {
         <label className="Textfield__Label" htmlFor="description">Descripción de la actividad</label>
         <textarea defaultValue={activity.description} columns="80" rows="10" name="description" id="description" className="Textfield__Input Input--Full" onChange={handleChange} placeholder="Pongan un comentario acerca de lo visto en clase" required />
       </p>
+      <p className="Textfield">
+        <label className="Textfield__Label" htmlFor="date">Fecha de entrega</label>
+        <input type="date" defaultValue={activity.date} className="Textfield__Input Input--Full" name="date" id="date" onChange={handleChange} required />
+      </p>
       <fieldset className="AvatarSelector">
         <legend>Elige un tipo de entrega</legend>
         <div>
@@ -47,7 +51,7 @@ const EditActivityForm = ({ activity }) => {
             <FontAwesomeIcon icon={faCircleNotch} className="Loading" />
             <span>Creando la actividad</span>
           </button> :
-          <button type="submit" className="Button Button--Icon Button--Success width--full" disabled={(!data.title || !data.description || !data.submitType)}>
+          <button type="submit" className="Button Button--Icon Button--Success width--full" disabled={(!data.title || !data.description || !data.submitType || !data.date)}>
             <FontAwesomeIcon icon={faSave} />
             <span>Guardar cambios</span>
           </button>
