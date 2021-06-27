@@ -9,7 +9,6 @@ const Admin = ({ children }) => {
 
   const revealSideNav = () => {
     sidenavRef.current.classList.toggle('AdminLayout__Sidenav--Active');
-    console.log(sidenavRef.current.classList);
   }
 
   return (

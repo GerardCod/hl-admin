@@ -1,8 +1,8 @@
 import React, { createContext, useCallback, useReducer, useRef } from "react";
 import BooksReducer, { initialState } from "../reducers/BooksReducer";
-import { firestore } from '../services/Firebase';
+import { firestore, storage } from '../services/Firebase';
 import { collectIdAndData } from '../utils';
-import { ERROR, FETCH_DOCUMENTS, LOADING } from '../reducers/Actions';
+import { ERROR, FETCH_DOCUMENTS, LOADING, RESPONSE_SUCCESS } from '../reducers/Actions';
 
 export const BooksContext = createContext();
 
@@ -23,7 +23,22 @@ const BooksProvider = ({children}) => {
     );
   }, []);
 
-  const childProps = {state, fetchDocuments};
+  const uploadBook = useCallback(async (data, file, {onSuccess, onError}) => {
+    dispatch({type: LOADING});
+    try {
+      const response = await storage.ref().child('books').child(`book-${Date.now()}`).put(file);
+      const url = await response.ref.getDownloadURL();
+      data.url = url;
+      await firestore.collection('books').add(data);
+      dispatch({type: RESPONSE_SUCCESS});
+      onSuccess('Libro subido exitosamente');
+    } catch (error) {
+      dispatch({type: ERROR, payload: error.message});
+      onError(error.message);
+    }
+  }, []);
+
+  const childProps = {state, fetchDocuments, uploadBook};
 
   return (
     <BooksContext.Provider value={childProps}>

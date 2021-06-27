@@ -8,12 +8,14 @@ const PodcastProvider = React.lazy(() => import('../contexts/PodcastContext'));
 const AccountProvider = React.lazy(() => import('../contexts/AccountContext'));
 const AvatarProvider = React.lazy(() => import('../contexts/AvatarContext'));
 const ActivityProvider = React.lazy(() => import('../contexts/ActivityContext'));
+const BooksProvider = React.lazy(() => import('../contexts/BooksContext'));
 
 //Containers
 const VideosContainer = React.lazy(() => import('./VideosContainer'));
 const PodcastsContainer = React.lazy(() => import('./PodcastsContainer'));
 const AccountsContainer = React.lazy(() => import('./AccountsContainer'));
 const ActivitiesContainer = React.lazy(() => import('./ActivitiesContainer'));
+const BooksContainer = React.lazy(() => import('./BooksContainer'));
 
 const AdminRouter = () => (
   <Admin>
@@ -32,6 +34,9 @@ const AdminRouter = () => (
       <ActivityProvider>
         <Route path="/admin/activities" component={ActivitiesContainer} />
       </ActivityProvider>
+      <BooksProvider>
+        <Route path="/admin/books" component={BooksContainer} />
+      </BooksProvider>
     </Suspense>
   </Admin>
 )
