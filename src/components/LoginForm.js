@@ -25,7 +25,7 @@ const LoginForm = () => {
   return (
     <form className="LoginForm flex flex--column f-justify--evenly" onSubmit={handleSubmit}>
       {
-        state.user && <Redirect to="/admin/accounts" />
+        state.user && <Redirect to="/admin/activities" />
       }
       <figure className="f-self-align--center Lady">
         <img src={logo} alt="platform_logo" />
