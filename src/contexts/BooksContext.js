@@ -10,15 +10,16 @@ const BooksProvider = ({children}) => {
   const [state, dispatch] = useReducer(BooksReducer, initialState);
   const listenerRef = useRef({});
 
-  const fetchDocuments = useCallback(() => {
+  const fetchDocuments = useCallback(({onError}) => {
     dispatch({type: LOADING});
     listenerRef.current = firestore.collection('books').onSnapshot(
       snapshot => {
-        const docs = collectIdAndData(snapshot);
+        const docs = snapshot.docs.map(collectIdAndData);
         dispatch({type: FETCH_DOCUMENTS, payload: docs});
       },
       error => {
         dispatch({type: ERROR, payload: error.message});
+        onError(error.message);
       }
     );
   }, []);
@@ -38,7 +39,7 @@ const BooksProvider = ({children}) => {
     }
   }, []);
 
-  const childProps = {state, fetchDocuments, uploadBook};
+  const childProps = {state, fetchDocuments, uploadBook, listenerRef};
 
   return (
     <BooksContext.Provider value={childProps}>
