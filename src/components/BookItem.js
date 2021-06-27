@@ -1,15 +1,29 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Fragment } from 'react-is';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBook, faEye, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { useRouteMatch } from 'react-router';
 import { Link } from 'react-router-dom'
+import { BooksContext } from '../contexts/BooksContext';
+import { onError, onSuccess } from '../utils';
+import swal from 'sweetalert';
 
 const BookItem = ({ title, id }) => {
   let { path } = useRouteMatch();
+  const { deleteBook } = useContext(BooksContext);
 
   const handleDelete = () => {
-    console.log('Deleting the item');
+    swal({
+      title: '¿Realmente desea eliminar este libro?',
+      text: 'Luego de eliminarlo, el libro ya no estará disponible',
+      icon: 'warning',
+      buttons: ['Cancelar', 'Eliminar'],
+      dangerMode: true
+    }).then(willDelete => {
+      if (willDelete) {
+        deleteBook(id, {onSuccess, onError});
+      }
+    });
   }
 
   return (

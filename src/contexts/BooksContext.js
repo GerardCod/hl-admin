@@ -69,13 +69,25 @@ const BooksProvider = ({ children }) => {
     }
   }, []);
 
+  const deleteBook = useCallback(async (id, {onSuccess, onError}) => {
+    dispatch({type: LOADING});
+    try {
+      await firestore.doc(`books/${id}`).delete();
+      dispatch({type: RESPONSE_SUCCESS});
+      onSuccess('Libro eliminado exitosamente');
+    } catch (error) {
+      dispatch({type: ERROR, payload: error.message});
+      onError(error.message);
+    }
+  }, []);
+
   const uploadFile = async (file) => {
     const response = await storage.ref().child('books').child(`book-${Date.now()}`).put(file);
     const url = await response.ref.getDownloadURL();
     return url;
   }
 
-  const childProps = { state, fetchDocuments, uploadBook, listenerRef, getBook, bookRef, editBook };
+  const childProps = { state, fetchDocuments, uploadBook, listenerRef, getBook, bookRef, editBook, deleteBook };
 
   return (
     <BooksContext.Provider value={childProps}>
