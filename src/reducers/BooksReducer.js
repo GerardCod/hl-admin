@@ -16,6 +16,7 @@ const BooksReducer = (state, action) => {
     LOADING: {...state, loading: true, error: null},
     RESPONSE_SUCCESS: {...state, loading: false,},
     FETCH_DOCUMENTS: {...state, loading: false, books: action.payload},
+    DOCUMENT_FOUND: {...state, loading: false, bookSelected: action.payload},
     ERROR: {...state, loading: false, error: action.payload}
   }
 
