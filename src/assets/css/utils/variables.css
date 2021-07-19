@@ -25,4 +25,10 @@
 
   /* variables related to font */
   --input-font-size: 1.4vmax;
+  --comment-message: 1.5vmax;
+  --comment-date: 1vmax;
+
+  /* variables related to sizes */
+  --comment-avatar: 6vmax;
+  --watch-avatar: 4vmax;
 }

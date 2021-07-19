@@ -51,6 +51,12 @@
   align-self: flex-end;
 }
 
+/* Classes related to css grid */
+.grid {
+  display: grid;
+}
+
+
 /* Classes related to cursors */
 
 .cursor--pointer {

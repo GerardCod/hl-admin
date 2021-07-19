@@ -7,6 +7,8 @@ import AudioPlayer from '../components/AudioPlayer';
 import Back from '../components/Back';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
+import Comment from '../components/Comment';
+import Watch from '../components/Watch';
 
 const PodcastDetailsPage = () => {
   const { getPodcastById, state: { podcastSelected }, podcastRef } = useContext(PodcastContext);
@@ -42,12 +44,20 @@ const PodcastDetailsPage = () => {
                 <FontAwesomeIcon icon={faEye} />
                 <span>Ver reproducciones</span>
               </button>
-              <section>
+              <section className="Podcast__Comments">
                 <h2>Comentarios</h2>
+                {
+                  (podcastSelected.comments.length > 0) &&
+                  podcastSelected.comments.map((comment, idx) => <Comment {...comment} key={`comment-${idx}`} />)
+                }
               </section>
             </div>
             <aside className="Views" ref={playsRef}>
-              <h3>Escuchado por</h3>
+              <h3>Escuchado por {podcastSelected.heardBy.length} personas</h3>
+              {
+                podcastSelected.heardBy.length > 0 &&
+                podcastSelected.heardBy.map((hear, idx) => <Watch {...hear} key={`heard-${idx}`} />)
+              }
             </aside>
           </div>
           :
