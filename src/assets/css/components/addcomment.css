@@ -1,0 +1,33 @@
+.AddComment {
+  grid-template-columns: 1fr 8%;
+  grid-template-rows: 1fr;
+  border: 2px solid var(--border-color);
+  margin: .5rem 0;
+}
+
+.AddComment--Round {
+  border-top-left-radius: 5% 50%;
+  border-top-right-radius: 5% 50%;
+  border-bottom-left-radius: 5% 50%;
+  border-bottom-right-radius: 5% 50%;
+  overflow: hidden;
+}
+
+.AddComment > * {
+  padding: .5rem;
+}
+
+@media screen and (min-width: 768px) {
+  .AddComment--Round {
+    border-top-left-radius: 2.5% 50%;
+    border-top-right-radius: 2.5% 50%;
+    border-bottom-left-radius: 2.5% 50%;
+    border-bottom-right-radius: 2.5% 50%;
+  }
+
+  .AddComment {
+    grid-template-columns: 1fr 6%;
+  }
+}
+
+

@@ -74,7 +74,34 @@ const PodcastProvider = ({children}) => {
     } 
   }, []);
 
-  const childProps = {fetchPodcasts, state, listenerRef, uploadPodcast, getPodcastById, podcastRef, editPodcast, removePodcast}
+  const addComment = useCallback(async (podcast, comment, {onSuccess, onError}) => {
+    dispatch({type: LOADING});
+    try {
+      if (!podcast.comments) {
+        podcast.comments = [];
+      }
+
+      podcast.comments.push(comment);
+      await firestore.doc(`podcasts/${podcast.id}`).update(podcast);
+      dispatch({type: RESPONSE_SUCCESS});
+      onSuccess('Se ha agregado tu comentario');
+    } catch (error) {
+      onError(error.message);
+      dispatch({type: ERROR, payload: error.message});
+    }
+  }, []);
+
+  const childProps = {
+    fetchPodcasts, 
+    state, 
+    listenerRef, 
+    uploadPodcast, 
+    getPodcastById, 
+    podcastRef, 
+    editPodcast, 
+    removePodcast,
+    addComment
+  }
 
   return (
     <PodcastContext.Provider value={childProps}>
