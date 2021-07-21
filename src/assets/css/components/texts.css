@@ -9,3 +9,7 @@
   font-weight: bolder;
   margin-bottom: 1rem;
 }
+
+.Text--bold {
+  font-weight: bold;
+}

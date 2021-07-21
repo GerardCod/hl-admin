@@ -46,3 +46,17 @@ export const userRoles = [
     slugName: 'D'
   }
 ];
+
+export const createComment = (comment, user) => {
+  const today = new Date();
+  comment = comment.trim();
+  return {
+    user: {
+      name: user.name,
+      avatar: user.avatar
+    },
+    comment,
+    postDate: today.toLocaleDateString('es-MX'),
+    postTime: today.toLocaleTimeString('es-MX')
+  }
+}

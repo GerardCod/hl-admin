@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 import Comment from '../components/Comment';
 import Watch from '../components/Watch';
+import AddComment from '../components/AddComment';
 
 const PodcastDetailsPage = () => {
   const { getPodcastById, state: { podcastSelected }, podcastRef } = useContext(PodcastContext);
@@ -46,6 +47,7 @@ const PodcastDetailsPage = () => {
               </button>
               <section className="Podcast__Comments">
                 <h2>Comentarios</h2>
+                <AddComment podcast={podcastSelected} />
                 {
                   (podcastSelected.comments.length > 0) &&
                   podcastSelected.comments.map((comment, idx) => <Comment {...comment} key={`comment-${idx}`} />)
