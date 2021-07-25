@@ -10,9 +10,12 @@ import { faEye } from '@fortawesome/free-solid-svg-icons';
 import Comment from '../components/Comment';
 import Watch from '../components/Watch';
 import AddComment from '../components/AddComment';
+import { AuthContext } from '../contexts/AuthContext';
+import { createComment, onError, onSuccess } from '../utils';
 
 const PodcastDetailsPage = () => {
-  const { getPodcastById, state: { podcastSelected }, podcastRef } = useContext(PodcastContext);
+  const { getPodcastById, state: { podcastSelected }, podcastRef, addComment } = useContext(PodcastContext);
+  const { fetchUserData } = useContext(AuthContext);
   let { id } = useParams();
   const playsRef = useRef({});
 
@@ -30,7 +33,12 @@ const PodcastDetailsPage = () => {
     }
   }, [podcastRef, getPodcastById, id]);
 
-  console.log(id);
+  const submitPodcastComment = ({comment}) => {
+    const user = fetchUserData();
+    const newComment = createComment(comment, user);
+    addComment(podcastSelected, newComment, {onSuccess, onError});
+  }
+
   return (
     <Fragment>
       <Back urlBack="/admin/podcasts" />
@@ -47,7 +55,7 @@ const PodcastDetailsPage = () => {
               </button>
               <section className="Podcast__Comments">
                 <h2>Comentarios</h2>
-                <AddComment podcast={podcastSelected} />
+                <AddComment submitComment={submitPodcastComment} />
                 {
                   (podcastSelected.comments.length > 0) &&
                   podcastSelected.comments.map((comment, idx) => <Comment {...comment} key={`comment-${idx}`} />)

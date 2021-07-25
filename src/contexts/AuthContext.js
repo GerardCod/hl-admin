@@ -67,6 +67,7 @@ const AuthProvider = ({children}) => {
   const fetchUserData = useCallback(() => {
     const user = JSON.parse(localStorage.getItem('user'));
     dispatch({type: USER_FOUND, payload: user});
+    return user;
   }, []);
 
   const verifyEmailCode = useCallback(async (code, {onError}) => {
