@@ -6,9 +6,14 @@ import { VideoContext } from '../contexts/VideoContext';
 import swal from 'sweetalert';
 import VideoPlayer from '../components/VideoPlayer';
 import Back from '../components/Back';
+import Comment from '../components/Comment';
+import AddComment from '../components/AddComment';
+import { AuthContext } from '../contexts/AuthContext';
+import { createComment, onError, onSuccess } from '../utils';
 
 const VideoDetailsPage = () => {
-  const { getAndObserveVideo, state: { videoSelected }, videoListenerRef } = useContext(VideoContext);
+  const { getAndObserveVideo, state: { videoSelected }, videoListenerRef, addComment } = useContext(VideoContext);
+  const { fetchUserData } = useContext(AuthContext);
   const { id } = useParams();
   const viewsRef = useRef({});
 
@@ -32,6 +37,12 @@ const VideoDetailsPage = () => {
     viewsRef.current.classList.toggle('Views--Active');
   }
 
+  const submitVideoComment = ({comment}) => {
+    const user = fetchUserData();
+    const newComment = createComment(comment, user);
+    addComment(videoSelected, newComment, {onSuccess, onError});
+  }
+
   return (
     <Fragment>
       <Back urlBack="/admin/videos" />
@@ -51,6 +62,11 @@ const VideoDetailsPage = () => {
               </section>
               <section>
                 <h2>Comentarios</h2>
+                <AddComment submitComment={submitVideoComment} />
+                {
+                  (videoSelected.comments && videoSelected.comments.length > 0) &&
+                  videoSelected.comments.map((comment, idx) => <Comment {...comment} key={`video-comment: ${idx}`} />)
+                }
               </section>
             </div>
             <aside ref={viewsRef} className="Views">

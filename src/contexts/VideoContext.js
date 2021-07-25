@@ -79,7 +79,35 @@ const VideoProvider = ({children}) => {
     }
   }, []);
 
-  const propsChildren = { state, uploadVideo, fetchVideos, listenerRef, getVideo, editVideo, getAndObserveVideo, videoListenerRef, removeVideo};
+  const addComment = useCallback(async (video, comment, {onSuccess, onError}) => {
+    dispatch({type: LOADING});
+    try {
+      if (!video.comments) {
+        video.comments = [];
+      }
+
+      video.comments.push(comment);
+      await firestore.doc(`videos/${video.id}`).update(video);
+      dispatch({type: RESPONSE_SUCCESS});
+      onSuccess('Tu comentario ha sido agregado');
+    } catch (error) {
+      dispatch({type: ERROR, payload: error.message});
+      onError(error.message);
+    }
+  },[]);
+
+  const propsChildren = { 
+    state, 
+    listenerRef, 
+    videoListenerRef, 
+    uploadVideo, 
+    fetchVideos, 
+    getVideo, 
+    editVideo, 
+    getAndObserveVideo, 
+    removeVideo,
+    addComment,
+  };
    
 
   return (

@@ -1,14 +1,9 @@
-import React, { Fragment, useContext, useRef, useState } from 'react'
+import React, { Fragment, useRef, useState } from 'react'
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { AuthContext } from '../contexts/AuthContext'
-import { PodcastContext } from '../contexts/PodcastContext'
-import { createComment, onError, onSuccess } from '../utils'
 
-const AddComment = ({podcast}) => {
+const AddComment = ({submitComment}) => {
   const [data, setData] = useState({comment: ''}); 
-  const { fetchUserData, state } = useContext(AuthContext);
-  const { addComment } = useContext(PodcastContext);
   const formRef = useRef({});
 
   const handleChange = e => {
@@ -20,9 +15,8 @@ const AddComment = ({podcast}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetchUserData();
-    const comment = createComment(data.comment, state.user);
-    addComment(podcast, comment, { onSuccess, onError });
+    data.comment = data.comment.trimRight();
+    submitComment(data);
     setData({comment: ''});
     formRef.current.reset();
   }
