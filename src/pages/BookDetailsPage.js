@@ -29,6 +29,7 @@ const BookDetailsPage = () => {
               <a href={state.bookSelected.url} target="_blank">{state.bookSelected.title}</a>
             </h1>
             <p>{state.bookSelected.description}</p>
+            <iframe src={state.bookSelected.url} title={state.bookSelected.title} className="BookViewer"></iframe>
           </main> :
           <Loader text="Cargando libro" />
       }
