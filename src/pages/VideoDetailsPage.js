@@ -10,6 +10,7 @@ import Comment from '../components/Comment';
 import AddComment from '../components/AddComment';
 import { AuthContext } from '../contexts/AuthContext';
 import { createComment, onError, onSuccess } from '../utils';
+import Watch from '../components/Watch';
 
 const VideoDetailsPage = () => {
   const { getAndObserveVideo, state: { videoSelected }, videoListenerRef, addComment } = useContext(VideoContext);
@@ -71,6 +72,12 @@ const VideoDetailsPage = () => {
             </div>
             <aside ref={viewsRef} className="Views">
               <h2>Visto por</h2>
+              {
+                (
+                  (videoSelected.views && videoSelected.views.length > 0) &&
+                  videoSelected.views.map((view, idx) => <Watch {...view} key={`video-view: ${idx}`} />)
+                )
+              }
             </aside>
           </div> :
           <FontAwesomeIcon icon={faCircleNotch} className="Loading" />
