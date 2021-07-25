@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const AddComment = ({submitComment}) => {
   const [data, setData] = useState({comment: ''}); 
+
   const formRef = useRef({});
 
   const handleChange = e => {
