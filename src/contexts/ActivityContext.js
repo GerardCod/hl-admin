@@ -14,6 +14,9 @@ const ActivityProvider = ({children}) => {
   const createActivity = useCallback(async (data, {onSuccess, onError}) => {
     dispatch({type: LOADING});
     try {
+      const today = new Date();
+      data.postDate = today.toLocaleDateString('es-MX');
+      data.postTime = today.toLocaleTimeString('es-MX');
       await firestore.collection('activities').add(data);
       dispatch({type: RESPONSE_SUCCESS});
       onSuccess('Actividad creada exitosamente');
@@ -75,7 +78,34 @@ const ActivityProvider = ({children}) => {
     }
   }, []);
 
-  const childrenProps = { state, createActivity, fetchActivities, listenerRef, activityDetails, editActivity, deleteActivity };
+  const addCommentToSubmit = useCallback(async ({activity, submit, comment}, {onError}) => {
+    dispatch({type: LOADING});
+    try {
+      if (!submit.comments) {
+        submit.comments = [];
+      }
+
+      submit.comments.push(comment);
+      const submitsFiltered = activity.submits.filter(e => e.user.email !== submit.user.email);
+      activity.submits = [...submitsFiltered, submit];
+      await firestore.doc(`activities/${activity.id}`).update(activity);
+      dispatch({type: RESPONSE_SUCCESS});
+    } catch (error) {
+      dispatch({type: ERROR, payload: error.message});
+      onError(error.message);
+    }
+  }, []);
+
+  const childrenProps = { 
+    state, 
+    listenerRef,
+    createActivity,
+    fetchActivities,
+    activityDetails,
+    editActivity,
+    deleteActivity,
+    addCommentToSubmit,
+  };
 
   return (
     <ActivityContext.Provider value={childrenProps}>

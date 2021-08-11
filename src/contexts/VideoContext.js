@@ -17,7 +17,9 @@ const VideoProvider = ({children}) => {
       const response = await storage.ref().child('videos').child(`video-${Date.now()}`).put(file);
       const url = await response.ref.getDownloadURL();
       video.url = url;
-      video.createdAt = Date.now();
+      const today = new Date();
+      video.postDate = today.toLocaleDateString('es-MX');
+      video.postTime = today.toLocaleTimeString('es-MX');
       await firestore.collection('videos').add(video);
       dispatch({type: RESPONSE_SUCCESS});
     } catch(e) {
@@ -29,7 +31,7 @@ const VideoProvider = ({children}) => {
   const fetchVideos = useCallback(() => {
     dispatch({type: LOADING});
     listenerRef.current = firestore.collection('videos').onSnapshot(snapshot => {
-      const videos = snapshot.docs.map(collectIdAndData).sort((a, b) => a.createdAt - b.createdAt);
+      const videos = snapshot.docs.map(collectIdAndData);
       dispatch({type: FETCH_VIDEOS_SUCCESS, payload: videos});
     });
   }, []);

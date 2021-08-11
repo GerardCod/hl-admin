@@ -17,7 +17,7 @@ const EditActivityPage = () => {
     return () => {
       subscriber();
     }
-  }, []);
+  }, [activityDetails, listenerRef, id]);
 
   return (
     <Fragment>

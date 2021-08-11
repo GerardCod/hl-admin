@@ -13,7 +13,7 @@ const ChangePasswordPage = () => {
 
   useEffect(() => {
     verifyEmailCode(query.get('oobCode'), { onError });
-  }, [verifyEmailCode])
+  }, [verifyEmailCode, query])
 
   return (
     <div className="width--full height--fullscreen back--gradient-blue flex f-justify--center f-align--center">

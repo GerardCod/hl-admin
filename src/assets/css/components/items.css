@@ -4,6 +4,7 @@
   border: 1px solid var(--border-color);
   border-radius: 8px;
   justify-content: space-between;
+  margin-bottom: 1rem;
 }
 
 .ListItem__Icon {
