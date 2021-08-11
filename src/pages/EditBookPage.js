@@ -17,7 +17,7 @@ const EditBookPage = () => {
     return () => {
       subscriber();
     }
-  }, []);
+  }, [id, getBook, bookRef]);
 
   return (
     <Fragment>

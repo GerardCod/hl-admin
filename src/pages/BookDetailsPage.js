@@ -16,7 +16,7 @@ const BookDetailsPage = () => {
     return () => {
       subscriber();
     }
-  }, []);
+  }, [id, getBook, bookRef]);
 
   return (
     <Fragment>
@@ -26,7 +26,7 @@ const BookDetailsPage = () => {
         state.bookSelected ?
           <main>
             <h1>
-              <a href={state.bookSelected.url} target="_blank">{state.bookSelected.title}</a>
+              <a href={state.bookSelected.url} target="_blank" rel="noreferrer">{state.bookSelected.title}</a>
             </h1>
             <p>{state.bookSelected.description}</p>
             <iframe src={state.bookSelected.url} title={state.bookSelected.title} className="BookViewer"></iframe>

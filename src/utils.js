@@ -53,7 +53,8 @@ export const createComment = (comment, user) => {
   return {
     user: {
       name: user.name,
-      avatar: user.avatar
+      avatar: user.avatar,
+      email: user.email,
     },
     comment,
     postDate: today.toLocaleDateString('es-MX'),

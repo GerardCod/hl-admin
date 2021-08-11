@@ -30,6 +30,9 @@ const BooksProvider = ({ children }) => {
     try {
       const url = await uploadFile(file);
       data.url = url;
+      const today = new Date();
+      data.postDate = today.toLocaleDateString('es-MX');
+      data.postTime = today.toLocaleTimeString('es-MX');
       await firestore.collection('books').add(data);
       dispatch({ type: RESPONSE_SUCCESS });
       onSuccess('Libro subido exitosamente');
