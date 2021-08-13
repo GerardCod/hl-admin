@@ -7,9 +7,12 @@ import { AuthContext } from '../contexts/AuthContext';
 
 import AddComment from './AddComment';
 import SubmitItem from './SubmitItem';
+import { useRef } from 'react';
 
 const Submit = ({ submit, uploadComment }) => {
   const { fetchUserData } = useContext(AuthContext);
+  const contentRef = useRef({});
+
 
   const submitComment = ({ comment }) => {
     const newComment = createComment(comment, fetchUserData());
@@ -25,8 +28,10 @@ const Submit = ({ submit, uploadComment }) => {
           <h4>{submit.user.name}</h4>
         </AccordionSummary>
         <AccordionDetails>
-          <div className="flex flex--column width--full">
+          <div className="flex flex--column width--full" ref={contentRef}>
             {
+              (submit.submit.activityComment) ?
+              <p>{submit.submit.activityComment}</p> :
               (submit.submit.evidences && submit.submit.evidences.length > 0) &&
               submit.submit.evidences.map((e, idx) => <SubmitItem file={e} key={`evidence-file-${idx}`} />)
             }

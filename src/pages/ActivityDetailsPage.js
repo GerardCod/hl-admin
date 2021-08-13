@@ -36,7 +36,9 @@ const ActivityDetailsPage = () => {
                 <h2>Entregas</h2>
                 {
                   (state.activitySelected.submits && state.activitySelected.submits.length > 0) ?
-                    state.activitySelected.submits.map((e, idx) => <Submit submit={e} uploadComment={processComment(state.activitySelected, e)} key={`submit-${idx}`} />) :
+                    state.activitySelected.submits.map((e, idx) => {
+                      return <Submit submit={e} uploadComment={processComment(state.activitySelected, e)} key={`submit-${idx}`} />                      
+                    }) :
                     <p>No hay entregas de los alumnos aún.</p>
                 }
               </section>
