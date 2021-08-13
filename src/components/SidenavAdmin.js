@@ -1,4 +1,4 @@
-import { faVideo, faSignOutAlt, faPodcast, faUser, faFile, faBook } from '@fortawesome/free-solid-svg-icons';
+import { faVideo, faSignOutAlt, faPodcast, faUser, faFile, faBook, faClipboardList } from '@fortawesome/free-solid-svg-icons';
 import React, { useContext, useEffect } from 'react';
 import SideNavLink from './SideNavLink';
 import SideLink from './SideLink';
@@ -24,6 +24,7 @@ const SidenavAdmin = () => {
       <section className="Sidenav__Section flex flex--column">
         <h3 className="Sidenav__SectionTitle Text--white">Gestión</h3>
         <SideNavLink url="/admin/activities" icon={faFile} text="Actividades" />
+        <SideNavLink url="/admin/assessments" icon={faClipboardList} text="Evaluaciones" />
         <SideNavLink url="/admin/accounts" icon={faUser} text="Usuarios" />
         <SideNavLink url="/admin/videos" icon={faVideo} text="Videos" />
         <SideNavLink url="/admin/podcasts" icon={faPodcast} text="Podcasts" />

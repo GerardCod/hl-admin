@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const useForm = (initialState) => {
+const useForm = (initialState, submitHandler) => {
   const [state, setState] = useState(initialState);
 
   const handleChange = e => {
@@ -10,7 +10,12 @@ const useForm = (initialState) => {
     });
   }
 
-  return [state, handleChange];
+  const handleSubmit = e => {
+    e.preventDefault();
+    submitHandler(data);
+  }
+
+  return [state, handleChange, handleSubmit];
 }
 
 export default useForm;
