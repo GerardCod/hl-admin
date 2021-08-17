@@ -5,6 +5,17 @@
   padding: 1rem 8vmin;
 }
 
+.QuestionForm {
+  border: 1.5px solid var(--border-color);
+  padding: .8rem;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+}
+
+.AnswerInput {
+  width: 75% !important;
+}
+
 @media screen and (max-width: 1024px) {
   .LoginForm {
     width: 50%;

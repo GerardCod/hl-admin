@@ -1,7 +1,7 @@
 import { createContext, useCallback, useReducer, useRef } from "react";
 import AssessmentReducer, { initialState } from '../reducers/AssessmentReducer';
 import { firestore } from '../services/Firebase';
-import { LOADING, FETCH_DOCUMENTS, ERROR } from '../reducers/Actions';
+import { LOADING, FETCH_DOCUMENTS, ERROR, RESPONSE_SUCCESS } from '../reducers/Actions';
 import { collectIdAndData } from '../utils';
  
 export const AssessmentContext = createContext();
@@ -24,10 +24,29 @@ const AssessmentProvider = ({ children }) => {
     ); 
   }, []);
 
+  const createAssessment = useCallback(async (assessment, {onSuccess, onError, final}) => {
+    dispatch({ type: LOADING });
+    try {
+      const today = new Date();
+      assessment.postDate = today.toLocaleDateString('es-MX');
+      assessment.postTime = today.toLocaleTimeString('es-MX');
+      await firestore.collection('assessments').add(assessment);
+      dispatch({ type: RESPONSE_SUCCESS });
+      onSuccess('Evaluación creada exitosamente');
+    } catch (error) {
+      dispatch({ type: ERROR, payload: error.message });
+      onError(error.message);
+    } finally {
+      localStorage.removeItem('assessment');
+      final(true);
+    }
+  }, []);
+
   const childProps = {
     state,
     collectionRef,
     fetchCollection,
+    createAssessment,
   }
 
   return (

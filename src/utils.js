@@ -1,4 +1,19 @@
 import swal from "sweetalert";
+import { makeStyles } from '@material-ui/core/styles';
+
+export const useStyles = makeStyles((theme) => ({
+  root: {
+    width: '100%',
+  },
+  button: {
+    marginRight: theme.spacing(1),
+  },
+  instructions: {
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1),
+  },
+}));
+
 
 export const collectIdAndData = (doc) => {
   const data = doc.data();
@@ -47,6 +62,21 @@ export const userRoles = [
   }
 ];
 
+export const assessmentTypes = [
+  {
+    name: 'Elige un tipo de evaluación',
+    value: '',
+  },
+  {
+    name: 'Enlace',
+    value: 'enlace'
+  },
+  {
+    name: 'Quiz',
+    value: 'quiz'
+  },
+]
+
 export const createComment = (comment, user) => {
   const today = new Date();
   comment = comment.trim();
@@ -60,4 +90,36 @@ export const createComment = (comment, user) => {
     postDate: today.toLocaleDateString('es-MX'),
     postTime: today.toLocaleTimeString('es-MX')
   }
+}
+
+export const questionInitialState = {
+  id: Date.now(),
+  question: '',
+  answers: [
+    {
+      id: Date.now(),
+      answer: '',
+    }
+  ],
+  correctAnswer: null,
+}
+
+export const assessmentInitialState = {
+  title: '',
+  instructions: '',
+  type: '',
+  link: '',
+  questions: [
+    {
+      id: Date.now(),
+      question: '',
+      answers: [
+        {
+          id: Date.now(),
+          answer: '',
+        }
+      ],
+      correctAnswer: null 
+    },
+  ],
 }
