@@ -2,6 +2,10 @@
   color: white;
 }
 
+.Text--orange {
+  color: var(--alert-color);
+}
+
 .Title {
   font-size: 18px;
   color: var(--title-color);

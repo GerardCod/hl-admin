@@ -8,6 +8,7 @@ import illustration from '../assets/videos.png';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import AssessmentItem from '../components/AssessmentItem';
 
 const AssessmentPage = () => {
   const { state, collectionRef, fetchCollection } = useContext(AssessmentContext);
@@ -34,7 +35,7 @@ const AssessmentPage = () => {
         state.loading ?
         <Loader text="Cargando evaluaciones" /> :
         (state.assessments && state.assessments.length > 0) ?
-        <p>Hay evaluaciones en la plataforma.</p> :
+        state.assessments.map(a => <AssessmentItem assessment={a} />) :
         <Illustration illustration={illustration} message="No hay evaluaciones en la plataforma." />
       }
     </Fragment>
