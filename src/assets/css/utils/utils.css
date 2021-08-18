@@ -31,6 +31,10 @@
   justify-content: center;
 }
 
+.content--start {
+  justify-content: start;
+}
+
 .f-justify--around {
   justify-content: space-around;
 }
@@ -41,6 +45,10 @@
 
 .f-align--center {
   align-items: center;
+}
+
+.items--start {
+  align-items: start
 }
 
 .f-self-align--center {
@@ -91,4 +99,10 @@
 
 .right--0 {
   right: 0;
+}
+
+/* Classes related to sizes */
+
+.width--full {
+  width: 100%;
 }

@@ -9,6 +9,7 @@ const AccountProvider = React.lazy(() => import('../contexts/AccountContext'));
 const AvatarProvider = React.lazy(() => import('../contexts/AvatarContext'));
 const ActivityProvider = React.lazy(() => import('../contexts/ActivityContext'));
 const BooksProvider = React.lazy(() => import('../contexts/BooksContext'));
+const AssessmentProvider = React.lazy(() => import('../contexts/AssessmentContext'));
 
 //Containers
 const VideosContainer = React.lazy(() => import('./VideosContainer'));
@@ -16,6 +17,7 @@ const PodcastsContainer = React.lazy(() => import('./PodcastsContainer'));
 const AccountsContainer = React.lazy(() => import('./AccountsContainer'));
 const ActivitiesContainer = React.lazy(() => import('./ActivitiesContainer'));
 const BooksContainer = React.lazy(() => import('./BooksContainer'));
+const AssessmentContainer = React.lazy(() => import('./AssessmentContainer'));
 
 const AdminRouter = () => (
   <Admin>
@@ -37,6 +39,9 @@ const AdminRouter = () => (
       <BooksProvider>
         <Route path="/admin/books" component={BooksContainer} />
       </BooksProvider>
+      <AssessmentProvider>
+        <Route path="/admin/assessments" component={AssessmentContainer} />
+      </AssessmentProvider>
     </Suspense>
   </Admin>
 )
