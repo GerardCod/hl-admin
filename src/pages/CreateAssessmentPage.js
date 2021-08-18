@@ -19,8 +19,16 @@ const CreateAssessmentPage = () => {
     localStorage.setItem('assessment', JSON.stringify(state));
   }, [state])
 
+  const verifyLink = () => {
+    return (state.type === 'enlace' && state.link);
+  }
+
+  const verifyQuestions = () => {
+    return (state.type === 'quiz' && state.questions[0].question);
+  }
+
   const uploadAssessment = async () => {
-    if (state.type === 'enlace' && state.link || state.type === 'quiz' && state.questions[0].question ) {
+    if (verifyLink() || verifyQuestions()) {
       await createAssessment(state, { onSuccess, onError, final: setRedirect });
     } else {
       onError('No has terminado de rellenar la evaluación');
