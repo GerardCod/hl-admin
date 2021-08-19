@@ -1,15 +1,15 @@
 import { Button, Step, StepLabel, Stepper } from '@material-ui/core';
 import React, { Fragment, useState, useEffect, useContext } from 'react';
 import Back from '../components/Back';
-import { onError, onSuccess, useStyles } from '../utils';
+import { assessmentInitialState, onError, onSuccess, useStyles } from '../utils';
 import CreateAssessmentForm from '../components/CreateAssessmentForm';
 import ContentAssessmentForm from '../components/ContentAssessmentForm';
-import { CreateAssessmentContext } from '../contexts/CreateAssessmentContext';
 import { AssessmentContext } from '../contexts/AssessmentContext';
 import { Redirect } from 'react-router-dom';
+import useAssessmentState from '../hooks/useAssessmentState';
 
 const CreateAssessmentPage = () => {
-  const { state, saveGeneralInfo, saveContent } = useContext(CreateAssessmentContext);
+  const { state, saveGeneralInfo, saveContent } = useAssessmentState(assessmentInitialState);
   const { createAssessment } = useContext(AssessmentContext);
   const [currentStep, setCurrentStep] = useState(0);
   const [redirect, setRedirect] = useState(false);

@@ -1,16 +1,17 @@
-import React, { useContext } from 'react';
-import { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import useForm from '../hooks/useForm';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSave } from '@fortawesome/free-solid-svg-icons';
+import { faSave, faTimes } from '@fortawesome/free-solid-svg-icons';
 import QuestionForm from './QuestionForm';
 import { Button } from '@material-ui/core';
 import { Add } from '@material-ui/icons';
-import { CreateAssessmentContext } from '../contexts/CreateAssessmentContext';
+import useAssessmentState from '../hooks/useAssessmentState';
+import PropTypes from 'prop-types';
 
-const ContentAssessmentForm = ({ assessmentState, handleSubmit }) => {
+const ContentAssessmentForm = ({ assessmentState, handleSubmit, update, cancel }) => {
   const [data, handleChange] = useForm(assessmentState);
-  const { addQuestion, saveQuestion } = useContext(CreateAssessmentContext);
+  const { addQuestion, saveQuestion, removeQuestion, state } = useAssessmentState(assessmentState);
+  const [editable, setEditable] = useState(Boolean(update));
 
   const submitData = e => {
     e.preventDefault();
@@ -20,37 +21,67 @@ const ContentAssessmentForm = ({ assessmentState, handleSubmit }) => {
   return (
     <Fragment>
       {
-        assessmentState.type === 'enlace' ?
+        state.type === 'enlace' ?
           <form className="Form--Upload flex flex--column" onSubmit={submitData}>
             <p className="Textfield">
               <label className="Textfield__Label" htmlFor="link">Enlace de la evaluación</label>
-              <input className="Textfield__Input Input--Full" type="text" name="link" id="link" onChange={handleChange} placeholder="https://somesite.com/efwfef951" required value={data.link} />
+              <input
+                className="Textfield__Input Input--Full" type="text" name="link" id="link"
+                onChange={handleChange} placeholder="https://somesite.com/efwfef951" required value={data.link}
+                disabled={editable} />
             </p>
-            <button type="submit" className="Button Button--Icon Button--Success width--full" disabled={(!data.link)}>
-              <FontAwesomeIcon icon={faSave} />
-              <span>Guardar cambios</span>
-            </button>
-          </form> :
-          (assessmentState.type === 'quiz') ?
-          <div>
-            <Button
-              variant="contained"
-              color="primary"
-              startIcon={<Add />}
-              onClick={addQuestion}
-            >
-              Agregar pregunta
-            </Button>
-            <br />
-            <br />
             {
-              assessmentState.questions.map((q, idx) => <QuestionForm questionState={q} key={`question-${idx}`} handleSubmit={saveQuestion} />)
+              !editable &&
+              <div className="flex">
+                <button type="submit" className="Button Button--Icon Button--Success" disabled={(!data.link)}>
+                  <FontAwesomeIcon icon={faSave} />
+                  <span>Guardar cambios</span>
+                </button>
+                {
+                  cancel &&
+                  <button type="button" className="Button Button--Icon ButtonOutlined--Success" onClick={() => { setEditable(true); }}>
+                    <FontAwesomeIcon icon={faTimes} />
+                    <span>Cancelar</span>
+                  </button>
+                }
+              </div>
             }
-          </div> :
-          <p>Elige un tipo de evaluación</p>
+            {
+              editable &&
+              <button type="button" className="Button Button--Icon ButtonOutlined--Success width--full" onClick={() => { setEditable(false); }}>
+                <FontAwesomeIcon icon={faSave} />
+                <span>Editar</span>
+              </button>
+            }
+          </form> :
+          (state.type === 'quiz') ?
+            <div>
+              <Button
+                variant="contained"
+                color="primary"
+                startIcon={<Add />}
+                onClick={addQuestion}
+              >
+                Agregar pregunta
+              </Button>
+              <br />
+              <br />
+              {
+                state.questions.map((q) => <QuestionForm questionState={q} key={`question-${q.id}`} handleSubmit={saveQuestion} handleRemoveQuestion={removeQuestion} />)
+              }
+            </div> :
+            <p>Elige un tipo de evaluación</p>
       }
     </Fragment>
   )
+}
+
+ContentAssessmentForm.propTypes = {
+  assessmentState: PropTypes.object.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  update: PropTypes.bool,
+  cancel: PropTypes.bool,
+  handleStateChanges: PropTypes.func,
 }
 
 export default ContentAssessmentForm;

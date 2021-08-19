@@ -1,33 +1,19 @@
 import { Button, IconButton, List, ListItem } from '@material-ui/core';
 import { Add, Close } from '@material-ui/icons';
-import React, { Fragment, useCallback, useReducer } from 'react';
-import QuestionReducer, { ADD_ANSWER, ANSWER_CONTENT, MARK_AS_CORRECT, REMOVE_ANSWER } from '../reducers/QuestionReducer';
+import React, { Fragment } from 'react';
 import AnswerInput from './AnswerInput';
-import { QUESTION_CONTENT } from '../reducers/QuestionReducer';
 import { onSuccess } from '../utils';
+import useQuestionState from '../hooks/useQuestionState';
 
-const QuestionForm = ({ questionState, handleSubmit }) => {
-  const [state, dispatch] = useReducer(QuestionReducer, questionState);
-
-  const newAnswer = useCallback(() => {
-    dispatch({ type: ADD_ANSWER, payload: {id: Date.now(), answer: '' }});
-  }, []);
-
-  const deleteAnswer = useCallback((answer) => {
-    dispatch({ type: REMOVE_ANSWER, payload: answer });
-  }, []);
-
-  const markAsCorrect = useCallback((answer) => {
-    dispatch({ type: MARK_AS_CORRECT, payload: answer });
-  }, []);
-
-  const handleChange = useCallback((e) => {
-    dispatch({ type: QUESTION_CONTENT, payload: e.target.value.trimLeft() });
-  }, []);
-
-  const handleAnswerChange = useCallback(answer => {
-    dispatch({type: ANSWER_CONTENT, payload: answer});
-  }, []);
+const QuestionForm = ({ questionState, handleSubmit, handleRemoveQuestion }) => {
+  const [
+    state,
+    addAnswer,
+    removeAnswer,
+    markAsCorrect,
+    handleChange,
+    handleAnswerChange,
+  ] = useQuestionState(questionState);
 
   const saveQuestion = e => {
     e.preventDefault();
@@ -35,10 +21,14 @@ const QuestionForm = ({ questionState, handleSubmit }) => {
     onSuccess('La pregunta ha sido guardada exitosamente');
   }
 
+  const removeQuestion = () => {
+    handleRemoveQuestion(state);
+  } 
+
   return (
     <Fragment>
       <form className="Form--Upload flex flex--column items--start QuestionForm" onSubmit={saveQuestion}>
-        <IconButton className="f-self-align--end">
+        <IconButton className="f-self-align--end" onClick={removeQuestion}>
           <Close />
         </IconButton>
         <p className="Textfield width--full">
@@ -60,14 +50,14 @@ const QuestionForm = ({ questionState, handleSubmit }) => {
           variant="contained"
           color="secondary"
           startIcon={ <Add /> }
-          onClick={newAnswer}
+          onClick={addAnswer}
         >
           Agregar respuesta
         </Button>
         <br />
         <br />
         {
-          state.answers.map((a, idx) => <AnswerInput key={`answer-${idx}`} answerState={a} deleteAnswer={deleteAnswer} markAsCorrect={markAsCorrect} handleChange={handleAnswerChange} />)
+          state.answers.map((a, idx) => <AnswerInput key={`answer-${idx}`} answerState={a} deleteAnswer={removeAnswer} markAsCorrect={markAsCorrect} handleChange={handleAnswerChange} />)
         }
         <button 
           type="submit" 

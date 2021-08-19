@@ -22,7 +22,7 @@ const AssessmentItem = ({ assessment }) => {
           </div>
         </div>
         <div className="flex f-justify--center f-align--center ListItem__Actions">
-          <Link to={`${path}/${assessment.id}`} className="cursor--pointer">
+          <Link to={`${path}/details/${assessment.id}`} className="cursor--pointer">
             <FontAwesomeIcon icon={faEye} className="Icon--Blue" />
           </Link>
           <FontAwesomeIcon icon={faTrash} className="Icon--Red cursor--pointer" onClick={handleDelete} />

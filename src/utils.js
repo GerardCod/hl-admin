@@ -93,7 +93,6 @@ export const createComment = (comment, user) => {
 }
 
 export const questionInitialState = {
-  id: Date.now(),
   question: '',
   answers: [
     {

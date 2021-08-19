@@ -9,7 +9,7 @@ const CreateAssessmentReducer = (state, action) => {
     SAVE_GENERAL_INFO: {...state, ...action.payload},
     SAVE_CONTENT: {...state, ...action.payload},
     ADD_QUESTION: {...state, questions: [...state.questions, action.payload]},
-    DELETE_QUESTION: {...state, questions: state.questions.filter(q => q.question !== action.payload.question)},
+    DELETE_QUESTION: {...state, questions: state.questions.filter(q => q.id !== action.payload.id)},
     SAVE_QUESTION: {...state, questions: state.questions.map(q => {
       if (q.id === action.payload.id) {
         q = action.payload;
