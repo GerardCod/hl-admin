@@ -1,14 +1,28 @@
 import { faClipboardList, faEye, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
+import React, { useContext } from 'react';
 import { Fragment } from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
+import swal from 'sweetalert';
+import { AssessmentContext } from '../contexts/AssessmentContext';
+import { onError, onSuccess } from '../utils';
 
 const AssessmentItem = ({ assessment }) => {
   const { path } = useRouteMatch('/admin/assessments');
+  const { removeAssessment } = useContext(AssessmentContext);
 
   const handleDelete = () => {
-    console.log(assessment);
+    swal({
+      title: '¿Realmente quieres eliminar esta evaluación?',
+      text: 'Luego de removerla, no volverá a estar disponible en la plataforma',
+      icon: 'warning',
+      buttons: ['Cancelar', 'Eliminar'],
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        removeAssessment(assessment, {onSuccess, onError})
+      }
+    });
   }
 
   return (

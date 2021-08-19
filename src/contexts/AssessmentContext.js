@@ -69,6 +69,18 @@ const AssessmentProvider = ({ children }) => {
     }
   }, []);
 
+  const removeAssessment = useCallback(async (data, {onSuccess, onError}) => {
+    dispatch({type: LOADING});
+    try {
+      await firestore.doc(`assessments/${data.id}`).delete();
+      dispatch({type: RESPONSE_SUCCESS});
+      onSuccess('La evaluación ha sido eliminada');
+    } catch (error) {
+      dispatch({type: ERROR, payload: error.message});
+      onError(error.message);
+    }
+  }, []);
+
   const childProps = {
     state,
     collectionRef,
@@ -77,6 +89,7 @@ const AssessmentProvider = ({ children }) => {
     createAssessment,
     fetchAssessment,
     updateAssessment,
+    removeAssessment,
   }
 
   return (
