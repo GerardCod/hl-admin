@@ -2,7 +2,7 @@ import React, { Fragment, useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Back from '../components/Back';
 import { AssessmentContext } from '../contexts/AssessmentContext';
-import { onError, onSuccess } from '../utils';
+import { onError, onSuccess, questionInitialState } from '../utils';
 import Loader from '../components/Loader';
 import { Tab, Tabs } from '@material-ui/core';
 import CreateAssessmentForm from '../components/CreateAssessmentForm';
@@ -28,6 +28,28 @@ const AssessmentDetails = () => {
 
   const submitData = data => {
     updateAssessment(data, {onSuccess, onError});
+  }
+
+  const addQuestion = () => {
+    const newQuestion = {id: Date.now(), ...questionInitialState};
+    const newState = {...state.assessmentSelected, questions: [...state.assessmentSelected.questions, newQuestion]};
+    updateAssessment(newState, {onSuccess, onError});
+  }
+
+  const removeQuestion = (question) => {
+    const newState = {...state.assessmentSelected, questions: state.assessmentSelected.questions.filter(q => q.id !== question.id)};
+    updateAssessment(newState, {onSuccess, onError});
+  } 
+
+  const saveQuestion = (question) => {
+    const newState = {...state.assessmentSelected, questions: state.assessmentSelected.questions.map(q => {
+      if (q.id === question.id) {
+        q = question;
+      }
+      return q;
+    })}
+
+    updateAssessment(newState, {onSuccess, onError});
   }
 
   return (
@@ -56,7 +78,13 @@ const AssessmentDetails = () => {
               </fieldset>
               <fieldset>
                 <legend>Contenido de la evaluación</legend>
-                <ContentAssessmentForm assessmentState={state.assessmentSelected} handleSubmit={submitData} update cancel handleStateChanges={submitData} />
+                <ContentAssessmentForm 
+                  assessmentState={state.assessmentSelected} 
+                  handleSubmit={submitData} update cancel 
+                  addQuestion={addQuestion}
+                  removeQuestion={removeQuestion}
+                  saveQuestion={saveQuestion}
+                />
               </fieldset>
             </div> :
             <div>

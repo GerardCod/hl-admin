@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import useForm from '../hooks/useForm';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSave, faTimes } from '@fortawesome/free-solid-svg-icons';
@@ -6,7 +6,6 @@ import QuestionForm from './QuestionForm';
 import { Button } from '@material-ui/core';
 import { Add } from '@material-ui/icons';
 import PropTypes from 'prop-types';
-import { CreateAssessmentContext } from '../contexts/CreateAssessmentContext';
 
 const ContentAssessmentForm = ({ assessmentState, handleSubmit, update, cancel, addQuestion, saveQuestion, removeQuestion }) => {
   const [data, handleChange] = useForm(assessmentState);
@@ -15,6 +14,7 @@ const ContentAssessmentForm = ({ assessmentState, handleSubmit, update, cancel, 
   const submitData = e => {
     e.preventDefault();
     handleSubmit(data);
+
   }
 
   return (
