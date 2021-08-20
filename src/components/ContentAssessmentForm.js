@@ -1,16 +1,15 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useContext, useState } from 'react';
 import useForm from '../hooks/useForm';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSave, faTimes } from '@fortawesome/free-solid-svg-icons';
 import QuestionForm from './QuestionForm';
 import { Button } from '@material-ui/core';
 import { Add } from '@material-ui/icons';
-import useAssessmentState from '../hooks/useAssessmentState';
 import PropTypes from 'prop-types';
+import { CreateAssessmentContext } from '../contexts/CreateAssessmentContext';
 
-const ContentAssessmentForm = ({ assessmentState, handleSubmit, update, cancel }) => {
+const ContentAssessmentForm = ({ assessmentState, handleSubmit, update, cancel, addQuestion, saveQuestion, removeQuestion }) => {
   const [data, handleChange] = useForm(assessmentState);
-  const { addQuestion, saveQuestion, removeQuestion, state } = useAssessmentState(assessmentState);
   const [editable, setEditable] = useState(Boolean(update));
 
   const submitData = e => {
@@ -21,7 +20,7 @@ const ContentAssessmentForm = ({ assessmentState, handleSubmit, update, cancel }
   return (
     <Fragment>
       {
-        state.type === 'enlace' ?
+        assessmentState.type === 'enlace' ?
           <form className="Form--Upload flex flex--column" onSubmit={submitData}>
             <p className="Textfield">
               <label className="Textfield__Label" htmlFor="link">Enlace de la evaluación</label>
@@ -54,7 +53,7 @@ const ContentAssessmentForm = ({ assessmentState, handleSubmit, update, cancel }
               </button>
             }
           </form> :
-          (state.type === 'quiz') ?
+          (assessmentState.type === 'quiz') ?
             <div>
               <Button
                 variant="contained"
@@ -67,7 +66,7 @@ const ContentAssessmentForm = ({ assessmentState, handleSubmit, update, cancel }
               <br />
               <br />
               {
-                state.questions.map((q) => <QuestionForm questionState={q} key={`question-${q.id}`} handleSubmit={saveQuestion} handleRemoveQuestion={removeQuestion} />)
+                assessmentState.questions.map((q) => <QuestionForm questionState={q} key={`question-${q.id}`} handleSubmit={saveQuestion} handleRemoveQuestion={removeQuestion} />)
               }
             </div> :
             <p>Elige un tipo de evaluación</p>
