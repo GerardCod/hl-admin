@@ -40,6 +40,12 @@
   background-color: var(--dark-success-color);
 }
 
+.ButtonOutlined--Success {
+  background-color: white;
+  color: var(--success-color);
+  border: 1px solid var(--success-color);
+}
+
 .Button--Icon {
   margin-right: 1rem;
 }

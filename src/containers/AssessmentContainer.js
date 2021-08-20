@@ -1,8 +1,10 @@
 import React from 'react';
-import { Route, Switch, useRouteMatch } from 'react-router';
-import CreateAssessmentProvider from '../contexts/CreateAssessmentContext';
+import { Route, useRouteMatch } from 'react-router';
+import AssessmentDetails from '../pages/AssessmentDetails';
 import AssessmentPage from '../pages/AssessmentsPage';
 import CreateAssessmentPage from '../pages/CreateAssessmentPage';
+import { Switch } from 'react-router-dom';
+import CreateAssessmentProvider from '../contexts/CreateAssessmentContext';
 
 const AssessmentContainer = () => {
   const { path } = useRouteMatch('/admin/assessments');
@@ -12,6 +14,7 @@ const AssessmentContainer = () => {
       <Route path={path} exact component={AssessmentPage} />
       <CreateAssessmentProvider>
         <Route path={`${path}/create`} component={CreateAssessmentPage} />
+        <Route path={`${path}/details/:id`} component={AssessmentDetails} />
       </CreateAssessmentProvider>
     </Switch>
   );

@@ -35,7 +35,7 @@ const AssessmentPage = () => {
         state.loading ?
         <Loader text="Cargando evaluaciones" /> :
         (state.assessments && state.assessments.length > 0) ?
-        state.assessments.map(a => <AssessmentItem assessment={a} />) :
+        state.assessments.map(a => <AssessmentItem assessment={a} key={`assessment-id:${a.id}`} />) :
         <Illustration illustration={illustration} message="No hay evaluaciones en la plataforma." />
       }
     </Fragment>

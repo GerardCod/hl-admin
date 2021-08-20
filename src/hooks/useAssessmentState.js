@@ -1,11 +1,9 @@
-import React, { createContext, useReducer, useCallback } from 'react';
+import { useReducer, useCallback } from 'react';
+import { questionInitialState } from '../utils';
 import CreateAssessmentReducer, { ADD_QUESTION, DELETE_QUESTION, SAVE_CONTENT, SAVE_GENERAL_INFO, SAVE_QUESTION } from '../reducers/CreateAssessmentReducer';
-import { assessmentInitialState, questionInitialState } from '../utils';
 
-export const CreateAssessmentContext = createContext();
-
-const CreateAssessmentProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(CreateAssessmentReducer, assessmentInitialState);
+const useAssessmentState = (assessmentState) => {
+  const [state, dispatch] = useReducer(CreateAssessmentReducer, assessmentState);
 
   const saveGeneralInfo = useCallback((info) => {
     dispatch({type: SAVE_GENERAL_INFO, payload: info});
@@ -28,8 +26,8 @@ const CreateAssessmentProvider = ({ children }) => {
   const saveQuestion = useCallback((question) => {
     dispatch({ type: SAVE_QUESTION, payload: question });
   }, []);
-  
-  const childProps = {
+
+  return {
     state,
     saveGeneralInfo,
     saveContent,
@@ -37,12 +35,6 @@ const CreateAssessmentProvider = ({ children }) => {
     removeQuestion,
     saveQuestion,
   }
-
-  return (
-    <CreateAssessmentContext.Provider value={childProps}>
-      { children }
-    </CreateAssessmentContext.Provider>
-  );
 }
 
-export default CreateAssessmentProvider;
+export default useAssessmentState;

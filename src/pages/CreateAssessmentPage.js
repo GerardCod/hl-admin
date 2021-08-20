@@ -4,12 +4,12 @@ import Back from '../components/Back';
 import { onError, onSuccess, useStyles } from '../utils';
 import CreateAssessmentForm from '../components/CreateAssessmentForm';
 import ContentAssessmentForm from '../components/ContentAssessmentForm';
-import { CreateAssessmentContext } from '../contexts/CreateAssessmentContext';
 import { AssessmentContext } from '../contexts/AssessmentContext';
 import { Redirect } from 'react-router-dom';
+import { CreateAssessmentContext } from '../contexts/CreateAssessmentContext';
 
 const CreateAssessmentPage = () => {
-  const { state, saveGeneralInfo, saveContent } = useContext(CreateAssessmentContext);
+  const { state, saveGeneralInfo, saveContent, addQuestion, removeQuestion, saveQuestion } = useContext(CreateAssessmentContext);
   const { createAssessment } = useContext(AssessmentContext);
   const [currentStep, setCurrentStep] = useState(0);
   const [redirect, setRedirect] = useState(false);
@@ -57,7 +57,13 @@ const CreateAssessmentPage = () => {
           <Button variant="contained" color="primary" onClick={() => { setCurrentStep(currentStep + 1); }} className={classes.button}>Siguiente</Button>
         </div> :
         <div>
-          <ContentAssessmentForm assessmentState={state} handleSubmit={saveContent} />
+          <ContentAssessmentForm 
+            assessmentState={state}
+            handleSubmit={saveContent}
+            addQuestion={addQuestion}
+            removeQuestion={removeQuestion}
+            saveQuestion={saveQuestion}
+          />
           <Button onClick={() => { setCurrentStep(currentStep - 1); }} className={classes.button}>Atrás</Button>
           <Button variant="contained" color="primary" className={classes.button} onClick={uploadAssessment}>Crear evaluación</Button>
           <br />
