@@ -9,11 +9,11 @@ import email from '../assets/email.png';
 
 const ChangePasswordPage = () => {
   const { state, verifyEmailCode } = useContext(AuthContext);
-  let query = useQueryParams();
+  const query = useQueryParams();
 
   useEffect(() => {
     verifyEmailCode(query.get('oobCode'), { onError });
-  }, [verifyEmailCode, query])
+  }, [verifyEmailCode])
 
   return (
     <div className="width--full height--fullscreen back--gradient-blue flex f-justify--center f-align--center">

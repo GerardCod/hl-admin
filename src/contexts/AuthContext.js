@@ -73,10 +73,12 @@ const AuthProvider = ({children}) => {
   const verifyEmailCode = useCallback(async (code, {onError}) => {
     dispatch({type: LOADING});
     try {
+      console.log('Executing reset password code verification');
       const response = await auth.verifyPasswordResetCode(code);
       const unvalid = isUnvalid(response);
       if (unvalid) {
         dispatch({type: RESET_STATUS, payload: unvalid});
+        throw new Error(unvalid);
       }
       dispatch({type: RESPONSE_SUCCESS});
     } catch (error) {
