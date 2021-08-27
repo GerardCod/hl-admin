@@ -7,6 +7,7 @@ import Loader from '../components/Loader';
 import { Tab, Tabs } from '@material-ui/core';
 import CreateAssessmentForm from '../components/CreateAssessmentForm';
 import ContentAssessmentForm from '../components/ContentAssessmentForm';
+import AssessmentSubmit from '../components/AssessmentSubmit';
 
 const AssessmentDetails = () => {
   const { id } = useParams();
@@ -89,6 +90,9 @@ const AssessmentDetails = () => {
             </div> :
             <div>
               <h2>Entregas</h2>
+              {
+                (state.assessmentSelected.submits && state.assessmentSelected.submits.length > 0) && state.assessmentSelected.submits.map((s, idx) => <AssessmentSubmit submit={s} type={state.assessmentSelected.type} key={`submit-id: ${idx}`} />)
+              }
             </div>
           }
         </div>:

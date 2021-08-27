@@ -17,3 +17,7 @@
 .Text--bold {
   font-weight: bold;
 }
+
+.Text--center {
+  text-align: center;
+}
