@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import { useLocation } from "react-router-dom";
 
 /**
@@ -5,7 +6,17 @@ import { useLocation } from "react-router-dom";
  * @returns string with query params in the path.
  */
 const useQueryParams = () => {
-  return new URLSearchParams(useLocation().search);
+  const location = useLocation();
+
+  const getParams = useCallback(() => {
+    function getCurrentLocation() { 
+      return ({search}) => new URLSearchParams(search);
+    }
+
+    return getCurrentLocation()(location);
+  }, [location]);
+
+  return getParams;
 }
 
 export default useQueryParams;

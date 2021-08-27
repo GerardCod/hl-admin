@@ -9,11 +9,12 @@ import email from '../assets/email.png';
 
 const ChangePasswordPage = () => {
   const { state, verifyEmailCode } = useContext(AuthContext);
-  const query = useQueryParams();
+  const getParams = useQueryParams();
 
   useEffect(() => {
+    const query = getParams();
     verifyEmailCode(query.get('oobCode'), { onError });
-  }, [verifyEmailCode])
+  }, [verifyEmailCode, getParams])
 
   return (
     <div className="width--full height--fullscreen back--gradient-blue flex f-justify--center f-align--center">
@@ -22,7 +23,7 @@ const ChangePasswordPage = () => {
           <Loader text="Verificando código de cambio de contraseña" light />
           : state.reset_status ?
             <Illustration illustration={email} message={state.reset_status} /> :
-            <ChangePasswordForm code={query.get('oobCode')} />
+            <ChangePasswordForm code={getParams().get('oobCode')} />
       }
     </div>
   );
