@@ -6,6 +6,14 @@
   color: var(--alert-color);
 }
 
+.Text--success {
+  color: var(--success-color);
+}
+
+.Text--info {
+  color: var(--thumbnail-color);
+}
+
 .Title {
   font-size: 18px;
   color: var(--title-color);

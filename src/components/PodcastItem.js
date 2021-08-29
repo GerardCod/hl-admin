@@ -6,7 +6,7 @@ import swal from 'sweetalert';
 import { PodcastContext } from '../contexts/PodcastContext';
 import { onSuccess, onError } from '../utils';
 
-const PodcastItem = ({ title, id }) => {
+const PodcastItem = ({ title, id, postDate, postTime }) => {
   let { path } = useRouteMatch();
   const { removePodcast } = useContext(PodcastContext);
 
@@ -30,7 +30,8 @@ const PodcastItem = ({ title, id }) => {
         <div className="ListItem__Content flex f-align--center">
           <FontAwesomeIcon icon={faPodcast} className="ListItem__Icon Icon--Orange" />
           <div className="ListItem__Description">
-            <h4>{title}</h4>
+            <h4 className="Text--orange">{title}</h4>
+            <p>Subido el {postDate} a las {postTime}</p>
           </div>
         </div>
         <div className="flex f-justify--center f-align--center ListItem__Actions">

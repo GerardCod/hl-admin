@@ -2,7 +2,7 @@ import React, { createContext, useCallback, useReducer, useRef } from "react";
 import { firestore, storage } from '../services/Firebase';
 import PodcastReducer, { initialState } from '../reducers/PodcastReducer';
 import { FETCH_DOCUMENTS, LOADING, ERROR, RESPONSE_SUCCESS, DOCUMENT_FOUND } from "../reducers/Actions";
-import { collectIdAndData } from '../utils';
+import { addPostDateAndTime, collectIdAndData } from '../utils';
 
 export const PodcastContext = createContext();
 
@@ -28,9 +28,7 @@ const PodcastProvider = ({children}) => {
     try {
       const urlRef = await storage.ref().child('podcasts').child(`podcast-${Date.now()}`).put(audio);
       const url = await urlRef.ref.getDownloadURL();
-      const today = new Date();
-      data.postDate = today.toLocaleDateString('es-MX');
-      data.postTime = today.toLocaleTimeString('es-MX');
+      data = addPostDateAndTime(data);
       await firestore.collection('podcasts').add({...data, url});
       dispatch({type: RESPONSE_SUCCESS});
       onSuccess()

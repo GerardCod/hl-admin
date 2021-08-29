@@ -8,7 +8,7 @@ import { BooksContext } from '../contexts/BooksContext';
 import { onError, onSuccess } from '../utils';
 import swal from 'sweetalert';
 
-const BookItem = ({ title, id }) => {
+const BookItem = ({ title, id, postDate, postTime }) => {
   let { path } = useRouteMatch();
   const { deleteBook } = useContext(BooksContext);
 
@@ -32,7 +32,8 @@ const BookItem = ({ title, id }) => {
         <div className="ListItem__Content flex f-align--center">
           <FontAwesomeIcon icon={faBook} className="ListItem__Icon Icon--Purple" />
           <div className="ListItem__Description">
-            <h4>{title}</h4>
+            <h4 className="Text--info">{title}</h4>
+            <p>Subido el {postDate} a las {postTime}</p>
           </div>
         </div>
         <div className="flex f-justify--center f-align--center ListItem__Actions">

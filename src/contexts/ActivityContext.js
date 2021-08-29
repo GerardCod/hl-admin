@@ -2,7 +2,7 @@ import React, { createContext, useCallback, useReducer, useRef } from 'react';
 import ActivityReducer, { initialState } from '../reducers/ActivityReducer';
 import { DOCUMENT_FOUND, ERROR, FETCH_DOCUMENTS, LOADING, RESPONSE_SUCCESS } from '../reducers/Actions';
 import { firestore } from '../services/Firebase';
-import { collectIdAndData } from '../utils';
+import { addPostDateAndTime, collectIdAndData } from '../utils';
 
 
 export const ActivityContext = createContext();
@@ -14,9 +14,7 @@ const ActivityProvider = ({children}) => {
   const createActivity = useCallback(async (data, {onSuccess, onError}) => {
     dispatch({type: LOADING});
     try {
-      const today = new Date();
-      data.postDate = today.toLocaleDateString('es-MX');
-      data.postTime = today.toLocaleTimeString('es-MX');
+      data = addPostDateAndTime(data);
       await firestore.collection('activities').add(data);
       dispatch({type: RESPONSE_SUCCESS});
       onSuccess('Actividad creada exitosamente');

@@ -2,7 +2,7 @@ import React, {createContext, useCallback, useReducer, useRef } from 'react';
 import { DOCUMENT_FOUND, ERROR, FETCH_VIDEOS_SUCCESS, LOADING, RESPONSE_SUCCESS } from '../reducers/Actions';
 import VideosReducer, {initialState} from '../reducers/VideosReducer';
 import { firestore, storage } from '../services/Firebase';
-import { collectIdAndData } from '../utils';
+import { addPostDateAndTime, collectIdAndData } from '../utils';
 
 export const VideoContext = createContext();
 
@@ -17,9 +17,7 @@ const VideoProvider = ({children}) => {
       const response = await storage.ref().child('videos').child(`video-${Date.now()}`).put(file);
       const url = await response.ref.getDownloadURL();
       video.url = url;
-      const today = new Date();
-      video.postDate = today.toLocaleDateString('es-MX');
-      video.postTime = today.toLocaleTimeString('es-MX');
+      video = addPostDateAndTime(video)
       await firestore.collection('videos').add(video);
       dispatch({type: RESPONSE_SUCCESS});
     } catch(e) {
