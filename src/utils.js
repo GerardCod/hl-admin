@@ -122,3 +122,10 @@ export const assessmentInitialState = {
     },
   ],
 }
+
+export const addPostDateAndTime = function addingDateTime(data) {
+  const today = new Date();
+  data.postDate = today.toLocaleDateString('es-MX');
+  data.postTime = today.toLocaleTimeString('es-MX');
+  return data;
+}

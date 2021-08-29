@@ -6,7 +6,7 @@ import { ActivityContext } from '../contexts/ActivityContext';
 import swal from 'sweetalert';
 import { onError, onSuccess } from '../utils';
 
-const ActivityItem = ({title, id}) => {
+const ActivityItem = ({title, id, postDate, postTime}) => {
   const {path} = useRouteMatch();
   const { deleteActivity } = useContext(ActivityContext);
 
@@ -30,7 +30,8 @@ const ActivityItem = ({title, id}) => {
         <div className="ListItem__Content flex f-align--center">
           <FontAwesomeIcon icon={faFile} className="ListItem__Icon Icon--Success" />
           <div className="ListItem__Description">
-            <h4>{title}</h4>
+            <h4 className="Text--success">{title}</h4>
+            <p>Subido el {postDate} a las {postTime}</p>
           </div>
         </div>
         <div className="flex f-justify--center f-align--center ListItem__Actions">

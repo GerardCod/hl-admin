@@ -1,6 +1,6 @@
 import React, { createContext, useCallback, useReducer, useRef } from "react";
 import { auth, batch, firestore } from '../services/Firebase';
-import { collectIdAndData, roles } from '../utils';
+import { addPostDateAndTime, collectIdAndData, roles } from '../utils';
 import AccountReducer, { initialState } from '../reducers/AccountReducer';
 import { DOCUMENT_FOUND, ERROR, FETCH_DOCUMENTS, LOADING, RESPONSE_SUCCESS } from '../reducers/Actions';
 
@@ -64,8 +64,8 @@ const AccountProvider = ({children}) => {
       data.uid = uid;
       delete data.confirmPassword;
       delete data.password;
+      data = addPostDateAndTime(data);
       await firestore.collection('accounts').add(data);
-
       await auth.currentUser.sendEmailVerification();
       dispatch({type: RESPONSE_SUCCESS});
       onSuccess('Cuenta creada exitosamente');

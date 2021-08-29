@@ -1,7 +1,7 @@
 import React, { createContext, useCallback, useReducer, useRef } from "react";
 import BooksReducer, { initialState } from "../reducers/BooksReducer";
 import { firestore, storage } from '../services/Firebase';
-import { collectIdAndData } from '../utils';
+import { addPostDateAndTime, collectIdAndData } from '../utils';
 import { DOCUMENT_FOUND, ERROR, FETCH_DOCUMENTS, LOADING, RESPONSE_SUCCESS } from '../reducers/Actions';
 
 export const BooksContext = createContext();
@@ -30,9 +30,7 @@ const BooksProvider = ({ children }) => {
     try {
       const url = await uploadFile(file);
       data.url = url;
-      const today = new Date();
-      data.postDate = today.toLocaleDateString('es-MX');
-      data.postTime = today.toLocaleTimeString('es-MX');
+      data = addPostDateAndTime(data);
       await firestore.collection('books').add(data);
       dispatch({ type: RESPONSE_SUCCESS });
       onSuccess('Libro subido exitosamente');
