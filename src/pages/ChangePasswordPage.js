@@ -5,7 +5,7 @@ import useQueryParams from '../hooks/useQueryParams';
 import { onError } from '../utils';
 import Loader from '../components/Loader';
 import Illustration from '../components/Illustration';
-import email from '../assets/email.png';
+import img from '../assets/error.png';
 
 const ChangePasswordPage = () => {
   const { state, verifyEmailCode } = useContext(AuthContext);
@@ -22,7 +22,7 @@ const ChangePasswordPage = () => {
         state.loading ?
           <Loader text="Verificando código de cambio de contraseña" light />
           : state.reset_status ?
-            <Illustration illustration={email} message={state.reset_status} /> :
+            <Illustration illustration={img} message={state.reset_status} /> :
             <ChangePasswordForm code={getParams().get('oobCode')} />
       }
     </div>
