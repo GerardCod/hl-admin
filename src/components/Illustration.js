@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import image from '../assets/empty.png';
 
-const Illustration = ({ illustration, message }) => {
+const Illustration = ({ illustration = image, message }) => {
   return (
     <div className="width--full flex f-justify--center f-align--center flex--column">
       <figure className="Illustration">
