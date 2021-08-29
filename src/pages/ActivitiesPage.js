@@ -1,6 +1,5 @@
 import React, { Fragment, useContext, useEffect } from 'react';
 import Illustration from '../components/Illustration';
-import img from '../assets/activities.png';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -37,7 +36,7 @@ const ActivitiesPage = () => {
           <Loader text="Cargando actividades" /> :
           (state.activities && state.activities.length > 0) ?
             state.activities.map(activity => <ActivityItem key={`activity-${activity.id}`} {...activity} />) :
-            <Illustration illustration={img} message="No hay actividades en la plataforma" />
+            <Illustration message="No hay actividades en la plataforma" />
       }
     </Fragment>
   );

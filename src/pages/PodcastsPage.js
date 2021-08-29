@@ -5,7 +5,6 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { PodcastContext } from '../contexts/PodcastContext';
 import swal from 'sweetalert';
 import Illustration from '../components/Illustration';
-import podcastIllustration from '../assets/podcasts.png';
 import Loader from '../components/Loader';
 import PodcastItem from '../components/PodcastItem';
 
@@ -40,7 +39,7 @@ const PodcastsPage = () => {
           <Loader text={'Cargando podcasts'} />
           : (state.podcasts && state.podcasts.length > 0) ?
           state.podcasts.map(e => <PodcastItem key={`podcast-${e.id}`} {...e} />) :
-            <Illustration illustration={podcastIllustration} message={'No hay podcasts en la plataforma'} />
+            <Illustration message={'No hay podcasts en la plataforma'} />
       }
     </Fragment>
   );
