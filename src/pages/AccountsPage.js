@@ -3,7 +3,6 @@ import Illustration from '../components/Illustration';
 import Loader from '../components/Loader';
 import { AccountContext } from '../contexts/AccountContext';
 import { onError } from '../utils';
-import peopleImg from '../assets/people.png';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -38,7 +37,7 @@ const AccountsPage = () => {
             <div className="TableWrapper">
               <AccountsTable accounts={state.accounts} />
             </div> :
-            <Illustration illustration={peopleImg} message="No hay usuarios registrados en la plataforma" />
+            <Illustration message="No hay usuarios registrados en la plataforma" />
       }
     </div>
   );

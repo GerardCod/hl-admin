@@ -4,7 +4,6 @@ import { AssessmentContext } from '../contexts/AssessmentContext';
 import { onError } from '../utils';
 import Loader from '../components/Loader';
 import Illustration from '../components/Illustration';
-import illustration from '../assets/videos.png';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -36,7 +35,7 @@ const AssessmentPage = () => {
         <Loader text="Cargando evaluaciones" /> :
         (state.assessments && state.assessments.length > 0) ?
         state.assessments.map(a => <AssessmentItem assessment={a} key={`assessment-id:${a.id}`} />) :
-        <Illustration illustration={illustration} message="No hay evaluaciones en la plataforma." />
+        <Illustration message="No hay evaluaciones en la plataforma." />
       }
     </Fragment>
   );

@@ -3,7 +3,6 @@ import { Fragment } from 'react-is';
 import { Link } from 'react-router-dom';
 import Loader from '../components/Loader';
 import Illustration from '../components/Illustration';
-import img from '../assets/books.png';
 import { BooksContext } from '../contexts/BooksContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -36,7 +35,7 @@ const BooksPage = () => {
           <Loader text="Cargando libros" /> :
           (state.books && state.books.length > 0) ?
           state.books.map(book => <BookItem {...book} key={`book-${book.id}`} />) :
-          <Illustration illustration={img} message="No hay libros en la plataforma" />
+          <Illustration message="No hay libros en la plataforma" />
       }
     </Fragment>
   );

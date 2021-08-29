@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import VideoCard from '../components/VideoCard';
 import { VideoContext } from '../contexts/VideoContext';
 import VideoPlayer from '../components/VideoPlayer';
-import illustration from '../assets/videos.png';
 import Illustration from '../components/Illustration';
 import Loader from '../components/Loader';
 
@@ -45,7 +44,7 @@ const VideosPage = () => {
             </section>
           </div>
           :
-          <Illustration illustration={illustration} message={'No hay vídeos agregados'} />
+          <Illustration message={'No hay vídeos agregados'} />
       }
     </Fragment>
   );
