@@ -8,3 +8,6 @@ export const USER_FOUND = 'USER_FOUND';
 export const SIGN_OUT = 'SIGN_OUT';
 export const RESET_STATUS = 'RESET_STATUS';
 export const PASSWORD_CHANGED = 'PASSWORD_CHANGED';
+export const FETCH_VIDEOS = 'FETCH_VIDEOS';
+export const FETCH_AUDIOS = 'FETCH_AUDIOS';
+export const FETCH_BOOKS = 'FETCH_BOOKS';
