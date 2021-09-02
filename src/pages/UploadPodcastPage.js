@@ -6,7 +6,7 @@ const UploadPodcastPage = () => {
   return (
     <Fragment>
       <Back urlBack="/admin/podcasts" />
-      <h1>Subir un podcast</h1>
+      <h1>Subir un audio</h1>
       <UploadPodcastForm />
     </Fragment>
   );

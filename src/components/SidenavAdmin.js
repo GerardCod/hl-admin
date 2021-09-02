@@ -27,7 +27,7 @@ const SidenavAdmin = () => {
         <SideNavLink url="/admin/assessments" icon={faClipboardList} text="Evaluaciones" />
         <SideNavLink url="/admin/accounts" icon={faUser} text="Usuarios" />
         <SideNavLink url="/admin/videos" icon={faVideo} text="Videos" />
-        <SideNavLink url="/admin/podcasts" icon={faPodcast} text="Podcasts" />
+        <SideNavLink url="/admin/podcasts" icon={faPodcast} text="Audios" />
         <SideNavLink url="/admin/books" icon={faBook} text="Libros" />
       </section>
       <section className="Sidenav__Section flex flex--column">

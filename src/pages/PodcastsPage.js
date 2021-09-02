@@ -28,10 +28,10 @@ const PodcastsPage = () => {
   return (
     <Fragment>
       <header className="flex VideosHeader">
-        <h1>Podcasts</h1>
+        <h1>Audios</h1>
         <Link to={`${path}/upload`} className="Button Button--Icon Button--Add Button--Success">
           <FontAwesomeIcon icon={faPlus} />
-          <span>Subir podcast</span>
+          <span>Subir audio</span>
         </Link>
       </header>
       {
