@@ -4,11 +4,10 @@
  */
 export const initialState = {
   loading: false,
-  audios: null,
-  videos: null,
-  books: null,
+  audios: [],
+  videos: [],
+  books: [],
   error: null,
-  materialSelected: null,
 }
 
 /**

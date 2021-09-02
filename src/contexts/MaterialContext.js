@@ -2,7 +2,7 @@ import { createContext, useCallback, useReducer, useRef } from "react";
 import MaterialReducer, { initialState } from '../reducers/MaterialReducer';
 import { ERROR, FETCH_AUDIOS, FETCH_BOOKS, FETCH_VIDEOS, LOADING } from '../reducers/Actions';
 import { firestore } from '../services/Firebase';
-import { collectIdAndData } from '../utils';
+import { addLinkToDocumentData } from '../utils';
 
 export const MaterialContext = createContext();
 
@@ -16,7 +16,7 @@ const MaterialProvider = function Component({children}) {
     dispatch({type: LOADING});
     videosRef.current = firestore.collection('videos').onSnapshot(
       snapshot => {
-        const videos = snapshot.docs.map(collectIdAndData);
+        const videos = snapshot.docs.map(addLinkToDocumentData);
         dispatch({type: FETCH_VIDEOS, payload: videos});
       },
       error => {
@@ -28,9 +28,9 @@ const MaterialProvider = function Component({children}) {
 
   const fetchAudios = useCallback(function callback({onError}) {
     dispatch({type: LOADING});
-    audiosRef.current = firestore.collection('audios').onSnapshot(
+    audiosRef.current = firestore.collection('podcasts').onSnapshot(
       snapshot => {
-        const audios = snapshot.docs.map(collectIdAndData);
+        const audios = snapshot.docs.map(doc => addLinkToDocumentData(doc, 'podcasts'));
         dispatch({type: FETCH_AUDIOS, payload: audios});
       },
       error => {
@@ -44,7 +44,7 @@ const MaterialProvider = function Component({children}) {
     dispatch({type: LOADING});
     booksRef.current = firestore.collection('books').onSnapshot(
       snapshot => {
-        const books = snapshot.docs.map(collectIdAndData);
+        const books = snapshot.docs.map(doc => addLinkToDocumentData(doc, 'books'));
         dispatch({type: FETCH_BOOKS, payload: books});
       },
       error => {
