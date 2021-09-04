@@ -1,4 +1,5 @@
 .VideoLayout {
+  padding-top: 2rem;
   display: grid;
   grid-template-columns: 70% 1fr;
   grid-template-rows: 1fr;
@@ -14,6 +15,7 @@
 
 .Submits {
   margin-top: 1rem;
+  padding-top: 1rem;
 }
 
 @media screen and (max-width: 768px) {
