@@ -1,12 +1,16 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, Fragment } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleNotch, faSave } from '@fortawesome/free-solid-svg-icons';
 import { ActivityContext } from '../contexts/ActivityContext';
 import { onError, onSuccess } from '../utils';
+import { Button, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
+import MaterialDialog from './MaterialDialog';
+import { AttachFile } from '@material-ui/icons';
 
 const EditActivityForm = ({ activity }) => {
   const [data, setData] = useState(activity);
   const { state, editActivity } = useContext(ActivityContext);
+  const [open, setOpen] = useState(false);
 
   const handleChange = (e) => {
     setData({
@@ -17,7 +21,24 @@ const EditActivityForm = ({ activity }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    editActivity(activity.id, data, {onSuccess, onError});
+    editActivity(activity.id, data, { onSuccess, onError });
+  }
+
+  const handleOpen = () => {
+    setOpen(!open);
+  }
+
+  const addLinks = links => {
+    const linkList = [];
+    console.log(links);
+    for (let key in links) {
+      linkList.push(links[key]);
+    }
+
+    setData({
+      ...data,
+      links: linkList,
+    });
   }
 
   return (
@@ -45,11 +66,33 @@ const EditActivityForm = ({ activity }) => {
           <label htmlFor="evidence">Evidencia</label>
         </div>
       </fieldset>
+      <div>
+        <h4>Agrega enlaces de materiales de clase a esta actividad</h4>
+        <br />
+        <Button variant="contained" color="primary" onClick={handleOpen}>Seleccionar material</Button>
+        <MaterialDialog open={open} handleClose={handleOpen} addLinks={addLinks} />
+        {
+          (data.links && data.links.length > 0) &&
+          data.links.map(link => {
+            return (
+              <Fragment key={`material-link: ${link.id}`}>
+                <ListItem dense>
+                  <ListItemIcon>
+                    <AttachFile />
+                  </ListItemIcon>
+                  <ListItemText primary={link.title} />
+                </ListItem>
+              </Fragment>
+            )
+          })
+        }
+      </div>
+      <br />
       {
         state.loading ?
           <button type="button" className="Button Button--Icon Button--Success width--full" disabled>
             <FontAwesomeIcon icon={faCircleNotch} className="Loading" />
-            <span>Creando la actividad</span>
+            <span>Actualizando la actividad</span>
           </button> :
           <button type="submit" className="Button Button--Icon Button--Success width--full" disabled={(!data.title || !data.description || !data.submitType || !data.date)}>
             <FontAwesomeIcon icon={faSave} />
