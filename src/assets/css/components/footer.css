@@ -1,0 +1,36 @@
+.Footer {
+  width: 100%;
+  height: 30vh;
+  background-color: var(--dark-gradient-color);
+  padding: 2vmax 0;
+}
+
+.Footer__Content {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.Footer__Title {
+  font-size: 2.5vmax;
+  margin-bottom: 1rem;
+}
+
+.Contact {
+  margin-bottom: 1rem;
+}
+
+.Contact__Value {
+  margin-left: 1rem;
+}
+
+@media screen and (min-width: 768px) {
+  .Footer__Content {
+    width: 80%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .Footer__Content {
+    width: 75%;
+  }
+}

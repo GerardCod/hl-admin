@@ -1,0 +1,35 @@
+.Navbar {
+  height: var(--navbar--height);
+  box-shadow: 0px 2px 5px rgba(10, 10, 10, .2);
+  padding: 1rem;
+  position: fixed;
+  background-color: #ffffff;
+  z-index: 2;
+}
+
+.Navbar__Logo {
+  height: calc(var(--navbar--height) - 2rem);
+  overflow: hidden;
+  margin: 0;
+}
+
+.Navbar__Logo > img {
+  width: calc(var(--navbar--height) - 2rem);
+  height: 100%;
+  object-fit: cover;
+}
+
+.Navbar__Text {
+  font-size: 12px;
+  vertical-align: center;
+}
+
+.Navbar__Text:first-child {
+  margin-left: 1rem;
+}
+
+@media screen and (min-width: 768px) {
+  .Navbar__Text {
+    font-size: 1.2rem;
+  }
+}
