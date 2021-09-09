@@ -7,13 +7,15 @@ import ChangePasswordPage from './pages/ChangePasswordPage';
 import NotFoundPage from './pages/NotFoundPage';
 import AdminRouter from './containers/AdminRouter';
 import AuthProvider from './contexts/AuthContext';
+import HomePage from './pages/HomePage';
 
 function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
         <Switch>
-          <Route path="/" exact component={LoginPage} />
+          <Route path="/" exact component={HomePage} />
+          <Route path="/login" component={LoginPage} />
           <Route path="/forgot_password" component={ForgotPasswordPage} />
           <Route path="/change_password" component={ChangePasswordPage} />
           <Route path="/admin" component={AdminRouter} />
