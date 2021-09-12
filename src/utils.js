@@ -1,8 +1,6 @@
 import swal from "sweetalert";
 import { makeStyles } from '@material-ui/core/styles';
 
-const PRODUCTION_URL = 'https://homegrown-learning.web.app/'
-
 export const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
@@ -24,7 +22,7 @@ export const collectIdAndData = (doc) => {
 
 export const addLinkToDocumentData = (doc, type = 'videos') => {
   const data = collectIdAndData(doc);
-  data.link = `${PRODUCTION_URL}platform/${type}/${data.id}`;
+  data.link = `/platform/${type}/${data.id}`;
   return data;
 }
 
