@@ -7,7 +7,11 @@ export const ANSWER_CONTENT = 'ANSWER_CONTENT';
 const QuestionReducer = (state, action) => {
   const states = {
     ADD_ANSWER: {...state, answers: [...state.answers, action.payload]},
-    REMOVE_ANSWER: {...state, answers: state.answers.filter(a => a.id !== action.payload.id)},
+    REMOVE_ANSWER: {
+      ...state,
+      correctAnswer: state.answers.find(a => a.id === action.payload.id) ? null : state.correctAnswer,
+      answers: state.answers.filter(a => a.id !== action.payload.id),
+    },
     MARK_AS_CORRECT: {...state, correctAnswer: action.payload},
     QUESTION_CONTENT: {...state, question: action.payload},
     ANSWER_CONTENT: {...state, answers: state.answers.map(e => {
