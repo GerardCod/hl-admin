@@ -55,6 +55,11 @@ const ContentAssessmentForm = ({ assessmentState, handleSubmit, update, cancel, 
           </form> :
           (assessmentState.type === 'quiz') ?
             <div>
+              <br />
+              {
+                assessmentState.questions.map((q) => <QuestionForm questionState={q} key={`question-${q.id}`} handleSubmit={saveQuestion} handleRemoveQuestion={removeQuestion} />)
+              }
+              <br />
               <Button
                 variant="contained"
                 color="primary"
@@ -65,9 +70,6 @@ const ContentAssessmentForm = ({ assessmentState, handleSubmit, update, cancel, 
               </Button>
               <br />
               <br />
-              {
-                assessmentState.questions.map((q) => <QuestionForm questionState={q} key={`question-${q.id}`} handleSubmit={saveQuestion} handleRemoveQuestion={removeQuestion} />)
-              }
             </div> :
             <p>Elige un tipo de evaluación</p>
       }
