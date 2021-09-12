@@ -16,7 +16,7 @@ const MaterialProvider = function Component({children}) {
     dispatch({type: LOADING});
     videosRef.current = firestore.collection('videos').onSnapshot(
       snapshot => {
-        const videos = snapshot.docs.map(addLinkToDocumentData);
+        const videos = snapshot.docs.map(doc => addLinkToDocumentData(doc));
         dispatch({type: FETCH_VIDEOS, payload: videos});
       },
       error => {

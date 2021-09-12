@@ -34,7 +34,6 @@ const CreateActivityForm = () => {
 
   const addLinks = links => {
     const linkList = [];
-    console.log(links);
     for (let key in links) {
       linkList.push(links[key]);
     }
