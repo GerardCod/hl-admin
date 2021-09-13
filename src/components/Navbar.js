@@ -8,7 +8,7 @@ const Navbar = function Component() {
       <nav className="flex width--full Navbar f-justify--around f-align--center">
         <figure className="Navbar__Logo flex f-align--center">
           <img src={logo} alt="logo_platform" />
-          <h4 className="Navbar__Text">Homegrown Learning</h4>
+          <h4 className="Navbar__Text">Homegrown Learning-Aprendizaje de cosecha propia</h4>
         </figure>
         <Link to="/login" className="Navbar__Text">
           Iniciar sesión
