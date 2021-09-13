@@ -33,3 +33,15 @@
 .Text--center {
   text-align: center;
 }
+
+.font--italic {
+  font-style: italic;
+}
+
+.align--end {
+  text-align: end;
+}
+
+.align--center {
+  text-align: center;
+}

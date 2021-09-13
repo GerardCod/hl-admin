@@ -5,14 +5,10 @@
   position: relative;
 }
 
-.Hero__Content {
-  width: 50vh;
-  height: 50vh;
-  border-radius: 2rem;
-  background-color: var(--dark-gradient-color);
-  transform: rotate(45deg);
-  position: absolute;
-  left: -25vh;
+.Hero > video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .Hero__Message {
@@ -82,13 +78,7 @@
   }
 
   .Hero {
-    height: 70vh;
-  }
-
-  .Hero__Content {
-    width: 70vh;
-    height: 70vh;
-    left: -45vh;
+    height: auto;
   }
 
   .Hero__Message > p {
@@ -103,22 +93,20 @@
   .Hero__Paragraph {
     width: 60vmax;
   }
+
+  .Hero__Article {
+    grid-template-columns: 20vmax 1fr;
+  }
+
+  .Hero__Article--Inverse {
+    grid-template-columns: 1fr 20vmax;
+  }
 }
 
 @media screen and (min-width: 1024px) {
 
   .Home__Content {
     width: 75%;
-  }
-
-  .Hero {
-    height: 80vh;
-  }
-
-  .Hero__Content {
-    left: -40vh;
-    width: 80vh;
-    height: 80vh;
   }
 
   .Hero__Message > p {
