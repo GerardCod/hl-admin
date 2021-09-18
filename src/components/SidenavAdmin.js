@@ -19,13 +19,15 @@ const SidenavAdmin = () => {
             <img src={state.user.avatar} alt="avatar" className="Avatar" />
             <figcaption className="Avatar__Description Text--white">Hola {state.user.name}</figcaption>
           </figure> :
-        <p>Cargando...</p>
+          <p>Cargando...</p>
       }
       <section className="Sidenav__Section flex flex--column">
         <h3 className="Sidenav__SectionTitle Text--white">Gestión</h3>
         <SideNavLink url="/admin/activities" icon={faFile} text="Actividades" />
         <SideNavLink url="/admin/assessments" icon={faClipboardList} text="Evaluaciones" />
-        <SideNavLink url="/admin/accounts" icon={faUser} text="Usuarios" />
+        {
+          (state.user.role.name === 'Administrador') && <SideNavLink url="/admin/accounts" icon={faUser} text="Usuarios" />
+        }
         <SideNavLink url="/admin/videos" icon={faVideo} text="Videos" />
         <SideNavLink url="/admin/podcasts" icon={faPodcast} text="Audios" />
         <SideNavLink url="/admin/books" icon={faBook} text="Libros" />

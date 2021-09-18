@@ -1,7 +1,7 @@
 import React, { createContext, useCallback, useReducer, useRef } from "react";
 import AuthReducer, { initialState } from "../reducers/AuthReducer";
 import { ERROR, LOADING, PASSWORD_CHANGED, RESET_STATUS, RESPONSE_SUCCESS, SIGN_OUT, USER_FOUND } from '../reducers/Actions';
-import { auth, firestore } from "../services/Firebase";
+import { auth, batch, firestore } from "../services/Firebase";
 import { collectIdAndData } from "../utils";
 
 export const AuthContext = createContext();
@@ -10,23 +10,31 @@ const AuthProvider = ({children}) => {
   const [state, dispatch] = useReducer(AuthReducer, initialState);
   const userListenerRef = useRef({});
   
-  const searchUser = useCallback(async ({email}) => {
+  const searchUser = useCallback(async ({email, role}) => {
     try {
-      const userCollection = await firestore.collection('accounts').where('email', '==', email).get();
+      const userCollection = await firestore.collection('accounts').where('email', '==', email).where('role.name', '==', role).get();
+      
+      if (userCollection.empty) {
+        throw new Error('No hay un usuario con ese email y rol');
+      }
+      
       const user = collectIdAndData(userCollection.docs[0]);
       return user;
     } catch (error) {
-      return error;
+      return error.message;
     }
   }, []);
 
-  const signin = useCallback(async ({email, password}, {onError}) => {
+  const signin = useCallback(async ({email, password, role}, {onError}) => {
     dispatch({type: LOADING});
     try {
-      const userData = await searchUser({email, password});
-      if (userData) {
-        await auth.signInWithEmailAndPassword(email, password);
+      await auth.signInWithEmailAndPassword(email, password);
+      const userData = await searchUser({email, role});
+
+      if (typeof userData === 'string') {
+        throw new Error(userData);
       }
+
       localStorage.setItem('user', JSON.stringify(userData));
       dispatch({type: USER_FOUND, payload: userData});
     } catch (error) {
@@ -52,10 +60,15 @@ const AuthProvider = ({children}) => {
     }
   }, []);
 
-  const changePassword = useCallback(async (code, {password}, {onSuccess, onError}) => {
+  const changePassword = useCallback(async (code, {password, email}, {onSuccess, onError}) => {
     dispatch({type: LOADING});
     try {
       await auth.confirmPasswordReset(code, password);
+      const users = await firestore.collection('accounts').where('email', '==', email).get();
+      users.forEach(doc => {
+        batch.update(doc.ref, {password});
+      })
+      await batch.commit();
       dispatch({type: PASSWORD_CHANGED});
       onSuccess('La contraseña fue cambiada exitosamente');
     } catch (error) {

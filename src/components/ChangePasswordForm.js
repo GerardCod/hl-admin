@@ -33,6 +33,10 @@ const ChangePasswordForm = ({ code }) => {
       </figure>
       <div className="flex flex--column">
         <p className="Textfield width--full">
+          <label className="Textfield__Label" htmlFor="email">Correo</label>
+          <input className="Textfield__Input width--full" type="email" name="email" id="email" onChange={handleChange} placeholder="example@gmail.com" />
+        </p>
+        <p className="Textfield width--full">
           <label className="Textfield__Label" htmlFor="password">Nueva contraseña</label>
           <input className="Textfield__Input width--full" type="password" name="password" id="password" onChange={handleChange} placeholder="********" />
         </p>

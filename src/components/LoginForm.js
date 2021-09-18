@@ -1,14 +1,16 @@
 import React, { useContext, useState } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Redirect, useParams } from 'react-router-dom';
 import logo from '../assets/logo.svg';
 import { AuthContext } from '../contexts/AuthContext';
 import { onError, onSuccess } from '../utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
+import Back from '../components/Back';
 
 const LoginForm = () => {
   const { state, signin } = useContext(AuthContext);
-  const [data, setData] = useState({})
+  const { role } = useParams();
+  const [data, setData] = useState({role})
 
   const handleChange = e => {
     setData({
@@ -24,6 +26,8 @@ const LoginForm = () => {
 
   return (
     <form className="LoginForm flex flex--column f-justify--evenly" onSubmit={handleSubmit}>
+      <Back urlBack="/login" />
+
       {
         state.user && <Redirect to="/admin/activities" />
       }
