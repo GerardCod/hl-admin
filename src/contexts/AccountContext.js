@@ -101,9 +101,11 @@ const AccountProvider = ({children}) => {
     }
   }, []);
 
-  const deleteAccount = useCallback(async ({email}, {onSuccess, onError}) => {
+  const deleteAccount = useCallback(async ({email, password}, {onSuccess, onError}) => {
     dispatch({type: LOADING});
     try {
+      await auth.signInWithEmailAndPassword(email, password);
+      await auth.currentUser.delete();
       firestore.collection('accounts').where('email', '==', email).get()
         .then(collection => {
           collection.forEach(doc => {
