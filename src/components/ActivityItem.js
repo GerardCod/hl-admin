@@ -38,7 +38,7 @@ const ActivityItem = ({title, id, postDate, postTime}) => {
           <Link to={`${path}/details/${id}`} className="cursor--pointer">
             <FontAwesomeIcon icon={faEye} className="Icon--Blue" />
           </Link>
-          <Link to={`${path}/${id}/edit`} className="cursor--pointer">
+          <Link to={`${path}/details/${id}/edit`} className="cursor--pointer">
             <FontAwesomeIcon icon={faEdit} className="Icon--Purple" />
           </Link>
           <FontAwesomeIcon icon={faTrash} className="Icon--Red cursor--pointer" onClick={handleDelete}/>

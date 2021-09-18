@@ -20,8 +20,6 @@ const ActivitiesPage = () => {
     }
   }, [fetchActivities, listenerRef]);
 
-  console.log(state.activities);
-
   return (
     <Fragment>
       <header className="flex VideosHeader">
