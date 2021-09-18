@@ -57,6 +57,7 @@
 .Home__Text {
   font-size: 2vmax;
   margin-bottom: 10px;
+  text-align: justify;
 }
 
 .Home__Img {
