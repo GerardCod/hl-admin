@@ -12,8 +12,8 @@ const ActivitiesContainer = () => {
     <Fragment>
       <Route exact path={path} component={ActivitiesPage} />
       <MaterialProvider>
-        <Route path={`${path}/create`} component={CreateActivityPage} />
-        <Route path={`${path}/:id`} component={ActivityRouter} />
+        <Route path={`${path}/create`} exact component={CreateActivityPage} />
+        <Route path={`${path}/details/:id`} component={ActivityRouter} />
       </MaterialProvider>
     </Fragment>
   );
