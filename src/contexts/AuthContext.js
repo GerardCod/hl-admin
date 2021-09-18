@@ -1,7 +1,7 @@
 import React, { createContext, useCallback, useReducer, useRef } from "react";
 import AuthReducer, { initialState } from "../reducers/AuthReducer";
 import { ERROR, LOADING, PASSWORD_CHANGED, RESET_STATUS, RESPONSE_SUCCESS, SIGN_OUT, USER_FOUND } from '../reducers/Actions';
-import { auth, firestore } from "../services/Firebase";
+import { auth, batch, firestore } from "../services/Firebase";
 import { collectIdAndData } from "../utils";
 
 export const AuthContext = createContext();
@@ -60,10 +60,15 @@ const AuthProvider = ({children}) => {
     }
   }, []);
 
-  const changePassword = useCallback(async (code, {password}, {onSuccess, onError}) => {
+  const changePassword = useCallback(async (code, {password, email}, {onSuccess, onError}) => {
     dispatch({type: LOADING});
     try {
       await auth.confirmPasswordReset(code, password);
+      const users = await firestore.collection('accounts').where('email', '==', email).get();
+      users.forEach(doc => {
+        batch.update(doc.ref, {password});
+      })
+      await batch.commit();
       dispatch({type: PASSWORD_CHANGED});
       onSuccess('La contraseña fue cambiada exitosamente');
     } catch (error) {
