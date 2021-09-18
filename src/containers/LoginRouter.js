@@ -9,7 +9,7 @@ export default function LoginRouter() {
   return (
     <Fragment>
       <Route path={path} exact component={SignInPage} />
-      <Route path={`${route}/:role`} component={LoginPage} />
+      <Route path={`${path}/:role`} component={LoginPage} />
     </Fragment>
   )
 }
