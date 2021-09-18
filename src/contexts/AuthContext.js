@@ -31,7 +31,7 @@ const AuthProvider = ({children}) => {
       await auth.signInWithEmailAndPassword(email, password);
       const userData = await searchUser({email, role});
 
-      if (typeof useData === 'string') {
+      if (typeof userData === 'string') {
         throw new Error(userData);
       }
 

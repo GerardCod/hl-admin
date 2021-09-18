@@ -26,7 +26,7 @@ const SidenavAdmin = () => {
         <SideNavLink url="/admin/activities" icon={faFile} text="Actividades" />
         <SideNavLink url="/admin/assessments" icon={faClipboardList} text="Evaluaciones" />
         {
-          (state.user.role.name === 'Adminitrador') && <SideNavLink url="/admin/accounts" icon={faUser} text="Usuarios" />
+          (state.user.role.name === 'Administrador') && <SideNavLink url="/admin/accounts" icon={faUser} text="Usuarios" />
         }
         <SideNavLink url="/admin/videos" icon={faVideo} text="Videos" />
         <SideNavLink url="/admin/podcasts" icon={faPodcast} text="Audios" />
