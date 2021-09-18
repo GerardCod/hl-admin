@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Redirect, useParams } from 'react-router-dom';
 import logo from '../assets/logo.svg';
 import { AuthContext } from '../contexts/AuthContext';
 import { onError, onSuccess } from '../utils';
@@ -9,7 +9,8 @@ import Back from '../components/Back';
 
 const LoginForm = () => {
   const { state, signin } = useContext(AuthContext);
-  const [data, setData] = useState({})
+  const { role } = useParams();
+  const [data, setData] = useState({role})
 
   const handleChange = e => {
     setData({

@@ -10,23 +10,31 @@ const AuthProvider = ({children}) => {
   const [state, dispatch] = useReducer(AuthReducer, initialState);
   const userListenerRef = useRef({});
   
-  const searchUser = useCallback(async ({email}) => {
+  const searchUser = useCallback(async ({email, role}) => {
     try {
-      const userCollection = await firestore.collection('accounts').where('email', '==', email).get();
+      const userCollection = await firestore.collection('accounts').where('email', '==', email).where('role.name', '==', role).get();
+      
+      if (userCollection.empty) {
+        throw new Error('No hay un usuario con ese email y rol');
+      }
+      
       const user = collectIdAndData(userCollection.docs[0]);
       return user;
     } catch (error) {
-      return error;
+      return error.message;
     }
   }, []);
 
-  const signin = useCallback(async ({email, password}, {onError}) => {
+  const signin = useCallback(async ({email, password, role}, {onError}) => {
     dispatch({type: LOADING});
     try {
-      const userData = await searchUser({email, password});
-      if (userData) {
-        await auth.signInWithEmailAndPassword(email, password);
+      await auth.signInWithEmailAndPassword(email, password);
+      const userData = await searchUser({email, role});
+
+      if (typeof useData === 'string') {
+        throw new Error(userData);
       }
+
       localStorage.setItem('user', JSON.stringify(userData));
       dispatch({type: USER_FOUND, payload: userData});
     } catch (error) {
