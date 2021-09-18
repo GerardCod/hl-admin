@@ -1,4 +1,6 @@
 import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
+import teacher from '../assets/3.png';
 
 export default function SignInPage() {
   return (
@@ -9,7 +11,7 @@ export default function SignInPage() {
           <Link to="login/Estudiante" >
             <div className="card">
               <div className="HomeList__item__img">
-                <img src={img_kid} alt="avatar" />
+                <img src={teacher} alt="avatar" />
               </div>
               <div className="HomeList__item__title">
                 <p>Ingresar como docente</p>
