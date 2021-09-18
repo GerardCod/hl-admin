@@ -34,22 +34,6 @@ const EditAccountForm = ({ account }) => {
           <input className="Textfield__Input Input--Full" type="email" defaultValue={data.email} name="email" id="email" onChange={handleChange} placeholder="ejemplo@ejemplo.com" required />
         </p>
         <p className="Textfield">
-          <label className="Textfield__Label" htmlFor="password">Contraseña</label>
-          <input className="Textfield__Input Input--Full" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$"
-            title="La contraseña debe tener al menos 8 caracteres y debe contener una letra minúscula. una letra mayúscula y un número"
-            type="password" name="password" id="password"
-            defaultValue={data.password}
-            onChange={handleChange} placeholder="**************" required />
-        </p>
-        <p className="Textfield">
-          <label className="Textfield__Label" htmlFor="password">Confirmar contraseña</label>
-          <input className="Textfield__Input Input--Full" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$"
-            title="La contraseña debe tener al menos 8 caracteres y debe contener una letra minúscula. una letra mayúscula y un número"
-            type="password" name="confirmPassword" id="confirmPassword"
-            defaultValue={data.confirmPassword}
-            onChange={handleChange} placeholder="**************" required />
-        </p>
-        <p className="Textfield">
           <label className="Textfield__Label" htmlFor="role">Rol</label>
           <select className="Textfield__Input Input--Full" name="role" defaultValue={JSON.stringify(data.role)} id="role" onChange={handleChange} required>
             <option value="">Elige un rol</option>
