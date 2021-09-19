@@ -7,6 +7,7 @@ import { ActivityContext } from '../contexts/ActivityContext';
 import { onError } from '../utils';
 import Loader from '../components/Loader';
 import ActivityItem from '../components/ActivityItem';
+import img from '../assets/empty.png';
 
 const ActivitiesPage = () => {
   const { state, fetchActivities, listenerRef } = useContext(ActivityContext);
@@ -34,7 +35,7 @@ const ActivitiesPage = () => {
           <Loader text="Cargando actividades" /> :
           (state.activities && state.activities.length > 0) ?
             state.activities.map(activity => <ActivityItem key={`activity-${activity.id}`} {...activity} />) :
-            <Illustration message="No hay actividades en la plataforma" />
+            <Illustration message="No hay actividades en la plataforma" illustration={img} />
       }
     </Fragment>
   );

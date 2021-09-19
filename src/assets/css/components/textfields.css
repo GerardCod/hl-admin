@@ -18,6 +18,11 @@
   border: none;
 }
 
+.Textfield__Input > * {
+  background-color: var(--input-background-color);
+}
+
+
 .Textfield__Input:focus {
   outline: 0;
 }
@@ -76,4 +81,10 @@
 
 .Input__Icon, .Input--File > input {
   cursor: pointer;
+}
+
+.PasswordField {
+  grid-template-columns: 1fr 1rem;
+  grid-template-rows: 1fr;
+  align-items: center;
 }

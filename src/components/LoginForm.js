@@ -6,6 +6,7 @@ import { onError, onSuccess } from '../utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 import Back from '../components/Back';
+import PasswordInput from './PasswordInput';
 
 const LoginForm = () => {
   const { state, signin } = useContext(AuthContext);
@@ -40,10 +41,7 @@ const LoginForm = () => {
           <label className="Textfield__Label" htmlFor="email">Correo electrónico</label>
           <input className="Textfield__Input width--full" type="email" name="email" id="email" onChange={handleChange} placeholder="ejemplo@gmail.com" />
         </p>
-        <p className="Textfield width--full">
-          <label className="Textfield__Label" htmlFor="password">Contraseña</label>
-          <input className="Textfield__Input width--full" type="password" name="password" id="password" onChange={handleChange} placeholder="********" />
-        </p>
+        <PasswordInput label="Contraseña" onChange={handleChange} name="password" />
         <div className="f-self-align--end">
           <Link to="/forgot_password" className="Link--ForgotPassword">¿Olvidaste tu contraseña?</Link>
         </div>

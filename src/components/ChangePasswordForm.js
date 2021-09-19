@@ -5,6 +5,7 @@ import { onError, onSuccess } from '../utils';
 import { Redirect } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
+import PasswordInput from './PasswordInput';
 
 const ChangePasswordForm = ({ code }) => {
   const [data, setData] = useState({});
@@ -36,14 +37,8 @@ const ChangePasswordForm = ({ code }) => {
           <label className="Textfield__Label" htmlFor="email">Correo</label>
           <input className="Textfield__Input width--full" type="email" name="email" id="email" onChange={handleChange} placeholder="example@gmail.com" />
         </p>
-        <p className="Textfield width--full">
-          <label className="Textfield__Label" htmlFor="password">Nueva contraseña</label>
-          <input className="Textfield__Input width--full" type="password" name="password" id="password" onChange={handleChange} placeholder="********" />
-        </p>
-        <p className="Textfield width--full">
-          <label className="Textfield__Label" htmlFor="confirmPassword">Confirmar contraseña</label>
-          <input className="Textfield__Input width--full" type="password" name="confirmPassword" id="confirmPassword" onChange={handleChange} placeholder="********" />
-        </p>
+        <PasswordInput label="Nueva contraseña" onChange={handleChange} name="password" />
+        <PasswordInput label="Confirmar contraseña" onChange={handleChange} name="confirmPassword" />
         {
           state.loading ?
             <button type="button" className="Button Button--Primary Button--Icon width--full" disabled>

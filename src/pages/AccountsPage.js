@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import AccountsTable from '../components/AccountsTable';
+import img from '../assets/empty.png';
 
 const AccountsPage = () => {
   const { fetchAccounts, state, listenerRef } = useContext(AccountContext);
@@ -37,7 +38,7 @@ const AccountsPage = () => {
             <div className="TableWrapper">
               <AccountsTable accounts={state.accounts} />
             </div> :
-            <Illustration message="No hay usuarios registrados en la plataforma" />
+            <Illustration message="No hay usuarios registrados en la plataforma" illustration={img} />
       }
     </div>
   );

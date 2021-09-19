@@ -1,23 +1,26 @@
 import { faVideo, faSignOutAlt, faPodcast, faUser, faFile, faBook, faClipboardList } from '@fortawesome/free-solid-svg-icons';
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import SideNavLink from './SideNavLink';
 import SideLink from './SideLink';
 import { AuthContext } from '../contexts/AuthContext';
 
 const SidenavAdmin = () => {
-  const { signOut, state, fetchUserData } = useContext(AuthContext);
+  const { signOut, fetchUserData } = useContext(AuthContext);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    fetchUserData();
+    setUser(fetchUserData());
   }, [fetchUserData]);
+
+  console.log(user);
 
   return (
     <nav className="Sidenav flex flex--column">
       {
-        state.user ?
+        user ?
           <figure className="AvatarWrapper flex--center">
-            <img src={state.user.avatar} alt="avatar" className="Avatar" />
-            <figcaption className="Avatar__Description Text--white">Hola {state.user.name}</figcaption>
+            <img src={user.avatar} alt="avatar" className="Avatar" />
+            <figcaption className="Avatar__Description Text--white">Hola {user.name}</figcaption>
           </figure> :
           <p>Cargando...</p>
       }
@@ -26,7 +29,7 @@ const SidenavAdmin = () => {
         <SideNavLink url="/admin/activities" icon={faFile} text="Actividades" />
         <SideNavLink url="/admin/assessments" icon={faClipboardList} text="Evaluaciones" />
         {
-          (state.user.role.name === 'Administrador') && <SideNavLink url="/admin/accounts" icon={faUser} text="Usuarios" />
+          (user && user.role.name === 'Administrador') && <SideNavLink url="/admin/accounts" icon={faUser} text="Usuarios" />
         }
         <SideNavLink url="/admin/videos" icon={faVideo} text="Videos" />
         <SideNavLink url="/admin/podcasts" icon={faPodcast} text="Audios" />
