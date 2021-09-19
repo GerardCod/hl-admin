@@ -18,7 +18,7 @@ const Footer = function Component() {
           </div>
           <div className="flex Text--white Contact">
             <FontAwesomeIcon icon={faMailBulk} />
-            <span className="Contact__Value">katiacastrogz@gmail.com</span>
+            <span className="Contact__Value">katiacastrorgz@gmail.com</span>
           </div>
         </article>
       </footer>
