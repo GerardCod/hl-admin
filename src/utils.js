@@ -54,6 +54,10 @@ export const roles = [
   {
     name: 'Docente',
     slugName: 'D'
+  },
+  {
+    name: 'Administrador',
+    slugName: 'A'
   }
 ];
 
@@ -65,6 +69,10 @@ export const userRoles = [
   {
     name: 'Docente',
     slugName: 'D'
+  },
+  {
+    name: 'Administrador',
+    slugName: 'A'
   }
 ];
 

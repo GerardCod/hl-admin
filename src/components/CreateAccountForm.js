@@ -4,6 +4,7 @@ import { faCircleNotch, faSave } from '@fortawesome/free-solid-svg-icons';
 import { onSuccess, onError, userRoles } from '../utils';
 import { AccountContext } from '../contexts/AccountContext';
 import AvatarSelector from './AvatarSelector';
+import PasswordInput from './PasswordInput';
 
 const CreateAccountForm = () => {
   const { state, createStudentAccount, createAccount } = useContext(AccountContext);
@@ -48,20 +49,8 @@ const CreateAccountForm = () => {
           <label className="Textfield__Label" htmlFor="email">Correo electrónico</label>
           <input className="Textfield__Input Input--Full" type="email" name="email" id="email" onChange={handleChange} placeholder="ejemplo@ejemplo.com" required />
         </p>
-        <p className="Textfield">
-          <label className="Textfield__Label" htmlFor="password">Contraseña</label>
-          <input className="Textfield__Input Input--Full" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$"
-            title="La contraseña debe tener al menos 8 caracteres y debe contener una letra minúscula. una letra mayúscula y un número"
-            type="password" name="password" id="password"
-            onChange={handleChange} placeholder="**************" required />
-        </p>
-        <p className="Textfield">
-          <label className="Textfield__Label" htmlFor="password">Confirmar contraseña</label>
-          <input className="Textfield__Input Input--Full" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$"
-            title="La contraseña debe tener al menos 8 caracteres y debe contener una letra minúscula. una letra mayúscula y un número"
-            type="password" name="confirmPassword" id="confirmPassword"
-            onChange={handleChange} placeholder="**************" required />
-        </p>
+        <PasswordInput label="Contraseña" onChange={handleChange} name="password" />
+        <PasswordInput label="Confirmar contraseña" onChange={handleChange} name="confirmPassword" />
         <p className="Textfield">
           <label className="Textfield__Label" htmlFor="role">Rol</label>
           <select className="Textfield__Input Input--Full" name="role" defaultValue="" id="role" onChange={handleChange} required>

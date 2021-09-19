@@ -7,9 +7,9 @@ import { AccountContext } from '../contexts/AccountContext';
 import { onError } from '../utils';
 
 const EditAccountPage = () => {
-  const { id } = useParams();
+  let { id } = useParams();
   const { state: { accountSelected }, getAccount, accountRef } = useContext(AccountContext);
-
+  
   useEffect(() => {
     getAccount(id, { onError });
     const subscriber = accountRef.current;
