@@ -11,7 +11,7 @@ const CreateAccountForm = () => {
   const [data, setData] = useState({});
   const formRef = useRef({});
 
-  const handleChange = e => {
+  function handleChange(e) {
     let value = (e.target.name === 'role') ? JSON.parse(e.target.value) : e.target.value;
     setData({
       ...data,

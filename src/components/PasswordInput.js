@@ -15,7 +15,7 @@ export default function PasswordInput({ label, onChange, name }) {
     <div className="Textfield width--full">
       <label className="Textfield__Label" htmlFor="password">{label}</label>
       <p className="Textfield__Input width--full grid PasswordField">
-        <input type={type} name={name} id="password" onChange={onChange} placeholder="********" />
+        <input type={type} name={name} id={name} onChange={onChange} placeholder="********" />
         <FontAwesomeIcon className="cursor--pointer" icon={(type === 'password') ? faEye : faEyeSlash} onClick={() => { changeType(); }} />
       </p>
     </div>
