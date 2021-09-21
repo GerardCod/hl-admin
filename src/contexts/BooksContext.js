@@ -1,7 +1,7 @@
 import React, { createContext, useCallback, useReducer, useRef } from "react";
 import BooksReducer, { initialState } from "../reducers/BooksReducer";
 import { firestore, storage } from '../services/Firebase';
-import { addPostDateAndTime, collectIdAndData } from '../utils';
+import { addPostDateAndTime, collectIdAndData, sortItems } from '../utils';
 import { DOCUMENT_FOUND, ERROR, FETCH_DOCUMENTS, LOADING, RESPONSE_SUCCESS } from '../reducers/Actions';
 
 export const BooksContext = createContext();
@@ -16,7 +16,8 @@ const BooksProvider = ({ children }) => {
     listenerRef.current = firestore.collection('books').onSnapshot(
       snapshot => {
         const docs = snapshot.docs.map(collectIdAndData);
-        dispatch({ type: FETCH_DOCUMENTS, payload: docs });
+        const sortedDocs = sortItems(docs)
+        dispatch({ type: FETCH_DOCUMENTS, payload: sortedDocs });
       },
       error => {
         dispatch({ type: ERROR, payload: error.message });

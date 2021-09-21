@@ -2,7 +2,7 @@ import React, {createContext, useCallback, useReducer, useRef } from 'react';
 import { DOCUMENT_FOUND, ERROR, FETCH_VIDEOS_SUCCESS, LOADING, RESPONSE_SUCCESS } from '../reducers/Actions';
 import VideosReducer, {initialState} from '../reducers/VideosReducer';
 import { firestore, storage } from '../services/Firebase';
-import { addPostDateAndTime, collectIdAndData } from '../utils';
+import { addPostDateAndTime, collectIdAndData, sortItems } from '../utils';
 
 export const VideoContext = createContext();
 
@@ -30,7 +30,8 @@ const VideoProvider = ({children}) => {
     dispatch({type: LOADING});
     listenerRef.current = firestore.collection('videos').onSnapshot(snapshot => {
       const videos = snapshot.docs.map(collectIdAndData);
-      dispatch({type: FETCH_VIDEOS_SUCCESS, payload: videos});
+      const sortedVideos = sortItems(videos);
+      dispatch({type: FETCH_VIDEOS_SUCCESS, payload: sortedVideos});
     });
   }, []);
 

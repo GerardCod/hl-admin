@@ -17,7 +17,7 @@ export const useStyles = makeStyles((theme) => ({
 
 export const collectIdAndData = (doc) => {
   const data = doc.data();
-  return {id: doc.id, ...data};
+  return { id: doc.id, ...data };
 }
 
 export const addLinkToDocumentData = (doc, type = 'videos') => {
@@ -28,7 +28,7 @@ export const addLinkToDocumentData = (doc, type = 'videos') => {
 
 //onceClosure returns a function that is executed once.
 export const onceClosure = () => {
-  let mustRun = true; 
+  let mustRun = true;
   return (callback) => {
     if (mustRun) {
       if (typeof callback === 'function') {
@@ -39,8 +39,8 @@ export const onceClosure = () => {
   }
 }
 
-export const onSuccess = (text = 'Éxito en la respuesta', title = 'Bien hecho') => swal({title, text, icon: 'success' });
-export const onError = (text = 'Error en la operación', title = 'Lo siento') => swal({title, text, icon: 'error'}); 
+export const onSuccess = (text = 'Éxito en la respuesta', title = 'Bien hecho') => swal({ title, text, icon: 'success' });
+export const onError = (text = 'Error en la operación', title = 'Lo siento') => swal({ title, text, icon: 'error' });
 
 export const roles = [
   {
@@ -132,9 +132,31 @@ export const assessmentInitialState = {
           answer: '',
         }
       ],
-      correctAnswer: null 
+      correctAnswer: null
     },
   ],
+}
+
+export const getDateFromString = (date, time) => {
+  const dateSplited = date.split('/').reverse();
+  const timeSplited = time.split(':');
+
+  return new Date(
+    +dateSplited[0],
+    +dateSplited[1],
+    +dateSplited[2],
+    +timeSplited[0],
+    +timeSplited[1],
+    +timeSplited[2]
+  );
+}
+
+export const sortItems = arr => {
+  return [...arr].sort((a, b) => {
+    const dateA = getDateFromString(a.postDate, a.postTime);
+    const dateB = getDateFromString(b.postDate, b.postTime);
+    return dateB - dateA;
+  });
 }
 
 export const addPostDateAndTime = function addingDateTime(data) {
