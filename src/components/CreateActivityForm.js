@@ -2,11 +2,12 @@ import React, { useContext, useRef, useState } from 'react';
 import { ActivityContext } from '../contexts/ActivityContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSave, faCircleNotch } from '@fortawesome/free-solid-svg-icons';
-import { onSuccess, onError } from '../utils';
+import { onSuccess, onError, detectAndCreateNewLines } from '../utils';
 import { Button, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 import MaterialDialog from './MaterialDialog';
 import { Fragment } from 'react';
 import { AttachFile } from '@material-ui/icons';
+import TextArea from './TextArea';
 
 const CreateActivityForm = () => {
   const [data, setData] = useState({});
@@ -15,14 +16,16 @@ const CreateActivityForm = () => {
   const [open, setOpen] = useState(false); 
 
   const handleChange = e => {
+    let value = e.target.value;
     setData({
       ...data,
-      [e.target.name]: e.target.value,
+      [e.target.name]: value,
     });
   }
 
   const handleSubmit = e => {
     e.preventDefault();
+    detectAndCreateNewLines('description', data, setData);
     createActivity(data, {onSuccess, onError});
     setData({});
     formRef.current.reset();
@@ -50,10 +53,7 @@ const CreateActivityForm = () => {
         <label className="Textfield__Label" htmlFor="title">Título de la actividad</label>
         <input className="Textfield__Input Input--Full" type="text" name="title" id="title" onChange={handleChange} placeholder="Actividad 1" required />
       </p>
-      <p className="Textfield">
-        <label className="Textfield__Label" htmlFor="description">Descripción de la actividad</label>
-        <textarea columns="80" rows="10" name="description" id="description" className="Textfield__Input Input--Full" onChange={handleChange} placeholder="Pongan un comentario acerca de lo visto en clase" required />
-      </p>
+      <TextArea label="Descripción de la actividad" name="description" onChange={handleChange} placeholder="Esta actividad se trata de..." />
       <p className="Textfield">
         <label className="Textfield__Label">Fecha de entrega</label>
         <input type="date" className="Textfield__Input Input--Full" name="date" id="date" onChange={handleChange} placeholder="Elige una fecha" required />

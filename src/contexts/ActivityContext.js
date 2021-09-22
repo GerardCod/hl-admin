@@ -2,7 +2,7 @@ import React, { createContext, useCallback, useReducer, useRef } from 'react';
 import ActivityReducer, { initialState } from '../reducers/ActivityReducer';
 import { DOCUMENT_FOUND, ERROR, FETCH_DOCUMENTS, LOADING, RESPONSE_SUCCESS } from '../reducers/Actions';
 import { firestore } from '../services/Firebase';
-import { addPostDateAndTime, collectIdAndData, sortItems } from '../utils';
+import { addPostDateAndTime, collectIdAndData, detectAndCreateLinks, sortItems } from '../utils';
 
 
 export const ActivityContext = createContext();
@@ -44,7 +44,9 @@ const ActivityProvider = ({children}) => {
     listenerRef.current = firestore.doc(`activities/${id}`).onSnapshot(
       snapshot => {
         const document = collectIdAndData(snapshot);
-        dispatch({type: DOCUMENT_FOUND, payload: document});
+        const processedDocument = detectAndCreateLinks('description', document);
+        console.log(processedDocument);
+        dispatch({type: DOCUMENT_FOUND, payload: processedDocument});
       },
       error => {
         dispatch({type: ERROR, payload: error.message});

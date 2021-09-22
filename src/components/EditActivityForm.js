@@ -2,10 +2,11 @@ import React, { useContext, useState, Fragment } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleNotch, faSave } from '@fortawesome/free-solid-svg-icons';
 import { ActivityContext } from '../contexts/ActivityContext';
-import { onError, onSuccess } from '../utils';
+import { detectAndCreateLinks, onError, onSuccess } from '../utils';
 import { Button, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 import MaterialDialog from './MaterialDialog';
 import { AttachFile } from '@material-ui/icons';
+import TextArea from './TextArea';
 
 const EditActivityForm = ({ activity }) => {
   const [data, setData] = useState(activity);
@@ -13,14 +14,16 @@ const EditActivityForm = ({ activity }) => {
   const [open, setOpen] = useState(false);
 
   const handleChange = (e) => {
+    let value = e.target.value;
     setData({
       ...data,
-      [e.target.name]: e.target.value,
+      [e.target.name]: value,
     });
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    detectAndCreateLinks('description', data, setData);
     editActivity(activity.id, data, { onSuccess, onError });
   }
 
@@ -47,10 +50,7 @@ const EditActivityForm = ({ activity }) => {
         <label className="Textfield__Label" htmlFor="title">Título de la actividad</label>
         <input defaultValue={activity.title} className="Textfield__Input Input--Full" type="text" name="title" id="title" onChange={handleChange} placeholder="Actividad 1" required />
       </p>
-      <p className="Textfield">
-        <label className="Textfield__Label" htmlFor="description">Descripción de la actividad</label>
-        <textarea defaultValue={activity.description} columns="80" rows="10" name="description" id="description" className="Textfield__Input Input--Full" onChange={handleChange} placeholder="Pongan un comentario acerca de lo visto en clase" required />
-      </p>
+      <TextArea label="Descripción de la actividad" name="description" onChange={handleChange} placeholder="Esta actividad se trata de..." defaultValue={activity.description} />
       <p className="Textfield">
         <label className="Textfield__Label" htmlFor="date">Fecha de entrega</label>
         <input type="date" defaultValue={activity.date} className="Textfield__Input Input--Full" name="date" id="date" onChange={handleChange} required />

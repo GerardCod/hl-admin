@@ -165,3 +165,26 @@ export const addPostDateAndTime = function addingDateTime(data) {
   data.postTime = today.toLocaleTimeString('es-MX');
   return data;
 }
+
+export const linkRegExp = /^https(.+?)+$/g;
+
+export const detectAndCreateLinks = (propName, data) => {
+  const words = data[propName].split(/[ \n]/);
+  const dataCopy = {...data};
+  console.log(words);
+  for (let word of words) {
+    if (word.match(linkRegExp)) {
+      console.log(word);
+      dataCopy[propName] = dataCopy[propName].replace(word, `<a href=${word} target="_blank">${word}</a>`);
+    }
+  }
+  return dataCopy;
+}
+
+export const detectAndCreateNewLines = (propName, data, setData) => {
+  const dataCopy = JSON.parse(JSON.stringify(data)); 
+  setData({
+    ...dataCopy,
+    [propName]: dataCopy[propName]?.replace('.', '.<br/>')
+  });
+}

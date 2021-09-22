@@ -6,6 +6,7 @@ import { onError } from '../utils';
 import Loader from '../components/Loader';
 import Submit from '../components/Submit';
 import LinkMaterialItem from '../components/LinkMaterialItem';
+import TextDescription from '../components/TextDescription';
 
 const ActivityDetailsPage = () => {
   const { state, activityDetails, listenerRef, addCommentToSubmit } = useContext(ActivityContext);
@@ -32,8 +33,7 @@ const ActivityDetailsPage = () => {
           <main className="VideoLayout">
             <div>
               <h1>{state.activitySelected.title}</h1>
-              <p>{state.activitySelected.description}</p>
-              <br />
+              <TextDescription text={state.activitySelected.description} />
               {
                 (state.activitySelected.links && state.activitySelected.links.length > 0 ) &&
                 state.activitySelected.links.map(link => <LinkMaterialItem material={link} key={`material-link: ${link.id}`} />)
