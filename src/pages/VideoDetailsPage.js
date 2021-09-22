@@ -11,6 +11,7 @@ import AddComment from '../components/AddComment';
 import { AuthContext } from '../contexts/AuthContext';
 import { createComment, onError, onSuccess } from '../utils';
 import Watch from '../components/Watch';
+import TextDescription from '../components/TextDescription';
 
 const VideoDetailsPage = () => {
   const { getAndObserveVideo, state: { videoSelected }, videoListenerRef, addComment } = useContext(VideoContext);
@@ -59,7 +60,7 @@ const VideoDetailsPage = () => {
               </button>
               <section>
                 <h2>Descripción</h2>
-                <p>{videoSelected.description}</p>
+                <TextDescription text={videoSelected.description} />
               </section>
               <section>
                 <h2>Comentarios</h2>

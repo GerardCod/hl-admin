@@ -2,7 +2,7 @@ import { createContext, useCallback, useReducer, useRef } from "react";
 import AssessmentReducer, { initialState } from '../reducers/AssessmentReducer';
 import { firestore } from '../services/Firebase';
 import { LOADING, FETCH_DOCUMENTS, ERROR, RESPONSE_SUCCESS, DOCUMENT_FOUND } from '../reducers/Actions';
-import { addPostDateAndTime, collectIdAndData, sortItems } from '../utils';
+import { addPostDateAndTime, collectIdAndData, detectAndCreateLinks, sortItems } from '../utils';
 
 export const AssessmentContext = createContext();
 
@@ -47,7 +47,8 @@ const AssessmentProvider = ({ children }) => {
     documentRef.current = firestore.doc(`assessments/${id}`).onSnapshot(
       snapshot => {
         const assessment = collectIdAndData(snapshot);
-        dispatch({type: DOCUMENT_FOUND, payload: assessment});
+        const processedAssessment = detectAndCreateLinks('description', assessment);
+        dispatch({type: DOCUMENT_FOUND, payload: processedAssessment});
       },
       error => {
         dispatch({type: ERROR, payload: error.message});

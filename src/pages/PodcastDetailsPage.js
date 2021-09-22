@@ -12,6 +12,7 @@ import Watch from '../components/Watch';
 import AddComment from '../components/AddComment';
 import { AuthContext } from '../contexts/AuthContext';
 import { createComment, onError, onSuccess } from '../utils';
+import TextDescription from '../components/TextDescription';
 
 const PodcastDetailsPage = () => {
   const { getPodcastById, state: { podcastSelected }, podcastRef, addComment } = useContext(PodcastContext);
@@ -48,7 +49,7 @@ const PodcastDetailsPage = () => {
             <div>
               <h1>{podcastSelected.title}</h1>
               <AudioPlayer url={podcastSelected.url} />
-              <p>{podcastSelected.description}</p>
+              <TextDescription text={podcastSelected.description} />
               <button className="Button Button--Primary Button--Icon Button--Views" onClick={revealPlays}>
                 <FontAwesomeIcon icon={faEye} />
                 <span>Ver reproducciones</span>
@@ -57,7 +58,7 @@ const PodcastDetailsPage = () => {
                 <h2>Comentarios</h2>
                 <AddComment submitComment={submitPodcastComment} />
                 {
-                  (podcastSelected.comments.length > 0) &&
+                  (podcastSelected.comments?.length > 0) &&
                   podcastSelected.comments.map((comment, idx) => <Comment {...comment} key={`comment-${idx}`} />)
                 }
               </section>
@@ -65,7 +66,7 @@ const PodcastDetailsPage = () => {
             <aside className="Views" ref={playsRef}>
               <h3>Escuchado por {podcastSelected.heardBy.length} personas</h3>
               {
-                podcastSelected.heardBy.length > 0 &&
+                podcastSelected.heardBy?.length > 0 &&
                 podcastSelected.heardBy.map((hear, idx) => <Watch {...hear} key={`heard-${idx}`} />)
               }
             </aside>

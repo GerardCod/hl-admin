@@ -4,6 +4,7 @@ import Back from '../components/Back';
 import { BooksContext } from '../contexts/BooksContext';
 import Loader from '../components/Loader';
 import { onError } from '../utils';
+import TextDescription from '../components/TextDescription';
 
 const BookDetailsPage = () => {
   const { id } = useParams();
@@ -28,7 +29,7 @@ const BookDetailsPage = () => {
             <h1>
               <a href={state.bookSelected.url} target="_blank" rel="noreferrer">{state.bookSelected.title}</a>
             </h1>
-            <p>{state.bookSelected.description}</p>
+            <TextDescription text={state.bookSelected.description} />
             <iframe src={state.bookSelected.url} title={state.bookSelected.title} className="BookViewer"></iframe>
           </main> :
           <Loader text="Cargando libro" />
