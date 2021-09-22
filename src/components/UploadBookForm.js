@@ -3,6 +3,7 @@ import { onError, onSuccess } from '../utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleNotch, faSave, faFileUpload } from '@fortawesome/free-solid-svg-icons';
 import { BooksContext } from '../contexts/BooksContext';
+import TextArea from './TextArea';
 
 const UploadBookForm = () => {
   const { state, uploadBook } = useContext(BooksContext);
@@ -13,7 +14,7 @@ const UploadBookForm = () => {
   const handleChange = e => {
     setData({
       ...data,
-      [e.target.name]: e.target.value.trim()
+      [e.target.name]: e.target.value
     });
   }
 
@@ -40,10 +41,7 @@ const UploadBookForm = () => {
         <label className="Textfield__Label" htmlFor="title">Título del libro</label>
         <input className="Textfield__Input Input--Full" type="text" name="title" id="title" onChange={handleChange} placeholder="El principito" required />
       </p>
-      <p className="Textfield">
-        <label className="Textfield__Label" htmlFor="description">Pequeña descripción del libro</label>
-        <textarea columns="80" rows="10" name="description" id="description" className="Textfield__Input Input--Full" onChange={handleChange} placeholder="Es la historia de un principito" required />
-      </p>
+      <TextArea label="Pequeña descripción del libro" name="description" onChange={handleChange} />
       <div className="Textfield">
         <label className="Textfield__Label" htmlFor="description">
           Elige un archivo

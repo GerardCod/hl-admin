@@ -3,6 +3,7 @@ import swal from 'sweetalert';
 import { PodcastContext } from '../contexts/PodcastContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleNotch, faFileUpload, faSave } from '@fortawesome/free-solid-svg-icons';
+import TextArea from './TextArea';
 
 const UploadPodcastForm = () => {
   const { uploadPodcast, state } = useContext(PodcastContext);
@@ -36,16 +37,13 @@ const UploadPodcastForm = () => {
     <Fragment>
       <form ref={formRef} className="Form--Upload flex flex--column" onSubmit={handleSubmit}>
         <p className="Textfield">
-          <label className="Textfield__Label" htmlFor="title">Título del podcast</label>
+          <label className="Textfield__Label" htmlFor="title">Título del audio</label>
           <input className="Textfield__Input Input--Full" type="text" name="title" id="title" onChange={handleChange} placeholder="Big buck bunny" required />
         </p>
-        <p className="Textfield">
-          <label className="Textfield__Label" htmlFor="description">Descripción del podcast</label>
-          <textarea columns="80" rows="10" name="description" id="description" className="Textfield__Input Input--Full" onChange={handleChange} placeholder="Es el vídeo de un conejo gordo" required />
-        </p>
+        <TextArea label="Descripción del audio" name="description" onChange={handleChange} />
         <div className="Textfield">
           <label className="Textfield__Label" htmlFor="description">
-            Elige un podcast
+            Elige un audio
         </label>
           <div className="Textfield__Input Input--File flex flex--column f-justify--center f-align--center">
             <input type="file" name="video" id="video" accept="audio/mp3" onChange={handlePickUpAudio} required />
@@ -60,7 +58,7 @@ const UploadPodcastForm = () => {
           state.loading ?
             <button type="button" className="Button Button--Icon Button--Success width--full" disabled>
               <FontAwesomeIcon icon={faCircleNotch} className="Loading" />
-              <span>Subiendo vídeo</span>
+              <span>Subiendo audio</span>
             </button>
             :
             <button type="submit" className="Button Button--Icon Button--Success width--full" disabled={(!data.title || !data.description || !audio)}>

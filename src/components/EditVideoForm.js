@@ -4,6 +4,7 @@ import { VideoContext } from '../contexts/VideoContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSave, faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 import VideoPlayer from '../components/VideoPlayer';
+import TextArea from './TextArea';
 
 const EditVideoForm = ({ id, video }) => {
   const { state: { error, loading }, editVideo } = useContext(VideoContext);
@@ -34,15 +35,12 @@ const EditVideoForm = ({ id, video }) => {
             <label className="Textfield__Label" htmlFor="title">Título del vídeo</label>
             <input className="Textfield__Input Input--Full" defaultValue={data.title} type="text" name="title" id="title" onChange={handleChange} placeholder="Big buck bunny" required />
           </p>
-          <p className="Textfield">
-            <label className="Textfield__Label" htmlFor="description">Descripción del vídeo</label>
-            <textarea columns="80" rows="10" name="description" defaultValue={data.description} id="description" className="Textfield__Input Input--Full" onChange={handleChange} placeholder="Es el vídeo de un conejo gordo" required />
-          </p>
+          <TextArea label="Descripción del vídeo" name="description" onChange={handleChange} defaultValue={data.description} />
           {
             loading ?
               <button type="button" className="Button AddVideo Button--Success UploadButton" disabled>
                 <FontAwesomeIcon icon={faCircleNotch} className="Loading" />
-                <span>Subiendo vídeo</span>
+                <span>Actualizando vídeo</span>
               </button>
               :
               <button type="submit" className="Button AddVideo Button--Success UploadButton" disabled={(!data.title || !data.description)}>

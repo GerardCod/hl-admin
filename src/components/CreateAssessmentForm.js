@@ -3,6 +3,7 @@ import useForm from '../hooks/useForm';
 import { assessmentTypes } from '../utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faSave, faTimes } from '@fortawesome/free-solid-svg-icons';
+import TextArea from './TextArea';
 
 const CreateAssessmentForm = ({ handleSubmit, assessmentState, update, cancel }) => {
   const [data, handleChange] = useForm(assessmentState);
@@ -25,14 +26,7 @@ const CreateAssessmentForm = ({ handleSubmit, assessmentState, update, cancel })
           onChange={handleChange} placeholder="Evaluación de primer bimestre" required value={data.title}
           disabled={editable} />
       </p>
-      <p className="Textfield">
-        <label className="Textfield__Label" htmlFor="instructions">Instrucciones de la evaluación</label>
-        <input
-          className="Textfield__Input Input--Full" type="text" name="instructions" id="instructions"
-          onChange={handleChange} placeholder="Evaluación de primer bimestre" required value={data.instructions}
-          disabled={editable} />
-      </p>
-
+      <TextArea label="Instrucciones de la evaluación" name="instructions" onChange={handleChange} defaultValue={data.instructions} />
       <p className="Textfield">
         <label className="Textfield__Label" htmlFor="instructions">Tipo de evaluación</label>
         <select

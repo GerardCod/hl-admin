@@ -2,7 +2,7 @@ import React, {createContext, useCallback, useReducer, useRef } from 'react';
 import { DOCUMENT_FOUND, ERROR, FETCH_VIDEOS_SUCCESS, LOADING, RESPONSE_SUCCESS } from '../reducers/Actions';
 import VideosReducer, {initialState} from '../reducers/VideosReducer';
 import { firestore, storage } from '../services/Firebase';
-import { addPostDateAndTime, collectIdAndData, sortItems } from '../utils';
+import { addPostDateAndTime, collectIdAndData, detectAndCreateLinks, sortItems } from '../utils';
 
 export const VideoContext = createContext();
 
@@ -40,7 +40,8 @@ const VideoProvider = ({children}) => {
     try {
       const docRef = await firestore.doc(`videos/${id}`).get();
       const payload = collectIdAndData(docRef);
-      dispatch({type: DOCUMENT_FOUND, payload})
+      const processedVideo = detectAndCreateLinks('description', payload);
+      dispatch({type: DOCUMENT_FOUND, processedVideo})
     } catch (e) {
       dispatch({type: ERROR, payload: e.message});
       errorCallback(e.message);

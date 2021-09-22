@@ -4,6 +4,7 @@ import { PodcastContext } from '../contexts/PodcastContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleNotch, faSave } from '@fortawesome/free-solid-svg-icons';
 import { onSuccess, onError } from '../utils';
+import TextArea from './TextArea';
 
 const EditPodcastForm = ({ podcast }) => {
   const { state: { loading }, editPodcast } = useContext(PodcastContext);
@@ -27,18 +28,15 @@ const EditPodcastForm = ({ podcast }) => {
         <AudioPlayer url={data.url} />
         <form className="Form--Upload flex flex--column" onSubmit={handleSubmit}>
           <p className="Textfield">
-            <label className="Textfield__Label" htmlFor="title">Título del podcast</label>
+            <label className="Textfield__Label" htmlFor="title">Título del audio</label>
             <input className="Textfield__Input Input--Full" defaultValue={data.title} type="text" name="title" id="title" onChange={handleChange} placeholder="El miedo" required />
           </p>
-          <p className="Textfield">
-            <label className="Textfield__Label" htmlFor="description">Descripción del podcast</label>
-            <textarea columns="80" rows="10" name="description" defaultValue={data.description} id="description" className="Textfield__Input Input--Full" onChange={handleChange} placeholder="Es un podcast de migala" required />
-          </p>
+          <TextArea label="Descripción del audio" name="description" onChange={handleChange} defaultValue={data.description} />
           {
             loading ?
               <button type="button" className="Button AddVideo Button--Success UploadButton" disabled>
                 <FontAwesomeIcon icon={faCircleNotch} className="Loading" />
-                <span>Subiendo podcast</span>
+                <span>Actualizando audio</span>
               </button>
               :
               <button type="submit" className="Button AddVideo Button--Success UploadButton" disabled={(!data.title || !data.description)}>

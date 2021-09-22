@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleNotch, faSave, faFileUpload } from '@fortawesome/free-solid-svg-icons';
 import { BooksContext } from '../contexts/BooksContext';
 import { onError, onSuccess } from '../utils';
+import TextArea from './TextArea';
 
 const EditBookForm = ({book}) => {
   const { state, editBook } = useContext(BooksContext);
@@ -12,7 +13,7 @@ const EditBookForm = ({book}) => {
   const handleChange = e => {
     setData({
       ...data,
-      [e.target.name]: e.target.value.trim(),
+      [e.target.name]: e.target.value,
     });
   }
 
@@ -36,10 +37,7 @@ const EditBookForm = ({book}) => {
         <label className="Textfield__Label" htmlFor="title">Título del libro</label>
         <input className="Textfield__Input Input--Full" type="text" name="title" id="title" defaultValue={book.title} onChange={handleChange} placeholder="El principito" required />
       </p>
-      <p className="Textfield">
-        <label className="Textfield__Label" htmlFor="description">Pequeña descripción del libro</label>
-        <textarea columns="80" rows="10" name="description" id="description" className="Textfield__Input Input--Full" defaultValue={book.description} onChange={handleChange} placeholder="Es la historia de un principito" required />
-      </p>
+      <TextArea label="Pequeña descripción del libro" name="description" onChange={handleChange} defaultValue={book.description} />
       <div className="Textfield">
         <label className="Textfield__Label" htmlFor="description">
           Elige un archivo
@@ -57,7 +55,7 @@ const EditBookForm = ({book}) => {
         state.loading ? 
         <button type="button" className="Button Button--Icon Button--Success width--full" disabled>
           <FontAwesomeIcon icon={faCircleNotch} className="Loading" />
-          <span>Subiendo libro</span>
+          <span>Actualizando libro</span>
         </button> 
         : 
         <button type="submit" className="Button Button--Icon Button--Success width--full" disabled={(!data.title || !data.description)}>
