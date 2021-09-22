@@ -171,10 +171,8 @@ export const linkRegExp = /^https(.+?)+$/g;
 export const detectAndCreateLinks = (propName, data) => {
   const words = data[propName].split(/[ \n]/);
   const dataCopy = {...data};
-  console.log(words);
   for (let word of words) {
     if (word.match(linkRegExp)) {
-      console.log(word);
       dataCopy[propName] = dataCopy[propName].replace(word, `<a href=${word} target="_blank">${word}</a>`);
     }
   }
