@@ -2,7 +2,7 @@ import React, { createContext, useCallback, useReducer, useRef } from "react";
 import { firestore, storage } from '../services/Firebase';
 import PodcastReducer, { initialState } from '../reducers/PodcastReducer';
 import { FETCH_DOCUMENTS, LOADING, ERROR, RESPONSE_SUCCESS, DOCUMENT_FOUND } from "../reducers/Actions";
-import { addPostDateAndTime, collectIdAndData } from '../utils';
+import { addPostDateAndTime, collectIdAndData, sortItems } from '../utils';
 
 export const PodcastContext = createContext();
 
@@ -16,7 +16,8 @@ const PodcastProvider = ({children}) => {
     listenerRef.current = firestore.collection('podcasts')
     .onSnapshot(snapshot => {
       const podcasts = snapshot.docs.map(collectIdAndData);
-      dispatch({type: FETCH_DOCUMENTS, payload: podcasts});
+      const sortedPodcasts = sortItems(podcasts);
+      dispatch({type: FETCH_DOCUMENTS, payload: sortedPodcasts});
     }, error => {
       dispatch({type: ERROR, payload: error.message});
       errorCallback(error.message);
