@@ -6,7 +6,7 @@ export default function TextDescription({text}) {
   return (
     <Fragment>
       {
-        `${text}`.split('\n').map((paragraph, index) => <p key={`p-description-id: ${index}`} className="mb-1rem">{parse(paragraph)}</p>)
+        `${text}`.split('\n').map((paragraph, index) => <p key={`p-description-id: ${index}`} className="mb-1rem align--justify">{parse(paragraph)}</p>)
       }
     </Fragment>
   );
